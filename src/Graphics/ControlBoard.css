@@ -1,0 +1,98 @@
+.scroll-pane .viewport{
+    -fx-background-image: url(/Textures/MapMakerBackground.jpg);
+    -fx-background-size: cover;
+    -fx-border-color: grey;
+    -fx-border-width: 5;
+}
+.button{
+    -fx-background-size: 70px;
+    -fx-background-repeat: no-repeat;
+    -fx-height: 45px;
+    -fx-width: 45px;
+    -fx-background-color: grey;
+    /*-fx-border-color: green;*/
+
+    -fx-effect: dropshadow(one-pass-box, #898989,0,0,0,10);
+    -fx-transition-duration:60s;
+}
+.button:pressed:hover{
+    -fx-background-color: #648069;
+
+    -fx-effect: dropshadow(one-pass-box, #707070,0,0,0,4);
+    -fx-translate-y: 5px;
+}
+
+#up{
+    -fx-background-image: url("/Textures/up.png");
+}
+#down{
+    -fx-background-image: url("/Textures/down.png");
+}
+#left{
+    -fx-background-image: url("/Textures/left.png");
+}
+#right{
+    -fx-background-image: url("/Textures/right.png");
+}
+#dru {
+    -fx-background-image: url("/Textures/dru.png");
+}
+#drd {
+    -fx-background-image: url("/Textures/drd.png");
+}
+#dlu{
+    -fx-background-image: url("/Textures/dlu.png");
+}
+#dld{
+    -fx-background-image: url("/Textures/dld.png");
+}
+#ordersButton{
+    -fx-background-color: green;
+    -fx-font-size: 35;
+    -fx-font-family: FontAwesome;
+}
+#move{
+    -fx-background-color: #bebe00;
+    -fx-font-size: 35;
+    -fx-font-family: FontAwesome;
+}
+#shot{
+    -fx-background-color: orange;
+    -fx-font-size: 35;
+    -fx-font-family: FontAwesome;
+}
+.label{
+    -fx-font-size: 35;
+    -fx-font-family: FontAwesome;
+}
+.list-view{
+    -fx-background-color: black;
+    -fx-border-color: yellow;
+}
+.list-cell{
+    -fx-background-color: black;
+    -fx-font-size: 10;
+    -fx-font-family: Sylfaen;
+}
+.list-cell:filled:even:hover{
+    -fx-background-color: #91ff6f
+}
+.list-cell:filled:odd:hover{
+    -fx-background-color: #c7c43c;
+}
+.list-cell:filled:even{
+    -fx-background-color: #c3ffa2
+}
+.list-cell:filled:odd{
+    -fx-background-color: #b4b12f;
+}
+.list-cell:filled:hover{
+    -fx-font-size: 14;
+}
+
+/*.list-view:filled:even{*/
+/*    -fx-background-color: #414cff;*/
+/*}*/
+/*.list-view:filled:odd:cell-selection{*/
+/*    -fx-background-color: #328024;*/
+/*}*/

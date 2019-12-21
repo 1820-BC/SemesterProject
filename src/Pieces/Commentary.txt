@@ -1,0 +1,3 @@
+These piece classes are all basically the same. They have methods that return specific information about themselves that is used in other classes for movement, texture, and other aspects.
+The EmptyPiece is used as a placeholder for empty spaces so null pointer errors do not occur
+The Piece class is an abstraction of the other piece classes for better cross class functionality

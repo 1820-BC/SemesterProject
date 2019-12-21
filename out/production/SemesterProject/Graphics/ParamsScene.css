@@ -1,0 +1,64 @@
+.root{
+    -fx-background-image: url("/Textures/titleScreen.jpg");
+    -fx-background-size: cover;
+    -fx-font-size: 30;
+}
+.button{
+    -fx-background-color: grey;
+    -fx-font-size: 35;
+    /*-fx-border-color: green;*/
+
+    -fx-effect: dropshadow(one-pass-box, #898989,0,0,0,10);
+    -fx-transition-duration:60s;
+}
+.button:pressed:hover{
+    -fx-background-color: #648069;
+
+    -fx-effect: dropshadow(one-pass-box, #707070,0,0,0,4);
+    -fx-translate-y: 5px;
+}
+.slider{
+    -fx-tick-length: 50px;
+    -fx-snap-to-ticks: true;
+    /*-fx-background-size: 100px;*/
+}
+.slider .track {
+    -fx-pref-height:30;
+}
+.slider .thumb{
+    -fx-background-color: #bce80f;
+    -fx-pref-height: 30;
+    -fx-pref-width: 5;
+}
+#droplets .track{
+    -fx-background-color: blue;
+}
+#surfaceTension .track{
+    -fx-background-color:green ;
+}
+#elasticity .track{
+    -fx-background-color: #b86b00;
+}
+#flowForce . track{
+    -fx-background-color:purple;
+}
+#minPrecipitaion .track{
+    -fx-background-color: #5735ff;
+}
+
+#rainfallVariation .track{
+    -fx-background-color:red;
+}
+#riverness .track {
+    -fx-background-color: #58faff;
+}
+#size .track{
+    -fx-background-color:brown;
+}
+
+.label{
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 30;
+
+    /*-fx-effect:;*/
+}

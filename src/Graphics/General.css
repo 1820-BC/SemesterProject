@@ -1,0 +1,116 @@
+
+
+.back2{
+    -fx-background-image: url(/Textures/titleScreen.jpg);
+    -fx-background-size: cover;
+}
+
+#title{
+    -fx-font-family: Parchment;
+    -fx-font-size: 150;
+    -fx-padding: -10,-10,-10,-100;
+    -fx-text-fill: linear-gradient(#5b0006, #87331b);
+    -fx-font-weight: 900;
+    -fx-font-style: oblique 45deg;
+    -fx-effect: dropshadow(gaussian,black,5,1,1,1);
+
+}
+
+#danger{
+    -fx-background-radius: 40px;
+
+    -fx-padding: 17px 50px;
+    -fx-font-size: 20;
+    -fx-font-weight: 900;
+    -fx-border-radius: 40px;
+    -fx-background-color: linear-gradient(to bottom right, red,darkred);
+}
+#go{
+    -fx-background-radius: 40px;
+
+    -fx-padding: 17px 50px;
+    -fx-font-size: 20;
+    -fx-font-weight: 900;
+    -fx-border-radius: 40px;
+    -fx-background-color: linear-gradient(to bottom right, greenyellow,darkgreen);
+}
+.button{
+    -fx-background-radius: 80px;
+
+    -fx-padding: 25px 100px;
+    -fx-font-size: 35;
+    -fx-font-weight: 900;
+    -fx-border-radius: 80px;
+
+    -fx-border-color: linear-gradient(to bottom right, #434214, #8c884f);
+    -fx-background-color: linear-gradient(to bottom right, #a8a632, darkkhaki);
+
+    -fx-font-family: "Ink Free";
+    -fx-effect: dropshadow(one-pass-box, #898989,0,0,0,9);
+    -fx-transition-duration:0.9s;
+
+}
+
+.button:hover{
+
+    -fx-effect: dropshadow(one-pass-box,#666,0,0,0,4);
+    -fx-translate-y: 5px;
+}
+.titleText{
+    -fx-font-family: Parchment;
+    -fx-font-size: 150;
+    -fx-padding: -10,-10,-10,-100;
+    -fx-text-fill: linear-gradient(#5b0006, #87331b);
+    -fx-font-weight: 900;
+    -fx-font-style: oblique 45deg;
+    -fx-effect: dropshadow(gaussian,black,5,1,1,1);
+
+}
+.infoText{
+    -fx-font-size: 15;
+    -fx-font-family: sans-serif;
+    -fx-text-fill: white;
+}
+
+.combo-box{
+    -fx-font-size:35;
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-font-color: darkred;
+    -fx-background-color: #6d6d00;
+    -fx-border-color: black;
+}
+.text-field{
+    -fx-font-size:25;
+    -fx-font-family: "Arial Rounded MT Bold";
+    -fx-background-color: brown;
+    -fx-border-color: black;
+    /*-fx-background-color: ;*/
+}
+.text-field:hover{
+    -fx-border-width: 10;
+    -fx-border-color: yellow;
+    -fx-font-size: 29;
+}
+
+.list-view{
+    -fx-background-image: url("/Textures/paper.jpg");
+    -fx-border-color: none;
+    -fx-font-family: "Century Gothic";
+    -fx-font-size: 15;
+}
+.list-view:even{
+    -fx-background-image: url(/Textures/paper3.jpg);
+}
+.list-view:odd{
+    -fx-background-image: url(/Textures/paper2.jpeg);
+}
+.list-view:hover{
+    -fx-font-size: 20;
+}
+
+
+#backgroundForPlayerScene{
+    -fx-background-image: url(/Textures/bricks.jpg);
+}
+
+

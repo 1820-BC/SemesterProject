@@ -1,0 +1,79 @@
+.root{
+ -fx-font-family: Chiller;
+ -fx-font-size: 35;
+ -fx-font-weight: bold;
+ -fx-shad-fx-font-style: oblique 45deg;
+ -fx-background-image: url(/Textures/HostBackground.jpg);
+ -fx-background-size: cover;
+
+}
+
+.scroll-pane .viewport{
+    -fx-background-image: url(/Textures/MapMakerBackground.jpg);
+    -fx-background-size: cover;
+    -fx-border-color: grey;
+    -fx-border-width: 5;
+}
+.text-field{
+    -fx-font-family: "Alef";
+    -fx-font-size: 20;
+}
+.slider{
+    -fx-tick-label-fill: darkred;
+    -fx-major-tick-unit: 5;
+    -fx-minor-tick-length: 1;
+    -fx-minor-tick-visible: true;
+    -fx-tick-length: 1px;
+
+    -fx-snap-to-ticks: true;
+
+
+}
+.slider .thumb{
+ -fx-background-color: #c8c800;
+}
+
+#waterSlider .track{
+    -fx-background-color: lightblue;
+}
+#sizeSlider .track{
+    -fx-background-color: brown;
+}
+.button{
+    -fx-background-radius: 40px;
+
+    -fx-padding: 12px 50px;
+    -fx-font-size: 17;
+    -fx-font-weight: 900;
+    -fx-border-radius: 40px;
+
+    -fx-border-color: linear-gradient(to bottom right, #434214, #8c884f);
+    -fx-background-color: linear-gradient(to bottom right, #a8a632, darkkhaki);
+
+    -fx-font-family: "Ink Free";
+    -fx-effect: dropshadow(one-pass-box, #898989,0,0,0,5);
+    -fx-transition-duration:0.9s;
+
+}
+.button:hover{
+
+    -fx-effect: dropshadow(one-pass-box,#666,0,0,0,2);
+    -fx-translate-y: 5px;
+
+}
+.button:pressed{
+    -fx-opacity: 70%;
+    -fx-background-color: #434214;
+}
+#EnterButton{
+
+    -fx-height:50%;
+    -fx-width:50%;
+    -fx-padding: 10px,5px;
+    -fx-background-color: linear-gradient(to bottom right,lawngreen,forestgreen);
+
+}
+
+#Title{
+
+}

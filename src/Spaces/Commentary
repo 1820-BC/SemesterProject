@@ -1,0 +1,2 @@
+All of the spaces classes are similar. Like the piece classes, they are primarily used for data storage and transfer. They contain specific pieces of information about their type of space including texture.
+The generic type class is used to better allow cross class functionality

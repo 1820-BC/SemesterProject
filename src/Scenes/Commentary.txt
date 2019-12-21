@@ -1,0 +1,2 @@
+Like the piece classes, the Scene classes are all built around the same structure. The have an init method and a get method. The init method is run at the beginning of the program and is used to generate the parameters for the scene.
+The get method is used to get the scene for later use and the scene's get methods are the web that connects them with each other

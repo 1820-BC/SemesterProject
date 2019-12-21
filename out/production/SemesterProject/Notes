@@ -1,0 +1,21 @@
+1. Remember that port is always 444, player 1 is host
+
+2. Make sure to check that archer is accounted for
+
+3. Piskel drawings are 32 by 32 pixels so that is the reason for the overlap!!!
+
+4. Empty piece is probably overlapping land and messing it up
+
+
+
+
+--- ---- --- --- --- ---- ---
+
+Encoding is -move1x,move1y,move1piece-move2x,move2y,move2piece- ...
+
+--- ---- --- --- --- ---- ---
+
+To setup piece
+
+1. Make piece class
+2. Add piece if statement to board set piece method
