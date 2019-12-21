@@ -2,7 +2,7 @@ package Functions;
 
 public class Functions {
 
-
+//
     /*
     A set of universal helper methods for the project
      */
