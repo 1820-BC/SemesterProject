@@ -56,6 +56,10 @@ public abstract class MultiplayerIO {
             return;
         }
         String updater=in.readLine();
+        if(updater==null){
+            return;
+        }
+        System.out.println(updater);
         updater=updater.substring(1);
         String[] updates=updater.split("-");
         for(String thingToUpdate:updates){
