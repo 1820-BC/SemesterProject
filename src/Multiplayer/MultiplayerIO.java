@@ -52,6 +52,9 @@ public abstract class MultiplayerIO {
         os.println(moves);
     }
     public void recieveAction() throws IOException {
+        if(!in.ready()){
+            return;
+        }
         String updater=in.readLine();
         updater=updater.substring(1);
         String[] updates=updater.split("-");
