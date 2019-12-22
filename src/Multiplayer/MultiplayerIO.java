@@ -56,16 +56,19 @@ public abstract class MultiplayerIO {
             return;
         }
         String updater=in.readLine();
-        if(updater==null){
+        if(updater.equals(null)){
+            System.out.println("nullified");
             return;
         }
-        System.out.println(updater);
-        updater=updater.substring(1);
-        String[] updates=updater.split("-");
-        for(String thingToUpdate:updates){
-            String[] parts=thingToUpdate.split(",");
-            BoardIO.setSquare(parts[0],parts[1],parts[2]);
+        else {
+            System.out.println(updater);
+            updater = updater.substring(1);
+            String[] updates = updater.split("-");
+            for (String thingToUpdate : updates) {
+                String[] parts = thingToUpdate.split(",");
+                BoardIO.setSquare(parts[0], parts[1], parts[2]);
 
+            }
         }
     }
     public Move getMovePlayer1(){
