@@ -55,7 +55,10 @@ public class HostIO extends MultiplayerIO{
         System.out.println("something has been sent???");
     }
 
-
+    @Override
+    public void sendOkay() {
+        os.print("RUN GAME");
+    }
 
 
 //    public String getMessage();

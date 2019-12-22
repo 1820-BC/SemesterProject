@@ -33,12 +33,25 @@ public class ClientReadyScene {
         CanvasPane.setContent(BoardIO.getCanvas());
 
         refresh.setOnAction(e->{
-            try {
-                BoardIO.getIO().recWholeCanvas();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            BoardIO.drawBoardNew();
+
+                try {
+                    if(BoardIO.getIO().recWholeCanvas()){
+                        stage.setScene(MoveScene.getScene());
+                        while(!BoardIO.checkForWinCondition()){
+                            BoardIO.updateOponentBoard();
+                            try {
+                                BoardIO.getUpdate();
+                            } catch (IOException epps) {
+                                epps.printStackTrace();
+                            }
+
+                        }
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                BoardIO.drawBoardNew();
+
         });
 
         flower=new FlowPane();

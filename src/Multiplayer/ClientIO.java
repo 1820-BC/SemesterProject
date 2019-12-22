@@ -64,4 +64,9 @@ public class ClientIO extends MultiplayerIO{
     public void addToQueue(Move move){
         //implement sending procedure
     }
+
+    @Override
+    public void sendOkay() {
+        return;
+    }
 }

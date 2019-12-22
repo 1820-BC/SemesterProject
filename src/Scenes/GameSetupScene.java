@@ -136,11 +136,10 @@ public class GameSetupScene {
         });
         start.setOnAction(e-> {
 
-            try {
-                BoardIO.setIO(new HostIO());
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            if(!BoardIO.hasConnection()){
+                return;
             }
+
             stage.setScene(MoveScene.getScene());
             while(!BoardIO.checkForWinCondition()){
                 BoardIO.updateOponentBoard();
@@ -151,6 +150,8 @@ public class GameSetupScene {
                 }
 
             }
+
+            BoardIO.getIO().sendOkay();
         });
         back.setOnAction(e->stage.setScene(OpeningScene.openingScene(stage)));
 

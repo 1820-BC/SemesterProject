@@ -3,15 +3,11 @@ package Multiplayer;
 import BoardStuff.BoardIO;
 import BoardStuff.Move;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 //general MultiplayerIO class that allows for multiplayer. It is an abstraction of the other multiplayer classes that allows for better cross class functionality
 public abstract class MultiplayerIO {
@@ -78,10 +74,16 @@ public abstract class MultiplayerIO {
         os.println(wholeBoard);
     }
 
-    public void recWholeCanvas() throws IOException {
+    public boolean recWholeCanvas() throws IOException {
         String board=in.readLine();
+        if(board.equals("RUN GAME")){
+            return true;
+        }
         BoardIO.drawNewBoardFromString(board);
 
+        return false;
     }
+
+    public abstract void sendOkay();
 }
 
