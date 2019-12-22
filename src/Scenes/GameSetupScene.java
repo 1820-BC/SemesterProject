@@ -85,10 +85,8 @@ public class GameSetupScene {
             } catch (FileNotFoundException ex) {
                 System.out.println("ERROR IN GENERATE BUTTON ON GAMESETUPSCENE");
             }
-
-
-
-                }
+            sendCanvas();
+        }
         );
         load.setOnAction(e->{
 
@@ -100,6 +98,7 @@ public class GameSetupScene {
                     } catch (FileNotFoundException ex) {
                         System.out.println("ooff");
                     }
+                    sendCanvas();
                 }
                 );
         save.setOnAction(e->{
@@ -138,7 +137,7 @@ public class GameSetupScene {
         start.setOnAction(e-> {
 
             try {
-                GameInteraction.setIO(new HostIO());
+                BoardIO.setIO(new HostIO());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -209,6 +208,12 @@ public class GameSetupScene {
 
 
 
+    }
+
+    private static void sendCanvas() {
+        if(BoardIO.hasConnection()){
+            BoardIO.sendBoardThroughIO();
+        }
     }
 
 

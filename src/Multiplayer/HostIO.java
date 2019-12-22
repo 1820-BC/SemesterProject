@@ -16,7 +16,7 @@ public class HostIO extends MultiplayerIO{
 
 
     public HostIO() throws IOException {
-        server = new ServerSocket();
+        server = new ServerSocket(4444);
         host=true;
 
     }

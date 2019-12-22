@@ -73,5 +73,14 @@ public abstract class MultiplayerIO {
         }
     }
 
+    public void sendWholeCanvas(String wholeBoard){
+        os.println(wholeBoard);
+    }
+
+    public void recWholeCanvas() throws IOException {
+        String board=in.readLine();
+        BoardIO.drawNewBoardFromString(board);
+
+    }
 }
 

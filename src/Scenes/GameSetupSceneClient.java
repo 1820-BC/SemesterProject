@@ -1,5 +1,6 @@
 package Scenes;
 
+import BoardStuff.BoardIO;
 import Functions.Save;
 import Multiplayer.ClientIO;
 import javafx.geometry.Insets;
@@ -9,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 public class GameSetupSceneClient {
@@ -42,15 +44,17 @@ public class GameSetupSceneClient {
                         return;
                     }
 
-                    ClientIO clientIO= null;
                     try {
-                        clientIO = new ClientIO(field.getText());
+                        ClientIO clientIO = new ClientIO(field.getText());
+
                         clientIO.sendName();
-                        Save.save(clientIO);
+                        BoardIO.setIO(clientIO);
 
                     } catch (IOException ex) {
-                        ex.printStackTrace();
+                        field.setText("Invalid IP");
+                        return;
                     }
+                    stage.setScene(ClientReadyScene.getClientReadyScene());
 //                    Save.save(clientIO);
 //                    assert clientIO != null;
                 }
@@ -68,7 +72,9 @@ public class GameSetupSceneClient {
 
 
     public static Scene GSSC() {
+
         return scene;
+
     }
 
 

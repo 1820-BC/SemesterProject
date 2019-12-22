@@ -47,6 +47,8 @@ public class main extends Application {
         //JoinScene.joinSceneInit(stage,screenWidth,screenHeight);
         MoveScene.setupMoveScene(stage,screenWidth,screenHeight);
         ParamsScene.setUpParamsScene(stage,screenWidth,screenHeight);
+        ClientReadyScene.initializeClientReadyScene(stage,screenWidth,screenHeight);
+
         stage.setScene(OpeningScene.openingScene(stage));//OpeningScene.openingScene(stage));
         stage.show();
     }

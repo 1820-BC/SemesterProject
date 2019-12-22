@@ -1,6 +1,7 @@
 package Scenes;
 
 
+import BoardStuff.BoardIO;
 import Multiplayer.HostIO;
 import Multiplayer.MultiplayerIO;
 import javafx.collections.FXCollections;
@@ -52,6 +53,7 @@ public class PlayersScene {
                 host.beginConnectionProcedure();
                 String name=host.getMessage();
                 items.add(name);
+                BoardIO.setIO(host);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -60,7 +62,6 @@ public class PlayersScene {
         back.setOnAction(e->{
             stage.setScene(GameSetupScene.GameSetupScene());
         });
-
         players.getChildren().addAll(lis);
         buttons.getChildren().addAll(getPlayers,back);
         flower.getChildren().addAll(players,buttons);

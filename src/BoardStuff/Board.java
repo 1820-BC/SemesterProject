@@ -62,7 +62,40 @@ public class Board {
 
     //============================= Constructors and Helper Methods ================================\\
 
+    public void setupBoard(String bd) throws FileNotFoundException {
 
+        String line;
+        String[] list;
+        ArrayList<Space> row=new ArrayList<>();
+
+        line=bd;
+        System.out.println(line);
+        list=line.split("==");
+        for(String string3:list){
+            ;
+            String[] string2=string3.split("-");
+            for(String string:string2) {
+                if (string.equals("mountains")) {
+                    row.add(new Space(new Mountains(), new EmptyPiece()));
+                } else if (string.equals("fields")) {
+                    row.add(new Space(new Fields(), new EmptyPiece()));
+                } else if (string.equals("forests")) {
+                    row.add(new Space(new Forests(), new EmptyPiece()));
+                } else if (string.equals("rivers")) {
+                    row.add(new Space(new Rivers(), new EmptyPiece()));
+                } else {
+                    row.add(new Space(new Bridges(), new EmptyPiece()));
+                }
+
+
+            }
+            board.add((ArrayList<Space>)row.clone());
+            row.clear();
+            //System.out.println(board.size());
+        }
+        sizeX=board.size();
+        sizeY=board.size();
+    }
     public Board(){
         board.add(null);
     }
@@ -165,46 +198,6 @@ public class Board {
             }
         }
     }
-            //Now, bridges are added
-        /*
-            industriality++;
-            int inc=sizeX/industriality; //the increment between each bridge
-            for(int i:Functions.Functions.range(1,industriality)){
-                System.out.println(inc*i-1);
-                for(BoardStuff.Space s:board.get(inc*i-1)){
-                    if(s.getType().getLand()=="rivers"){
-                        s.setType(new Bridges());
-                    }
-                }
-            }
-
-            for(int i:Functions.Functions.range(industriality)){
-                setPointer((int)(Math.random()*sizeX),(int)(Math.random()*sizeY)); //places pointer in random location on map
-                int dX;
-                int dY;
-                if(Functions.Functions.isEven(i)) {
-                    dX = 1 + (int) (Math.random() * 2) * (-2);
-                    dY = 0;
-                }
-                else {
-                    dY = 1 + (int) (Math.random() * 2) * (-2);
-                    dX = 0;
-                }
-                int length=0;
-                boolean hitWater=false;
-                while(movePointer(dX,dY)) {
-
-                    if (getTypeFromPointer().getLand() == "rivers"&&length<bridgeLength) {
-                        length++;
-                        setTypeFromPointer(new Bridges());
-                        hitWater = true;
-                        continue;
-                    }
-                    if (hitWater == true&&getTypeFromPointer().getLand()!="rivers") {
-                        break;
-                    }
-                }
-                */
 
 
 
@@ -273,6 +266,19 @@ public class Board {
 
     }
 
+    //============================ Comms ======================================\\
+
+    public String getEncodedBoard(){
+        String writer = new String();
+        for (ArrayList<Space> a : board) {
+            for (Space s : a) {
+                writer+=(s.getType().getLand() + "-");
+            }
+            writer+="==";
+        }
+//        writer.close();
+        return writer;
+    }
 
     //============================= Low Level Operations ================================\\
 
@@ -369,6 +375,8 @@ public class Board {
     public ArrayList<ArrayList<Space>> getBoard() {
         return board;
     }
+
+
 
 
     // public void movePiece(Vector V, int x, int y){

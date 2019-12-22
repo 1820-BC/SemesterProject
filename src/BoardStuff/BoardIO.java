@@ -1,5 +1,6 @@
 package BoardStuff;
 
+import Multiplayer.HostIO;
 import Multiplayer.MultiplayerIO;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -38,9 +39,9 @@ public class BoardIO {
     public static void generateBoardFromFile(String fileName) throws FileNotFoundException {
         b = new Board(fileName);
 
-
-
     }
+
+
     public static void saveBoardToFile(String fileName) throws IOException {
         b.saveToFile(fileName);
     }
@@ -236,4 +237,31 @@ public class BoardIO {
         redrawSquare(x,y);
     }
 
+    public static void setIO(MultiplayerIO hostIO) {
+        io=hostIO;
+    }
+
+    public static boolean hasConnection() {
+        return io != null;
+
+    }
+
+
+    public static MultiplayerIO getIO() {
+        return io;
+    }
+
+
+    public static void drawNewBoardFromString(String board) {
+        b=new Board();
+        try {
+            b.setupBoard(board);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendBoardThroughIO(){
+        io.sendWholeCanvas(b.getEncodedBoard());
+    }
 }
