@@ -57,7 +57,13 @@ public class HostIO extends MultiplayerIO{
 
     @Override
     public void sendOkay() {
-        os.print("RUN GAME");
+        os.println("RUN GAME");
+    }
+
+    @Override
+    public void runUpdationThread() {
+        Thread T=new UpdationThread(IOsocket,in,os);
+        T.start();
     }
 
 

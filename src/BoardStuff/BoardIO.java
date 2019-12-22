@@ -2,6 +2,7 @@ package BoardStuff;
 
 import Multiplayer.HostIO;
 import Multiplayer.MultiplayerIO;
+import Multiplayer.UpdationThread;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -226,7 +227,7 @@ public class BoardIO {
     }
 
     public static boolean checkForWinCondition() {
-        return true;
+        return false;
     }
 
     public static void setSquare(String part, String part1, String part2) {
@@ -263,5 +264,10 @@ public class BoardIO {
 
     public static void sendBoardThroughIO(){
         io.sendWholeCanvas(b.getEncodedBoard());
+    }
+
+    public static void beginUpdationThread() {
+        io.runUpdationThread();
+
     }
 }

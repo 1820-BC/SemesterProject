@@ -4,6 +4,7 @@ import BoardStuff.Board;
 import BoardStuff.BoardIO;
 import BoardStuff.GameInteraction;
 import Multiplayer.HostIO;
+import Multiplayer.UpdationThread;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -135,23 +136,14 @@ public class GameSetupScene {
 
         });
         start.setOnAction(e-> {
-
-            if(!BoardIO.hasConnection()){
+            boolean runningLigit=false;
+            if((!BoardIO.hasConnection())&&runningLigit){
                 return;
             }
-
-            stage.setScene(MoveScene.getScene());
-            while(!BoardIO.checkForWinCondition()){
-                BoardIO.updateOponentBoard();
-                try {
-                    BoardIO.getUpdate();
-                } catch (IOException epps) {
-                    epps.printStackTrace();
-                }
-
-            }
-
             BoardIO.getIO().sendOkay();
+            stage.setScene(MoveScene.getScene());
+            BoardIO.beginUpdationThread();
+
         });
         back.setOnAction(e->stage.setScene(OpeningScene.openingScene(stage)));
 

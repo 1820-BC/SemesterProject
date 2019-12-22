@@ -226,7 +226,7 @@ public class MoveScene {
         });
 
         sendOrders.setOnAction(e->{
-            BoardIO.run(GameInteraction.getIO().getMovePlayer1());
+            BoardIO.run(BoardIO.getIO().getMovePlayer1());
             moves.getItems().remove(0);
         });
 
@@ -255,7 +255,7 @@ public class MoveScene {
                 moveType.setText("DIRECTED TO: MOVE");
             }
             else if(keyEvent.getCode()==KeyCode.Q){
-                BoardIO.run(GameInteraction.getIO().getMovePlayer1());
+                BoardIO.run(BoardIO.getIO().getMovePlayer1());
                 moves.getItems().remove(0);
             }
 
@@ -267,7 +267,7 @@ public class MoveScene {
 
     private static void FunctionForEntering(Image im) {
         currentMove.setVectorSize(BoardIO.getPieceAt());
-        GameInteraction.getIO().addToQueue(currentMove);
+        BoardIO.getIO().addToQueue(currentMove);
         moves.getItems().add(currentMove.toString());
         currentMove=new Move(selectedX,selectedY);
         moveType.setText("DIRECTED TO: NO MOVE");
@@ -295,7 +295,7 @@ public class MoveScene {
                 prepareForMove(selectedX,selectedY);
             }
         });
-
+//        BoardIO.getIO().setActionListener();
         return scene;
     }
 

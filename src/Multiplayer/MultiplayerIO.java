@@ -85,5 +85,10 @@ public abstract class MultiplayerIO {
     }
 
     public abstract void sendOkay();
+
+    public abstract void runUpdationThread();
+
+
+//    public abstract void setActionListener();
 }
 

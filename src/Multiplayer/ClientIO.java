@@ -69,4 +69,12 @@ public class ClientIO extends MultiplayerIO{
     public void sendOkay() {
         return;
     }
+
+    @Override
+    public void runUpdationThread() {
+        Thread T=new UpdationThread(socket,in,os);
+        T.start();
+    }
+
+
 }
