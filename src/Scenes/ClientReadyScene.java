@@ -38,6 +38,7 @@ public class ClientReadyScene {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            BoardIO.drawBoardNew();
         });
 
         flower=new FlowPane();

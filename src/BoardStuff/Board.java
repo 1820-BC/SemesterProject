@@ -97,7 +97,7 @@ public class Board {
         sizeY=board.size();
     }
     public Board(){
-        board.add(null);
+        return;
     }
 
     public Board(int minPrec,int sizeX,int sizeY) throws FileNotFoundException {
