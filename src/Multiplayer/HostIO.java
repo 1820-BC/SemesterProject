@@ -31,7 +31,7 @@ public class HostIO extends MultiplayerIO{
 
     public void beginConnectionProcedure() throws IOException {
         IOsocket=server.accept();
-        os=new PrintWriter(IOsocket.getOutputStream());
+        os=new PrintStream(IOsocket.getOutputStream());
         in=new BufferedReader(new InputStreamReader(IOsocket.getInputStream()));
     }
 //
@@ -50,6 +50,10 @@ public class HostIO extends MultiplayerIO{
         player1.add(move);
     }
 
+    public void sendWholeCanvas(String wholeBoard){
+        os.println(wholeBoard);
+        System.out.println("something has been sent???");
+    }
 
 
 

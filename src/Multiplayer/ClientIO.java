@@ -11,8 +11,7 @@ import java.util.Scanner;
 public class ClientIO extends MultiplayerIO{
 
      Socket socket;
-     PrintStream ot;
-     BufferedReader in;
+
      boolean sent;
 
 
@@ -20,7 +19,7 @@ public class ClientIO extends MultiplayerIO{
         super();
         host=false;
         socket=new Socket(IP,4444);
-        ot=new PrintStream(socket.getOutputStream());
+        os=new PrintStream(socket.getOutputStream());
         in=new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
     }
@@ -33,7 +32,7 @@ public class ClientIO extends MultiplayerIO{
     public void setUp(String IP,int port) throws IOException{
         socket=new Socket(IP,port);
         try {
-            ot=new PrintStream(socket.getOutputStream());
+            os=new PrintStream(socket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,7 +49,7 @@ public class ClientIO extends MultiplayerIO{
         sent=true;
         Scanner s=new Scanner(new File("src/Settings/name.txt"));
         String name=s.nextLine();
-        ot.println(name);
+        os.println(name);
     }
 
 

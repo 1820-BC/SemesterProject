@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -18,7 +19,7 @@ public abstract class MultiplayerIO {
       static boolean host;
       static String port;
       static Queue<Move> player1=new LinkedList();
-      protected PrintWriter os;
+      protected PrintStream os;
       protected BufferedReader in;
 
 //      private MultiplayerIO(){return;}
