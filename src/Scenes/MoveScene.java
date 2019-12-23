@@ -355,7 +355,7 @@ public class MoveScene {
         dlu.setId(t+"drawbridge");
         dld.setId(t+"bridge");
         up.setOnAction(e->{
-            currentMove.setNewPieceType(PieceTypes.INFANTRYInfantry);
+            currentMove.setNewPieceType(PieceTypes.INFANTRY);
             image.setImage(new Image("/Textures/Pieces/"+t+"Infantry.png"));
         });
         down.setOnAction(e->{
