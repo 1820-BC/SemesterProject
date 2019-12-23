@@ -26,7 +26,7 @@ public class UpdationThread {
     }
 
     public void start() {
-        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(0.001), new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
