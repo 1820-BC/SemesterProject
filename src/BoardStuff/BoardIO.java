@@ -153,6 +153,7 @@ public class BoardIO {
             b.setPieceFromPointer(type,player);
         }
         moves+="-"+movePlayer1.getX()+","+movePlayer1.getY()+","+ type+","+player;
+        redrawSquare(movePlayer1.getX(), movePlayer1.getY());
     }
     private static void runShot(Move movePlayer1){
         //stuff
