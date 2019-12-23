@@ -356,28 +356,28 @@ public class MoveScene {
         dld.setId(t+"bridge");
         up.setOnAction(e->{
             currentMove.setVector(0,1);
-            image.setImage(new Image("/Textures/"+t+"Infantry.png"));
+            image.setImage(new Image("/Textures/Pieces/"+t+"Infantry.png"));
         });
         down.setOnAction(e->{
             currentMove.setVector(0,-1);
-            image.setImage(new Image("/Textures/"+t+"Factory.png"));
+            image.setImage(new Image("/Textures/Pieces/"+t+"Factory.png"));
         });
         left.setOnAction(e->{
             currentMove.setVector(-1,0);
-            image.setImage(new Image("/Textures/"+t+"Trebuchet.png"));
+            image.setImage(new Image("/Textures/Pieces/"+t+"Trebuchet.png"));
         });
         right.setOnAction(e->{
             currentMove.setVector(1,0);
-            image.setImage(new Image("/Textures/"+t+"Wall.png"));
+            image.setImage(new Image("/Textures/Pieces/"+t+"Wall.png"));
         });
         dru.setOnAction(e->{
             currentMove.setVector(1,1);
-            image.setImage(new Image("/Textures/"+t+"Archer.png"));
+            image.setImage(new Image("/Textures/Pieces/"+t+"Archer.png"));
 
         });
         drd.setOnAction(e->{
             currentMove.setVector(1,-1);
-            image.setImage(new Image("/Textures/"+t+"Calvery.png"));
+            image.setImage(new Image("/Textures/Pieces/"+t+"Calvery.png"));
         });
         dlu.setOnAction(e->{
             currentMove.setVector(-1,1);
