@@ -16,6 +16,7 @@ public class Space {
 
     private Type type;
 
+    private Piece secondaryPiece;
 
     public Space(Type t, Piece piece) throws FileNotFoundException {
         this.piece=piece;
@@ -73,6 +74,26 @@ public class Space {
         }
     }
 
+    public void addPieceToSecondary(PieceTypes p,Teams team){
+        if (p == PieceTypes.INFANTRY) {
+            secondaryPiece = new Infantry(team);
+        }
+        else if(p==PieceTypes.EMPTY){
+            secondaryPiece=new EmptyPiece();
+        }
+        else if(p==PieceTypes.ARCHER){
+            secondaryPiece=new Archer(team);
+        }
+        else if(p==PieceTypes.CALVERY){
+           secondaryPiece=new Calvery(team);
+        }
+        else if(p==PieceTypes.TREBUCHET){
+            secondaryPiece=new Trebuchet(team);
+        }
+
+
+
+    }
 
     public PieceTypes getPieceType() {
         return piece.getPieceType();

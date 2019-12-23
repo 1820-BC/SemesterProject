@@ -10,10 +10,10 @@ import BoardStuff.PieceTypes.*;
 public class Pieces{
 
     private static Map<PieceTypes, Integer> moves = Map.of(
-            PieceTypes.INFANTRY, 2,
-            PieceTypes.CALVERY, 4,
-            PieceTypes.ARCHER, 2,
-            PieceTypes.TREBUCHET, 2,
+            PieceTypes.INFANTRY, 1,
+            PieceTypes.CALVERY, 3,
+            PieceTypes.ARCHER, 1,
+            PieceTypes.TREBUCHET, 1,
             PieceTypes.FACTORY, 0,
             PieceTypes.BRIDGE,0,
             PieceTypes.CLOSEDDRAWBRIDGE,0,
@@ -22,9 +22,9 @@ public class Pieces{
             PieceTypes.CAPITAL,0
     );
     private static Map<PieceTypes, Integer> shoots = Map.of(
-            PieceTypes.INFANTRY, 3,
-            PieceTypes.CALVERY, 2,
-            PieceTypes.ARCHER, 6,
+            PieceTypes.INFANTRY, 2,
+            PieceTypes.CALVERY, 1,
+            PieceTypes.ARCHER, 4,
             PieceTypes.TREBUCHET, 4,
             PieceTypes.FACTORY,0,
             PieceTypes.CLOSEDDRAWBRIDGE,0,

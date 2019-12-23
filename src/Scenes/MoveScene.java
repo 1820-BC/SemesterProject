@@ -251,10 +251,11 @@ public class MoveScene {
         currentMove.setVectorSize(BoardIO.getPieceAt());
         BoardIO.getIO().addToQueue(currentMove);
         moves.getItems().add(currentMove.toString());
-        Moves m=currentMove.getPT();
+//        Moves m=currentMove.getPT();
         currentMove=new Move(selectedX,selectedY);
-        currentMove.setType(m);
-//        moveType.setText("DIRECTED TO: NO MOVE");
+//        currentMove.setType(m);
+
+        moveType.setText("DIRECTED TO: MOVE");
         image.setImage(im);
         movesIn=moves.getItems().size();
         MoveNum.setText("Moves in Queue: "+movesIn);

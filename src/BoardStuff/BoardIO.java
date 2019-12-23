@@ -1,5 +1,6 @@
 package BoardStuff;
 
+import Rules.Rules;
 import Multiplayer.HostIO;
 import Multiplayer.MultiplayerIO;
 import Multiplayer.UpdationThread;
@@ -139,28 +140,50 @@ public class BoardIO {
         if (movePlayer1.getPT() == Moves.MOVE) {
             System.out.println("move");
             runMovement(movePlayer1);
+            updateForMovement(movePlayer1);
         }
         else if(movePlayer1.getPT()==Moves.SHOOT){
             System.out.println("shoot");
+
             runShot(movePlayer1);
+            updateForShot(movePlayer1);
         }
         else if(movePlayer1.getPT()==Moves.BUILD){
             System.out.println("build");
             runBuild(movePlayer1);
+            updateForBuild(movePlayer1);
         }
     }
+    private static void updateForMovement(Move move){
+        Rules.addTurnSinceBuild();
+
+    }
+    private static void updateForShot(Move move){
+        Rules.addTurnSinceBuild();
+    }
+    private static void updateForBuild(Move move){
+        Rules.resetTurnsSinceLastBuild();
+    }
     private static void runBuild(Move movePlayer1){
+
         PieceTypes type=movePlayer1.getNewPieceType();
         System.out.println(type);
         b.setPointer(movePlayer1.getX(),movePlayer1.getY());
 //        if(b.getPieceTypeFromPointer()==PieceTypes.EMPTY){
-        b.setPieceFromPointer(type,player);
+        if (!Rules.canBuildIn(b.getSpaceFromPointer(),movePlayer1.getNewPieceType())) {
+            return;
+        }
 
+        Rules.effectOfBuildOn(b.getSpaceFromPointer(),movePlayer1.getNewPieceType());
+        b.setPieceFromPointer(type,player);
+        if(type==PieceTypes.FACTORY){
+            Rules.addFactory();
+        }
         moves+="-"+movePlayer1.getX()+","+movePlayer1.getY()+","+ type+","+player;
         redrawSquare(movePlayer1.getX(), movePlayer1.getY());
     }
     private static void runShot(Move movePlayer1){
-        //stuff
+        return;
     }
     private static void runMovement(Move movePlayer1){
         if (movePlayer1 == null) {
@@ -171,11 +194,11 @@ public class BoardIO {
         movePlayer1.setVector(piece.getPieceType());
 
         b.movePointer(movePlayer1.getdX(), -movePlayer1.getdY());
-        if ((b.getPieceTypeFromPointer() != PieceTypes.EMPTY && b.getPieceTypeFromPointer() != PieceTypes.OPENDRAWBRIDGE)) {
-            return;
-        } else if (b.getSpaceFromPointer().getType().getLand().equals("rivers")) {
+        if (!Rules.canMoveInto(b.getSpaceFromPointer(),piece)) {
             return;
         }
+        Rules.effectOfMoveInto(b.getSpaceFromPointer(),piece);
+
         getBoard().setPointer(movePlayer1.getX(), movePlayer1.getY());
 
 

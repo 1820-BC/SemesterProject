@@ -103,12 +103,12 @@ public class Board {
     public Board(int minPrec,int sizeX,int sizeY) throws FileNotFoundException {
         setParams(minPrec, sizeX, sizeY);
         setupSelf();
-        addCapitals(side);
+        addCapitals(sizeX);
     }
     public Board(int side, int droplets,int surfaceTension,int flowForce, int rainfallVariation, int minPrecipitaion) throws FileNotFoundException {
-        setParamsFromVals(side, droplets, surfaceTension, flowForce,  rainfallVariation, minPrecipitaion);
+        setParamsFromVals(side-1, droplets, surfaceTension, flowForce,  rainfallVariation, minPrecipitaion);
         setupSelf();
-        addCapitals(side);
+        addCapitals(side-1);
     }
     public void setupSelf() throws FileNotFoundException {
         pointer[0] = 0;

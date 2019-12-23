@@ -56,7 +56,7 @@ public class Move {
         return "NO MOVE";
     }
     public Moves getPT(){
-        return type;
+        return this.type;
     }
 
     public String toString(){
