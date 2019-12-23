@@ -271,4 +271,8 @@ public class BoardIO {
         io.runUpdationThread();
 
     }
+
+    public static void resetMoveMessage() {
+        moves="";
+    }
 }

@@ -32,6 +32,7 @@ public class UpdationThread {
             public void handle(ActionEvent event) {
                 if(!BoardIO.checkForWinCondition())
                     BoardIO.updateOponentBoard();
+                    BoardIO.resetMoveMessage();
                 try {
                         BoardIO.getUpdate();
                     } catch (IOException epps) {
