@@ -56,8 +56,11 @@ public abstract class MultiplayerIO {
             return;
         }
         String updater=in.readLine();
-        if(updater.equals(null)){
+        if(updater==(null)){
             System.out.println("nullified");
+            return;
+        }
+        if(updater.equals("")){
             return;
         }
         else {

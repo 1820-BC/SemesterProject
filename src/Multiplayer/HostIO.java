@@ -62,7 +62,7 @@ public class HostIO extends MultiplayerIO{
 
     @Override
     public void runUpdationThread() {
-        Thread T=new UpdationThread(IOsocket,in,os);
+        UpdationThread T=new UpdationThread(IOsocket,in,os);
         T.start();
     }
 

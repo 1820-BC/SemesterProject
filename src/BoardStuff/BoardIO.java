@@ -33,7 +33,7 @@ public class BoardIO {
     private static int squareSize=30;
     private static int prevX,prevY;
     private static MultiplayerIO io;
-    private static String moves;
+    private static String moves="";
 
     //generates the board from a file fileName.txt
     //returns true is successful and false if not
@@ -158,6 +158,7 @@ public class BoardIO {
 
         getBoard().movePointer(movePlayer1.getdX(), -movePlayer1.getdY());
         moves += "-" + b.getX() + "," + b.getY() + "," + piece.getPieceType();
+        System.out.println(moves);
         getBoard().setPieceFromPointer(piece.getPieceType());
         redrawSquare(movePlayer1.getX(), movePlayer1.getY());
         redrawSquare(movePlayer1.getX() + movePlayer1.getdX(), -movePlayer1.getdY() + movePlayer1.getY());
