@@ -59,6 +59,15 @@ public class Space {
         else if(p==PieceTypes.FACTORY){
             piece=new Factory(team);
         }
+        else if(p==PieceTypes.WALL){
+            piece=new Wall(team);
+        }
+        else if(p==PieceTypes.CLOSEDDRAWBRIDGE){
+            piece=new drawBridge(team);
+        }
+        else if(p==PieceTypes.BRIDGE){
+            piece=new Bridge(team);
+        }
     }
 
 

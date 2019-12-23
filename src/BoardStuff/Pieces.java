@@ -14,14 +14,21 @@ public class Pieces{
             PieceTypes.CALVERY, 4,
             PieceTypes.ARCHER, 2,
             PieceTypes.TREBUCHET, 2,
-            PieceTypes.FACTORY, 0
+            PieceTypes.FACTORY, 0,
+            PieceTypes.BRIDGE,0,
+            PieceTypes.CLOSEDDRAWBRIDGE,0,
+            PieceTypes.OPENDRAWBRIDGE,0,
+            PieceTypes.WALL,0
     );
     private static Map<PieceTypes, Integer> shoots = Map.of(
             PieceTypes.INFANTRY, 3,
             PieceTypes.CALVERY, 2,
             PieceTypes.ARCHER, 6,
             PieceTypes.TREBUCHET, 4,
-            PieceTypes.FACTORY,0
+            PieceTypes.FACTORY,0,
+            PieceTypes.CLOSEDDRAWBRIDGE,0,
+            PieceTypes.OPENDRAWBRIDGE,0,
+            PieceTypes.WALL,0
     );
     public static int getMove(PieceTypes p){
         return moves.getOrDefault(p, 0);
