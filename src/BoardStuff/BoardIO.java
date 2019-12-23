@@ -158,7 +158,7 @@ public class BoardIO {
 
         getBoard().movePointer(movePlayer1.getdX(), -movePlayer1.getdY());
         moves += "-" + b.getX() + "," + b.getY() + "," + piece.getPieceType();
-        System.out.println(moves);
+//        System.out.println(moves);
         getBoard().setPieceFromPointer(piece.getPieceType());
         redrawSquare(movePlayer1.getX(), movePlayer1.getY());
         redrawSquare(movePlayer1.getX() + movePlayer1.getdX(), -movePlayer1.getdY() + movePlayer1.getY());
