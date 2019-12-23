@@ -3,30 +3,28 @@ package Pieces;
 import BoardStuff.PieceTypes;
 import javafx.scene.image.Image;
 
-public class Calvery extends Piece{
-
-
-    public Calvery(Teams team) {
+public class Factory extends Piece {
+    public Factory(Teams team){
         super(team);
     }
 
     @Override
     public String type() {
-        return "calvery";
+        return "Factory";
     }
 
     @Override
     public PieceTypes getType() {
-        return PieceTypes.CALVERY;
+        return PieceTypes.FACTORY;
     }
 
     @Override
     public PieceTypes getPieceType() {
-        return PieceTypes.CALVERY;
+        return PieceTypes.FACTORY;
     }
 
     @Override
     public Image getImage() {
-        return new Image("Textures/Pieces/"+team+"Calvery.png");
+        return new Image("/Textures/Pieces/"+team+"Factory.png");
     }
 }

@@ -38,23 +38,26 @@ public class Space {
     public void setPiece(Piece piece) {
         this.piece = piece;
     }
-    public void setPiece(PieceTypes p){
+    public void setPiece(PieceTypes p,Teams team){
 //        setPiece(new Infantry());
 //        System.out.println("p: "+p);
         if (p == PieceTypes.INFANTRY) {
-            piece = new Infantry();
+            piece = new Infantry(team);
         }
         else if(p==PieceTypes.EMPTY){
             piece=new EmptyPiece();
         }
         else if(p==PieceTypes.ARCHER){
-            piece=new Archer();
+            piece=new Archer(team);
         }
         else if(p==PieceTypes.CALVERY){
-            piece=new Calvery();
+            piece=new Calvery(team);
         }
         else if(p==PieceTypes.TREBUCHET){
-            piece=new Trebuchet();
+            piece=new Trebuchet(team);
+        }
+        else if(p==PieceTypes.FACTORY){
+            piece=new Factory(team);
         }
     }
 

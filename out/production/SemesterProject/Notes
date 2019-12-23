@@ -19,3 +19,9 @@ To setup piece
 
 1. Make piece class
 2. Add piece if statement to board set piece method
+3. Add required stuff in Piece class under BoardStuff
+
+--- ---- --- ---- ---
+Format for comms
+
+-x,y,piece,team

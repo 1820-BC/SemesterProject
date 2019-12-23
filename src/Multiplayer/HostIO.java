@@ -52,7 +52,7 @@ public class HostIO extends MultiplayerIO{
 
     public void sendWholeCanvas(String wholeBoard){
         os.println(wholeBoard);
-        System.out.println("something has been sent???");
+
     }
 
     @Override

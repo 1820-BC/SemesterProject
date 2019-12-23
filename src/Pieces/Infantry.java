@@ -4,8 +4,8 @@ import BoardStuff.PieceTypes;
 import javafx.scene.image.Image;
 
 public class Infantry extends Piece {
-    public Infantry(){
-        super();
+    public Infantry(Teams team){
+        super(team);
     }
 
     @Override
@@ -25,6 +25,6 @@ public class Infantry extends Piece {
 
     @Override
     public Image getImage() {
-        return new Image("/Textures/Pieces/Infantry.png");
+        return new Image("/Textures/Pieces/"+team+"Infantry.png");
     }
 }

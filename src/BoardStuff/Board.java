@@ -328,9 +328,9 @@ public class Board {
     }
 
     //sets piece at pointer
-    public void setPieceFromPointer(PieceTypes p){
+    public void setPieceFromPointer(PieceTypes p,Teams team){
 //        System.out.println(p);
-        board.get(pointer[1]).get(pointer[0]).setPiece(p);//.setPiece(p);
+        board.get(pointer[1]).get(pointer[0]).setPiece(p,team);//.setPiece(p);
     }
 
     public void setSpaceFromPointer(Space s){board.get(pointer[1]).set(pointer[0],s);}

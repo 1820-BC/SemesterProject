@@ -61,6 +61,11 @@
     -fx-font-size: 35;
     -fx-font-family: FontAwesome;
 }
+#build{
+    -fx-background-color: #4f5bff;
+    -fx-font-size: 35;
+    -fx-font-family: FontAwesome;
+}
 .label{
     -fx-font-size: 35;
     -fx-font-family: FontAwesome;
@@ -89,10 +94,59 @@
 .list-cell:filled:hover{
     -fx-font-size: 14;
 }
+#Red{
+    -fx-background-color: #ff7162;
+}
+#Blue{
+    -fx-background-color: #515bc6;
+}
+#Redinfantry{
+    -fx-background-image: url("/Textures/Pieces/RedInfantry.png");
+}
+#Redfactory{
+    -fx-background-image: url("/Textures/Pieces/RedFactory.png");
+}
+#Redtrebuchet{
+    -fx-background-image: url("/Textures/Pieces/RedTrebuchet.png");
+}
+#Redwall{
+    -fx-background-image: url("/Textures/Pieces/RedWall.png");
+}
+#Redarcher{
+    -fx-background-image: url("/Textures/Pieces/RedArcher.png");
+}
+#Redcalvery{
+    -fx-background-image: url("/Textures/Pieces/RedCalvery.png");
+}
+#Reddrawbridge{
+    -fx-background-image: url("/Textures/Pieces/RedDrawbridgeClosed.png");
+}
+#Redbridge{
+    -fx-background-image: url("/Textures/Pieces/RedBridge.png");
+}
 
-/*.list-view:filled:even{*/
-/*    -fx-background-color: #414cff;*/
-/*}*/
-/*.list-view:filled:odd:cell-selection{*/
-/*    -fx-background-color: #328024;*/
-/*}*/
+
+#Blueinfantry{
+    -fx-background-image: url("/Textures/Pieces/BlueInfantry.png");
+}
+#Bluefactory{
+    -fx-background-image: url("/Textures/Pieces/BlueFactory.png");
+}
+#Bluetrebuchet{
+    -fx-background-image: url("/Textures/Pieces/BlueTrebuchet.png");
+}
+#Bluewall{
+    -fx-background-image: url("/Textures/Pieces/BlueWall.png");
+}
+#Bluearcher{
+    -fx-background-image: url("/Textures/Pieces/BlueArcher.png");
+}
+#Bluecalvery{
+    -fx-background-image: url("/Textures/Pieces/BlueCalvery.png");
+}
+#Bluedrawbridge{
+    -fx-background-image: url("/Textures/Pieces/BlueDrawbridgeClosed.png");
+}
+#Bluebridge{
+    -fx-background-image: url("/Textures/Pieces/BlueBridge.png");
+}

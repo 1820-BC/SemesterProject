@@ -6,6 +6,10 @@ import javafx.scene.image.Image;
 public class Trebuchet extends Piece {
 
 
+    public Trebuchet(Teams team) {
+        super(team);
+    }
+
     @Override
     public String type() {
         return "Trebuchet";
@@ -23,6 +27,6 @@ public class Trebuchet extends Piece {
 
     @Override
     public Image getImage() {
-        return new Image("/Textures/Pieces/Trebuchet.png");
+        return new Image("/Textures/Pieces/"+team+"Trebuchet.png");
     }
 }

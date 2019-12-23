@@ -21,6 +21,9 @@ public class Move {
         vector=new Vector();
         piece=PieceTypes.EMPTY;
     }
+
+
+
     public Vector getVector() {
         return vector;
     }
@@ -70,6 +73,36 @@ public class Move {
     }
     //    public
 
+    public static PieceTypes getTypeFromVector(Vector vector) {
 
+            if(vector.getdX()==0&&vector.getdY()==1){
+            return PieceTypes.INFANTRY;
+        }
+        if(vector.getdX()==0&&vector.getdY()==-1){
+            return PieceTypes.FACTORY;
+        }
+        if(vector.getdX()==-1&&vector.getdY()==0){
+            return PieceTypes.TREBUCHET;
+        }
+        if(vector.getdX()==1&&vector.getdY()==0){
+            return PieceTypes.WALL;
+        }
+        if(vector.getdX()==1&&vector.getdY()==1){
+            return PieceTypes.ARCHER;
+        }
+        if(vector.getdX()==1&&vector.getdY()==-1){
+            return PieceTypes.CALVERY;
+        }
+        if(vector.getdX()==0&&vector.getdY()==1){
+            return PieceTypes.CLOSEDDRAWBRIDGE;
+        }
+        else if(vector.getdX()==0&&vector.getdY()==1){
+            return PieceTypes.BRIDGE;
+        }
+        else{
+            return PieceTypes.EMPTY;
+        }
+
+    }
 
 }

@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 public class EmptyPiece extends Piece {
 
     public EmptyPiece(){
-        super();
+        super(Teams.Red);
     }
     @Override
     public String type() {

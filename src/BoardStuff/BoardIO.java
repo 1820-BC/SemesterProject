@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
-
+import Pieces.*;
 import Pieces.Piece;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -22,7 +22,7 @@ import javafx.scene.paint.Paint;
 //Essential class for operation of game
 //Contains most important methods
 public class BoardIO {
-    private static boolean addPieces=true;
+    private static boolean addPieces=false;
     private static int xACT=0;
     private static int yACT=0;
     private static Board b = new Board();
@@ -34,6 +34,8 @@ public class BoardIO {
     private static int prevX,prevY;
     private static MultiplayerIO io;
     private static String moves="";
+    private static Teams player;
+    private static String stringPlayer;
 
     //generates the board from a file fileName.txt
     //returns true is successful and false if not
@@ -56,10 +58,10 @@ public class BoardIO {
     public static void setUpCanvas(){
 
         if(addPieces) {
-            addToBoard(0, 0, PieceTypes.ARCHER);
-            addToBoard(1, 1, PieceTypes.INFANTRY);
-            addToBoard(2, 2, PieceTypes.CALVERY);
-            addToBoard(3, 3, PieceTypes.TREBUCHET);
+            addToBoard(0, 0, PieceTypes.ARCHER,Teams.Blue);
+            addToBoard(1, 1, PieceTypes.TREBUCHET,Teams.Blue);
+            addToBoard(2, 2, PieceTypes.CALVERY,Teams.Blue);
+            addToBoard(3, 3, PieceTypes.FACTORY,Teams.Blue);
         }
         drawBoardNew();
     }
@@ -119,18 +121,38 @@ public class BoardIO {
         return b;
     }
 
+    public static boolean notOnTeam(Move movePlayer1){
+        b.setPointer(movePlayer1.getX(), movePlayer1.getY());
+        Piece p=b.getPieceFromPointer();
+        return p.getTeam()!=player&&p.getType()!=null;
+    }
+
     public static void run(Move movePlayer1) {
 //        System.out.println(movePlayer1.getX());
 //        System.out.println(movePlayer1.getY());
 ////        System.out.println(movePlayer1.getdX());
 ////        System.out.println(movePlayer1.getdY());
 //        System.out.println(movePlayer1);
+        if(notOnTeam(movePlayer1)){
+            return;
+        }
         if (movePlayer1.getPT() == Moves.MOVE) {
             runMovement(movePlayer1);
         }
-        else{
+        else if(movePlayer1.getPT()==Moves.SHOOT){
             runShot(movePlayer1);
         }
+        else if(movePlayer1.getPT()==Moves.BUILD){
+            runBuild(movePlayer1);
+        }
+    }
+    private static void runBuild(Move movePlayer1){
+        PieceTypes type=Move.getTypeFromVector(movePlayer1.getVector());
+        b.setPointer(movePlayer1.getX(),movePlayer1.getY());
+        if(b.getPieceTypeFromPointer()==PieceTypes.EMPTY){
+            b.setPieceFromPointer(type,player);
+        }
+        moves+="-"+movePlayer1.getX()+","+movePlayer1.getY()+","+ type+","+player;
     }
     private static void runShot(Move movePlayer1){
         //stuff
@@ -153,13 +175,13 @@ public class BoardIO {
 
 
         System.out.println(movePlayer1.getdX());
-        moves += "-" + movePlayer1.getX() + "," + movePlayer1.getY() + ",EMPTY";
-        getBoard().setPieceFromPointer(PieceTypes.EMPTY);
+        moves += "-" + movePlayer1.getX() + "," + movePlayer1.getY() + ",EMPTY"+",Red";
+        getBoard().setPieceFromPointer(PieceTypes.EMPTY, Teams.Red);
 
         getBoard().movePointer(movePlayer1.getdX(), -movePlayer1.getdY());
-        moves += "-" + b.getX() + "," + b.getY() + "," + piece.getPieceType();
+        moves += "-" + b.getX() + "," + b.getY() + "," + piece.getPieceType()+","+piece.getTeam();
 //        System.out.println(moves);
-        getBoard().setPieceFromPointer(piece.getPieceType());
+        getBoard().setPieceFromPointer(piece.getPieceType(),piece.getTeam());
         redrawSquare(movePlayer1.getX(), movePlayer1.getY());
         redrawSquare(movePlayer1.getX() + movePlayer1.getdX(), -movePlayer1.getdY() + movePlayer1.getY());
 //        hearAction();
@@ -177,11 +199,11 @@ public class BoardIO {
 
     public static void addToBoard(PieceTypes p){
         getBoard().setPointer(xACT,yACT);
-        getBoard().setPieceFromPointer(p);
+//        getBoard().setPieceFromPointer(p,team);
     }
-    public static void addToBoard(int x, int y,PieceTypes p){
+    public static void addToBoard(int x, int y, PieceTypes p, Teams team){
         getBoard().setPointer(x, y);
-        getBoard().setPieceFromPointer(p);
+        getBoard().setPieceFromPointer(p,team);
     }
 
     public static void setxACT(int x){
@@ -231,11 +253,11 @@ public class BoardIO {
         return false;
     }
 
-    public static void setSquare(String part, String part1, String part2) {
+    public static void setSquare(String part, String part1, String part2,String part3) {
         int x=Integer.parseInt(part);
         int y=Integer.parseInt(part1);
         b.setPointer(x,y);
-        b.setPieceFromPointer(PieceTypes.valueOf(part2));
+        b.setPieceFromPointer(PieceTypes.valueOf(part2),Teams.valueOf(part3));
         redrawSquare(x,y);
     }
 
@@ -274,5 +296,18 @@ public class BoardIO {
 
     public static void resetMoveMessage() {
         moves="";
+    }
+
+    public static void setPlayer(Teams teams){
+        player=teams;
+        stringPlayer=teams.toString();
+    }
+
+    public static Teams getTeam() {
+        return player;
+    }
+
+    public static String getStringTeam(){
+        return stringPlayer;
     }
 }

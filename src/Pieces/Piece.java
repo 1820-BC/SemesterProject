@@ -5,11 +5,16 @@ import javafx.scene.image.Image;
 
 //An abstraction of a piece class that can be placed or removed from the board and requires a cost
 public abstract class Piece{
-
+    protected Teams team;
     private int player; //1 or 2
     private String textureP1;
     private String textureP2;
     private String texture;
+
+    protected Piece(Teams team){
+        this.team=team;
+    }
+
     public String getTexture(){
         return texture;
     }
@@ -33,6 +38,11 @@ public abstract class Piece{
 
     public abstract Image getImage();
 
+    public void setTeam(Teams team){
+        this.team=team;
+    }
+
+    public Teams getTeam(){return team;}
 
 }
 

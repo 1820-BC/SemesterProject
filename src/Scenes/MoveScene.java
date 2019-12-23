@@ -47,26 +47,21 @@ public class MoveScene {
     static private int selectedX;
     static private int selectedY;
     static private int squareSize=30;
+    static private Button build;
+    static private Label color;
     //#endregion
     public static void setupMoveScene(Stage stage, double width, double height) {
         //#region
 
         up = new Button();
-        up.setId("up");
         down = new Button();
-        down.setId("down");
         left = new Button();
-        left.setId("left");
         right = new Button();
-        right.setId("right");
         dru = new Button();
-        dru.setId("dru");
         drd = new Button();
-        drd.setId("drd");
         dlu = new Button();
-        dlu.setId("dlu");
         dld = new Button();
-        dld.setId("dld");
+
         int x = 70;
         int y = 70;
         up.setPrefSize(x, y);
@@ -77,7 +72,17 @@ public class MoveScene {
         dru.setPrefSize(x, y);
         dld.setPrefSize(x, y);
         drd.setPrefSize(x, y);
+        moveOrShoot();
         //#endregion
+
+
+
+
+
+
+        color=new Label();
+
+
         moveType=new Label("DIRECTED TO: NO MOVE");
         MoveNum = new Label(message + movesIn + message2);
         Image im = new Image("Textures/noMove.png");
@@ -155,16 +160,18 @@ public class MoveScene {
         submitOrder.setId("ordersButton");
         movement=new Button("MOVEMENT");
         shot=new Button("SHOT");
+        build=new Button("BUILD");
         movement.setId("move");
         shot.setId("shot");
+        build.setId("build");
 
         flower=new FlowPane();
         flower.setHgap(10);
-        flower.getChildren().addAll(movement,shot);
+        flower.getChildren().addAll(movement,shot,build);
 
         vbox = new VBox(20);
         vbox.setAlignment(Pos.CENTER);
-        vbox.getChildren().addAll(moveType,anchor,flower,submitOrder);
+        vbox.getChildren().addAll(moveType,flower,anchor,submitOrder);
 //        vbox.setPadding(new Insets(0,10,0,0));
 
         primaryPane = new BorderPane();
@@ -174,52 +181,27 @@ public class MoveScene {
 
         primaryPane.setLeft(movesVBox);
         primaryPane.setRight(vbox);
+        primaryPane.setBottom(color);
 
         scene = new Scene(primaryPane, width, height);
         scene.getStylesheets().addAll("Graphics/ControlBoard.css");
         //#region
-        up.setOnAction(e->{
-            currentMove.setVector(0,1);
-            image.setImage(new Image("Textures/up.png"));
-        });
-        down.setOnAction(e->{
-            currentMove.setVector(0,-1);
-            image.setImage(new Image("Textures/down.png"));
-        });
-        left.setOnAction(e->{
-            currentMove.setVector(-1,0);
-            image.setImage(new Image("Textures/left.png"));
-        });
-        right.setOnAction(e->{
-            currentMove.setVector(1,0);
-            image.setImage(new Image("Textures/right.png"));
-        });
-        dru.setOnAction(e->{
-            currentMove.setVector(1,1);
-            image.setImage(new Image("Textures/dru.png"));
 
-        });
-        drd.setOnAction(e->{
-            currentMove.setVector(1,-1);
-            image.setImage(new Image("Textures/drd.png"));
-        });
-        dlu.setOnAction(e->{
-            currentMove.setVector(-1,1);
-            image.setImage(new Image("Textures/dlu.png"));
-        });
-        dld.setOnAction(e->{
-            currentMove.setVector(-1,-1);
-            image.setImage(new Image("Textures/dld.png"));
-
-        });
         //#endregion
         movement.setOnAction(e->{
             currentMove.setType(Moves.MOVE);
             moveType.setText("DIRECTED TO: MOVE");
+            moveOrShoot();
         });
         shot.setOnAction(e->{
             currentMove.setType(Moves.SHOOT);
             moveType.setText("DIRECTED TO: SHOOT");
+            moveOrShoot();
+        });
+        build.setOnAction(e->{
+            currentMove.setType(Moves.BUILD);
+            moveType.setText("DIRECTED TO: BUILD");
+            build();
         });
         submitOrder.setOnAction(e->{
             FunctionForEntering(im);
@@ -279,6 +261,9 @@ public class MoveScene {
 
     public static Scene getScene() {
 //        BoardIO.setupForMoveSelection();
+        color.setText("You're Color is: "+BoardIO.getTeam());
+
+        color.setId(BoardIO.getTeam().toString());
         BoardIO.getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -313,6 +298,96 @@ public class MoveScene {
         image.setImage(new Image("Textures/noMove.png"));
 
 
+    }
+
+    private static void moveOrShoot(){
+        up.setId("up");
+        down.setId("down");
+        left.setId("left");
+        right.setId("right");
+        dru.setId("dru");
+        drd.setId("drd");
+        dlu.setId("dlu");
+        dld.setId("dld");
+        up.setOnAction(e->{
+            currentMove.setVector(0,1);
+            image.setImage(new Image("Textures/up.png"));
+        });
+        down.setOnAction(e->{
+            currentMove.setVector(0,-1);
+            image.setImage(new Image("Textures/down.png"));
+        });
+        left.setOnAction(e->{
+            currentMove.setVector(-1,0);
+            image.setImage(new Image("Textures/left.png"));
+        });
+        right.setOnAction(e->{
+            currentMove.setVector(1,0);
+            image.setImage(new Image("Textures/right.png"));
+        });
+        dru.setOnAction(e->{
+            currentMove.setVector(1,1);
+            image.setImage(new Image("Textures/dru.png"));
+
+        });
+        drd.setOnAction(e->{
+            currentMove.setVector(1,-1);
+            image.setImage(new Image("Textures/drd.png"));
+        });
+        dlu.setOnAction(e->{
+            currentMove.setVector(-1,1);
+            image.setImage(new Image("Textures/dlu.png"));
+        });
+        dld.setOnAction(e->{
+            currentMove.setVector(-1,-1);
+            image.setImage(new Image("Textures/dld.png"));
+
+        });
+    }
+    private static void build(){
+        String t=BoardIO.getStringTeam();
+        up.setId(t+"infantry");
+        down.setId(t+"factory");
+        left.setId(t+"trebuchet");
+        right.setId(t+"wall");
+        dru.setId(t+"archer");
+        drd.setId(t+"calvery");
+        dlu.setId(t+"drawbridge");
+        dld.setId(t+"bridge");
+        up.setOnAction(e->{
+            currentMove.setVector(0,1);
+            image.setImage(new Image("Textures/"+t+"Infantry.png"));
+        });
+        down.setOnAction(e->{
+            currentMove.setVector(0,-1);
+            image.setImage(new Image("Textures/"+t+"Factory.png"));
+        });
+        left.setOnAction(e->{
+            currentMove.setVector(-1,0);
+            image.setImage(new Image("Textures/"+t+"Trebuchet.png"));
+        });
+        right.setOnAction(e->{
+            currentMove.setVector(1,0);
+            image.setImage(new Image("Textures/"+t+"Wall.png"));
+        });
+        dru.setOnAction(e->{
+            currentMove.setVector(1,1);
+            image.setImage(new Image("Textures/"+t+"Archer.png"));
+
+        });
+        drd.setOnAction(e->{
+            currentMove.setVector(1,-1);
+            image.setImage(new Image("Textures/"+t+"Calvery.png"));
+        });
+        dlu.setOnAction(e->{
+            currentMove.setVector(-1,1);
+            image.setImage(new Image("Textures/"+t+"DrawbridgeClosed.png"));
+        });
+        dld.setOnAction(e->{
+            currentMove.setVector(-1,-1);
+            image.setImage(new Image("Textures/"+t+"Bridge.png"));
+
+        });
     }
 
 }

@@ -3,6 +3,7 @@ package Scenes;
 import BoardStuff.BoardIO;
 import Functions.Save;
 import Multiplayer.ClientIO;
+import Pieces.Teams;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
@@ -72,7 +73,7 @@ public class GameSetupSceneClient {
 
 
     public static Scene GSSC() {
-
+        BoardIO.setPlayer(Teams.Red);
         return scene;
 
     }

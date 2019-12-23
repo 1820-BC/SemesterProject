@@ -4,8 +4,9 @@ import BoardStuff.PieceTypes;
 import javafx.scene.image.Image;
 
 public class Archer extends Piece {
-    public Archer(){
-        super();
+
+    public Archer(Teams team){
+        super(team);
     }
 
     @Override
@@ -26,7 +27,8 @@ public class Archer extends Piece {
 
     @Override
     public Image getImage() {
-        Image i=new Image("/Textures/Pieces/Archer.png");
+        System.out.println(team);
+        Image i=new Image("/Textures/Pieces/"+team+"Archer.png");
         return i;
     }
 

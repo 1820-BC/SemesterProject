@@ -5,6 +5,7 @@ import BoardStuff.BoardIO;
 import BoardStuff.GameInteraction;
 import Multiplayer.HostIO;
 import Multiplayer.UpdationThread;
+import Pieces.Teams;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -211,6 +212,7 @@ public class GameSetupScene {
 
 
     public static Scene GameSetupScene(){
+        BoardIO.setPlayer(Teams.Blue);
         File f = new File("D://BoardGame/src/SavedMaps/");
         if(f.listFiles()==null){
             return game_setup_scene;
