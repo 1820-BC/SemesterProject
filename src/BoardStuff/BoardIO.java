@@ -124,7 +124,7 @@ public class BoardIO {
     public static boolean notOnTeam(Move movePlayer1){
         b.setPointer(movePlayer1.getX(), movePlayer1.getY());
         Piece p=b.getPieceFromPointer();
-        return p.getTeam()!=player&&p.getType()!=null;
+        return p.getTeam()!=player&&p.type()!=null;
     }
 
     public static void run(Move movePlayer1) {
@@ -137,21 +137,25 @@ public class BoardIO {
             return;
         }
         if (movePlayer1.getPT() == Moves.MOVE) {
+            System.out.println("move");
             runMovement(movePlayer1);
         }
         else if(movePlayer1.getPT()==Moves.SHOOT){
+            System.out.println("shoot");
             runShot(movePlayer1);
         }
         else if(movePlayer1.getPT()==Moves.BUILD){
+            System.out.println("build");
             runBuild(movePlayer1);
         }
     }
     private static void runBuild(Move movePlayer1){
-        PieceTypes type=Move.getTypeFromVector(movePlayer1.getVector());
+        PieceTypes type=movePlayer1.getNewPieceType();
+        System.out.println(type);
         b.setPointer(movePlayer1.getX(),movePlayer1.getY());
-        if(b.getPieceTypeFromPointer()==PieceTypes.EMPTY){
-            b.setPieceFromPointer(type,player);
-        }
+//        if(b.getPieceTypeFromPointer()==PieceTypes.EMPTY){
+        b.setPieceFromPointer(type,player);
+
         moves+="-"+movePlayer1.getX()+","+movePlayer1.getY()+","+ type+","+player;
         redrawSquare(movePlayer1.getX(), movePlayer1.getY());
     }

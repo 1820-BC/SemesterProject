@@ -9,6 +9,7 @@ public class Move {
     public Vector vector=new Vector();
     Moves type=Moves.MOVE;
     PieceTypes piece;
+    PieceTypes newPieceType;
 
     public Move(int x, int y){
         vector=new Vector();
@@ -23,6 +24,9 @@ public class Move {
     }
 
 
+    public void setNewPieceType(PieceTypes p){
+        newPieceType=p;
+    }
 
     public Vector getVector() {
         return vector;
@@ -46,6 +50,8 @@ public class Move {
                 return "MOVE";
             case SHOOT:
                 return "SHOOT";
+            case BUILD:
+                return "BUILD";
         }
         return "NO MOVE";
     }
@@ -71,38 +77,12 @@ public class Move {
     public int getdX(){
         return vector.getdX();
     }
+
+    public PieceTypes getNewPieceType() {
+        return newPieceType;
+    }
     //    public
 
-    public static PieceTypes getTypeFromVector(Vector vector) {
 
-            if(vector.getdX()==0&&vector.getdY()==1){
-            return PieceTypes.INFANTRY;
-        }
-        if(vector.getdX()==0&&vector.getdY()==-1){
-            return PieceTypes.FACTORY;
-        }
-        if(vector.getdX()==-1&&vector.getdY()==0){
-            return PieceTypes.TREBUCHET;
-        }
-        if(vector.getdX()==1&&vector.getdY()==0){
-            return PieceTypes.WALL;
-        }
-        if(vector.getdX()==1&&vector.getdY()==1){
-            return PieceTypes.ARCHER;
-        }
-        if(vector.getdX()==1&&vector.getdY()==-1){
-            return PieceTypes.CALVERY;
-        }
-        if(vector.getdX()==0&&vector.getdY()==1){
-            return PieceTypes.CLOSEDDRAWBRIDGE;
-        }
-        else if(vector.getdX()==0&&vector.getdY()==1){
-            return PieceTypes.BRIDGE;
-        }
-        else{
-            return PieceTypes.EMPTY;
-        }
-
-    }
 
 }

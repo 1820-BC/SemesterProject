@@ -355,37 +355,37 @@ public class MoveScene {
         dlu.setId(t+"drawbridge");
         dld.setId(t+"bridge");
         up.setOnAction(e->{
-            currentMove.setVector(0,1);
+            currentMove.setNewPieceType(PieceTypes.INFANTRYInfantry);
             image.setImage(new Image("/Textures/Pieces/"+t+"Infantry.png"));
         });
         down.setOnAction(e->{
-            currentMove.setVector(0,-1);
+            currentMove.setNewPieceType(PieceTypes.FACTORY);
             image.setImage(new Image("/Textures/Pieces/"+t+"Factory.png"));
         });
         left.setOnAction(e->{
-            currentMove.setVector(-1,0);
+            currentMove.setNewPieceType(PieceTypes.TREBUCHET);
             image.setImage(new Image("/Textures/Pieces/"+t+"Trebuchet.png"));
         });
         right.setOnAction(e->{
-            currentMove.setVector(1,0);
+            currentMove.setNewPieceType(PieceTypes.WALL);
             image.setImage(new Image("/Textures/Pieces/"+t+"Wall.png"));
         });
         dru.setOnAction(e->{
-            currentMove.setVector(1,1);
+            currentMove.setNewPieceType(PieceTypes.ARCHER);
             image.setImage(new Image("/Textures/Pieces/"+t+"Archer.png"));
 
         });
         drd.setOnAction(e->{
-            currentMove.setVector(1,-1);
+            currentMove.setNewPieceType(PieceTypes.CALVERY);
             image.setImage(new Image("/Textures/Pieces/"+t+"Calvery.png"));
         });
         dlu.setOnAction(e->{
-            currentMove.setVector(-1,1);
-            image.setImage(new Image("/Textures/"+t+"DrawbridgeClosed.png"));
+            currentMove.setNewPieceType(PieceTypes.CLOSEDDRAWBRIDGE);
+            image.setImage(new Image("/Textures/Pieces/"+t+"DrawbridgeClosed.png"));
         });
         dld.setOnAction(e->{
-            currentMove.setVector(-1,-1);
-            image.setImage(new Image("/Textures/"+t+"Bridge.png"));
+            currentMove.setNewPieceType(PieceTypes.BRIDGE);
+            image.setImage(new Image("/Textures/Pieces/"+t+"Bridge.png"));
 
         });
     }
