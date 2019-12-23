@@ -37,15 +37,7 @@ public class ClientReadyScene {
                 try {
                     if(BoardIO.getIO().recWholeCanvas()){
                         stage.setScene(MoveScene.getScene());
-                        while(!BoardIO.checkForWinCondition()){
-                            BoardIO.updateOponentBoard();
-                            try {
-                                BoardIO.getUpdate();
-                            } catch (IOException epps) {
-                                epps.printStackTrace();
-                            }
-
-                        }
+                        BoardIO.beginUpdationThread();
                     }
                 } catch (IOException ex) {
                     ex.printStackTrace();

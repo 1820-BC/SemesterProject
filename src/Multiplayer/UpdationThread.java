@@ -26,12 +26,20 @@ public class UpdationThread {
     }
 
     public void start() {
-        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("this is called every 5 seconds on UI thread");
-            }
+                if(!BoardIO.checkForWinCondition())
+                    BoardIO.updateOponentBoard();
+                try {
+                        BoardIO.getUpdate();
+                    } catch (IOException epps) {
+                        epps.printStackTrace();
+                    }
+
+                }
+
         }));
         fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
         fiveSecondsWonder.play();
