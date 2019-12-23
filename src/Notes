@@ -18,8 +18,8 @@ Encoding is -move1x,move1y,move1piece-move2x,move2y,move2piece- ...
 To setup piece
 
 1. Make piece class
-2. Add piece if statement to board set piece method
-3. Add required stuff in Piece class under BoardStuff
+2. Add piece if statement to space set piece method
+3. Add required stuff in Pieces class under BoardStuff
 
 --- ---- --- ---- ---
 Format for comms

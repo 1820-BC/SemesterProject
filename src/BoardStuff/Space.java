@@ -68,6 +68,9 @@ public class Space {
         else if(p==PieceTypes.BRIDGE){
             piece=new Bridge(team);
         }
+        else if(p==PieceTypes.CAPITAL){
+            piece=new Capital(team);
+        }
     }
 
 

@@ -18,7 +18,8 @@ public class Pieces{
             PieceTypes.BRIDGE,0,
             PieceTypes.CLOSEDDRAWBRIDGE,0,
             PieceTypes.OPENDRAWBRIDGE,0,
-            PieceTypes.WALL,0
+            PieceTypes.WALL,0,
+            PieceTypes.CAPITAL,0
     );
     private static Map<PieceTypes, Integer> shoots = Map.of(
             PieceTypes.INFANTRY, 3,
@@ -28,7 +29,8 @@ public class Pieces{
             PieceTypes.FACTORY,0,
             PieceTypes.CLOSEDDRAWBRIDGE,0,
             PieceTypes.OPENDRAWBRIDGE,0,
-            PieceTypes.WALL,0
+            PieceTypes.WALL,0,
+            PieceTypes.CAPITAL,0
     );
     public static int getMove(PieceTypes p){
         return moves.getOrDefault(p, 0);

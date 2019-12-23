@@ -103,10 +103,12 @@ public class Board {
     public Board(int minPrec,int sizeX,int sizeY) throws FileNotFoundException {
         setParams(minPrec, sizeX, sizeY);
         setupSelf();
+        addCapitals();
     }
     public Board(int side, int droplets,int surfaceTension,int flowForce, int rainfallVariation, int minPrecipitaion) throws FileNotFoundException {
         setParamsFromVals(side, droplets, surfaceTension, flowForce,  rainfallVariation, minPrecipitaion);
         setupSelf();
+        addCapitals();
     }
     public void setupSelf() throws FileNotFoundException {
         pointer[0] = 0;
@@ -200,7 +202,15 @@ public class Board {
     }
 
 
-
+    private void addTowns(){
+        return;
+    }
+    private void addCapitals(){
+        setPointer(0,0);
+        setPieceFromPointer(PieceTypes.CAPITAL,Teams.Red);
+        setPointer(board.get(0).size()-1,board.size()-1);
+        setPieceFromPointer(PieceTypes.CAPITAL,Teams.Blue);
+    }
 
     /*
     This constructor allows for a board to be generated from a save file of a world.

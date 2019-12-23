@@ -3,32 +3,30 @@ package Pieces;
 import BoardStuff.PieceTypes;
 import javafx.scene.image.Image;
 
-public class Wall extends Piece {
+public class Capital extends Piece {
 
-    public Wall(Teams team){
+    public Capital(Teams team) {
         super(team);
     }
 
     @Override
     public String type() {
-        return "Wall";
+        return "capital";
     }
 
     @Override
     public PieceTypes getType() {
-        return PieceTypes.WALL;
+        return PieceTypes.CAPITAL;
     }
 
     @Override
     public PieceTypes getPieceType() {
-
-        return PieceTypes.WALL;
+        return PieceTypes.CAPITAL;
     }
 
     @Override
     public Image getImage() {
-        System.out.println(team);
-        Image i=new Image("/Textures/Pieces/"+team+"Wall.png");
-        return i;
+        return new Image("Textures/Pieces/"+team+"Capital.png");
     }
+
 }
