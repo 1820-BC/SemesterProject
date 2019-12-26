@@ -42,6 +42,11 @@ public class Space {
     public void setPiece(PieceTypes p,Teams team){
 //        setPiece(new Infantry());
 //        System.out.println("p: "+p);
+        if(getAcceptablePieces(piece)){
+            addPieceToSecondary(p,team);
+            return;
+        }
+
         if (p == PieceTypes.INFANTRY) {
             piece = new Infantry(team);
         }
@@ -74,6 +79,13 @@ public class Space {
         }
     }
 
+    private boolean getAcceptablePieces(Piece piece) {
+            if(piece.getType()==PieceTypes.FACTORY||piece.getType()==PieceTypes.OPENDRAWBRIDGE||piece.getType()==PieceTypes.BRIDGE){
+                return true;
+            }
+            return false;
+    }
+
     public void addPieceToSecondary(PieceTypes p,Teams team){
         if (p == PieceTypes.INFANTRY) {
             secondaryPiece = new Infantry(team);
@@ -90,8 +102,9 @@ public class Space {
         else if(p==PieceTypes.TREBUCHET){
             secondaryPiece=new Trebuchet(team);
         }
-
-
+        if(piece.getType()==PieceTypes.FACTORY) {
+            piece.setTeam(BoardIO.getTeam());
+        }
 
     }
 

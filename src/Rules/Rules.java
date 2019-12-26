@@ -32,19 +32,47 @@ public class Rules {
 
     //dicerns whether space can be moved into by piece
     public static boolean canMoveInto(Space space, Piece piece){
-        if(space.getType().getLand().equals("rivers"))
-        return true;
+        // if moving onto allowed spaces
+        if(space.getPiece().getType()!=PieceTypes.OPENDRAWBRIDGE||space.getPiece().getType()!=PieceTypes.BRIDGE||space.getPiece().getType()!=PieceTypes.EMPTY){
+            if(space.getType().equals("rivers")){
+                return false;
+            }
+            return true;
+        }
+
+        return false;
     }
     //the effect of a move
     public static void effectOfMoveInto(Space space, Piece piece){
+        if(space.getPiece().getType()==PieceTypes.FACTORY){
+            addFactory();
+        }
         return;
     }
 
     //whether something can be built in a location
     public static boolean canBuildIn(Space space,PieceTypes piece){
+        if(turnSinceLastBuild<20-numberOfFactories){
+            return false;
+        }
+        //can not build on non-empty spaces
+        if(space.getPiece().getType()!=PieceTypes.EMPTY){
+            return false;
+        }
+        //can not build in water
+        if(space.getType().getLand().equals("rivers")){
+            return false;
+        }
         return true;
     }
     //The effect of a build
     public static void effectOfBuildOn(Space spaceFromPointer, PieceTypes newPieceType) {
+        addFactory();
+    }
+
+    public static void effectOfPieceChange(Space spaceFromPointer, Piece pieceFrom) {
+        if(spaceFromPointer.getPiece().getType()==PieceTypes.FACTORY){
+            reduceFactory();
+        }
     }
 }

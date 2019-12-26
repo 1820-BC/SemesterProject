@@ -285,7 +285,9 @@ public class BoardIO {
         int x=Integer.parseInt(part);
         int y=Integer.parseInt(part1);
         b.setPointer(x,y);
+        Rules.effectOfPieceChange(b.getSpaceFromPointer(),Pieces.getPieceFrom(PieceTypes.valueOf(part2),Teams.valueOf(part3)));
         b.setPieceFromPointer(PieceTypes.valueOf(part2),Teams.valueOf(part3));
+
         redrawSquare(x,y);
     }
 

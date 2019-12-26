@@ -2,7 +2,7 @@ package BoardStuff;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import Pieces.*;
 import BoardStuff.PieceTypes.*;
 
 //A class for accessing piece parameters
@@ -41,5 +41,41 @@ public class Pieces{
     }
 
 
+    public static Piece getPieceFrom(PieceTypes p,Teams team) {
+//        setPiece(new Infantry());
+//        System.out.println("p: "+p);
 
+
+        if (p == PieceTypes.INFANTRY) {
+            return new Infantry(team);
+        }
+        else if(p==PieceTypes.EMPTY){
+            return new EmptyPiece();
+        }
+        else if(p==PieceTypes.ARCHER){
+            return new Archer(team);
+        }
+        else if(p==PieceTypes.CALVERY){
+            return new Calvery(team);
+        }
+        else if(p==PieceTypes.TREBUCHET){
+            return new Trebuchet(team);
+        }
+        else if(p==PieceTypes.FACTORY){
+            return new Factory(team);
+        }
+        else if(p==PieceTypes.WALL){
+            return new Wall(team);
+        }
+        else if(p==PieceTypes.CLOSEDDRAWBRIDGE){
+            return new drawBridge(team);
+        }
+        else if(p==PieceTypes.BRIDGE){
+            return new Bridge(team);
+        }
+        else if(p==PieceTypes.CAPITAL){
+            return new Capital(team);
+        }
+        return null;
+    }
 }
