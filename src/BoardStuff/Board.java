@@ -306,7 +306,12 @@ public class Board {
         pointer[1]=y;
         return true;
     }
-
+    public int getXFromPointer(){
+        return pointer[0];
+    }
+    public int getYFromPointer(){
+        return pointer[1];
+    }
     //moves the pointer by dX and dY in their repspective directions. Runs like setPointer in terms of returns
     public boolean movePointer(int dX,int dY){
         return setPointer(pointer[0]+dX,pointer[1]+dY);

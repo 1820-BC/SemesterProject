@@ -54,13 +54,14 @@ public class PlayersScene {
                 String name=host.getMessage();
                 items.add(name);
                 BoardIO.setIO(host);
+                stage.setScene(GameSetupScene.GameSetupScene());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
 
         });
         back.setOnAction(e->{
-            stage.setScene(GameSetupScene.GameSetupScene());
+            stage.setScene(OpeningScene.openingScene(stage));
         });
         players.getChildren().addAll(lis);
         buttons.getChildren().addAll(getPlayers,back);

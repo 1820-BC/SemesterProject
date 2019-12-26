@@ -25,3 +25,9 @@ To setup piece
 Format for comms
 
 -x,y,piece,team
+
+--- ---- ---- ---- ---
+Things that rules must encompass or things go bad
+
+1. Pieces may only move into empty space or spaces with legal types
+2. Pieces may not move into non-move type pieces (move types are opendrawbridge, bridge, empty, factory, capital)

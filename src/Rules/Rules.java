@@ -1,12 +1,13 @@
 package Rules;
 
+import BoardStuff.BoardIO;
 import BoardStuff.PieceTypes;
 import BoardStuff.Space;
 import Pieces.Piece;
 
 public class Rules {
 
-    private static int turnSinceLastBuild=0;
+    private static int turnSinceLastBuild=REFERENCE.MAX_TURNS_BETWEEN_BUILDS;
     private static int turnSinceLastDrawbridge=0;
     private static int numberOfFactories=1;
 
@@ -25,8 +26,31 @@ public class Rules {
     public static void reduceFactory(){
         numberOfFactories--;
     }
-    //discerns whether item can be shot
-    public static boolean canShootAt(Space space, Piece attacker, Piece defender){
+
+    //if either of the below methods are false, the thing is not killed. However, if canShootThrough is true, the bullet continues to move
+
+
+    //does the piece die or does the bullet keep moving, checked after canShootThrough
+    public static boolean canKill(Space space, Piece attacker, Piece defender){
+        if(defender.getPieceType()==PieceTypes.EMPTY){
+            return false;
+        }
+        return true;
+    }
+
+    //discerns whether the bullet may continue moving through a space
+    public static boolean canShootThrough(Space space, Piece attacker, Piece defender){
+        if(!BoardIO.teamCheck(attacker)){
+            return false;
+        }
+        //defender is kilable (enemy check only must happen once
+        else if(REFERENCE.UNKILLABLE.contains(defender.getType())){
+            return false;
+        }
+        //can not go through factory, wall, closed draw bridge, or village types
+        else if(space.getPieceType()==PieceTypes.WALL||space.getPieceType()==PieceTypes.FACTORY||space.getPieceType()==PieceTypes.CLOSEDDRAWBRIDGE||space.getPieceType()==PieceTypes.VILLAGE){
+            return false;
+        }
         return true;
     }
 
@@ -52,7 +76,7 @@ public class Rules {
 
     //whether something can be built in a location
     public static boolean canBuildIn(Space space,PieceTypes piece){
-        if(turnSinceLastBuild<20-numberOfFactories){
+        if(turnSinceLastBuild<REFERENCE.MAX_TURNS_BETWEEN_BUILDS-numberOfFactories){
             return false;
         }
         //can not build on non-empty spaces

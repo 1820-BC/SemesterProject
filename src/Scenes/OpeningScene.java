@@ -38,7 +38,7 @@ public class OpeningScene {
         //title screen button setup
         quit.setOnAction(e -> stage.close());
         settings.setOnAction(e->stage.setScene(SettingsScene.settingsScene(stage)));
-        host.setOnAction(e->stage.setScene(GameSetupScene.GameSetupScene()));
+        host.setOnAction(e->stage.setScene(PlayersScene.getPlayersScene()));
         join.setOnAction(e->stage.setScene(GameSetupSceneClient.GSSC()));
         //layout management
 

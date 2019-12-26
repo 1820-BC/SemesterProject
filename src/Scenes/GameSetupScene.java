@@ -34,7 +34,7 @@ public class GameSetupScene {
     static FlowPane sav,lod;
     static TextField inSave;
     static ComboBox<String> inLoad;
-    static Button generate,save,load,back,start,players;
+    static Button generate,save,load,back,start;
     static Slider rivers;
     static Slider size;
     static Label riversLabel,sizelabel;
@@ -66,7 +66,7 @@ public class GameSetupScene {
         load=new Button("LOAD");
         back=new Button("BACK");
         start=new Button("START GAME");
-        players=new Button("PLAYERS");
+
 
 
 
@@ -76,7 +76,7 @@ public class GameSetupScene {
         save.setId("EnterButton");
         load.setId("EnterButton");
         //button function setup
-        players.setOnAction(e->stage.setScene(PlayersScene.getPlayersScene()));
+
         generate.setOnAction(e->{
             int s=(int)size.getValue()+1;
 
@@ -185,7 +185,7 @@ public class GameSetupScene {
         sav.getChildren().addAll(inSave,save);
 
         control.setAlignment(Pos.CENTER);
-        control.getChildren().addAll(riversLabel,rivers,sizelabel,size,generate,sav, lod,players,start,back,setParamsExact);
+        control.getChildren().addAll(riversLabel,rivers,sizelabel,size,generate,sav, lod,start,back,setParamsExact);
         //wrapperPane=new Group();
         //wrapperPane.getChildren().add(c);
         container.setContent(c);

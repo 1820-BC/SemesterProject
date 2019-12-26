@@ -96,4 +96,10 @@ public class Vector {
             }
         }
     }
+    public int getDirX(){
+        return dX;
+    }
+    public int getDirY(){
+        return dY;
+    }
 }

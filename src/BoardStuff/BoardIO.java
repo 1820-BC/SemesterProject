@@ -123,6 +123,9 @@ public class BoardIO {
     }
 
     public static boolean notOnTeam(Move movePlayer1){
+        if(b==null){
+            return false;
+        }
         b.setPointer(movePlayer1.getX(), movePlayer1.getY());
         Piece p=b.getPieceFromPointer();
         return p.getTeam()!=player&&p.type()!=null;
@@ -183,7 +186,25 @@ public class BoardIO {
         redrawSquare(movePlayer1.getX(), movePlayer1.getY());
     }
     private static void runShot(Move movePlayer1){
-        return;
+        int x=movePlayer1.getX();
+        int y=movePlayer1.getY();
+        b.setPointer(x,y);
+        Piece attacker=b.getPieceFromPointer();
+        int dX=movePlayer1.getVector().getDirX();
+        int dY=movePlayer1.getVector().getDirX();
+        for(int apple=0;apple<Pieces.getShoot(attacker.getPieceType());apple++){
+            b.movePointer(dX,dY);
+            if(!Rules.canShootThrough(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
+                return;
+            }
+            if(!Rules.canKill(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
+                continue;
+            }
+            b.setPieceFromPointer(PieceTypes.EMPTY,Teams.Red);
+            moves+="-"+b.getXFromPointer()+","+b.getYFromPointer()+","+PieceTypes.EMPTY+","+Teams.Red;
+            break;
+
+        }
     }
     private static void runMovement(Move movePlayer1){
         if (movePlayer1 == null) {
@@ -339,5 +360,9 @@ public class BoardIO {
 
     public static String getStringTeam(){
         return stringPlayer;
+    }
+
+    public static boolean teamCheck(Piece attacker) {
+        return attacker.getTeam()==player;
     }
 }
