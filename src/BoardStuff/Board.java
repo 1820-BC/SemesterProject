@@ -383,7 +383,7 @@ public class Board {
 
 
     public int getSize(){
-        return sizeX;
+        return sizeX+2;
     }
 
 
