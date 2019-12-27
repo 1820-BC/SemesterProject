@@ -95,6 +95,7 @@ public class Board {
         }
         sizeX=board.size();
         sizeY=board.size();
+        System.out.println("Board Size: "+board.size());
     }
     public Board(){
         return;
@@ -199,6 +200,7 @@ public class Board {
                 }
             }
         }
+        System.out.println("Board Size: "+board.size());
     }
 
 
@@ -252,6 +254,7 @@ public class Board {
 
         s.reset();
         s.close();
+
         sizeX=board.size();
         sizeY=board.size();
     }
