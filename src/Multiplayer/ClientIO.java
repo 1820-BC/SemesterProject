@@ -76,16 +76,5 @@ public class ClientIO extends MultiplayerIO{
         T.start();
     }
 
-    @Override
-    public void runWaitScreenUpdationThread() {
-        WaitScreenUpdationThread thread=new WaitScreenUpdationThread(socket,in,os);
-        thread.start();
-    }
-
-    @Override
-    public void stopWaitScreenUpdationThread() {
-        return;
-    }
-
 
 }

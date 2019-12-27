@@ -101,9 +101,9 @@ public abstract class MultiplayerIO {
 
     public abstract void runUpdationThread();
 
-    public abstract void runWaitScreenUpdationThread();
 
-    public abstract void stopWaitScreenUpdationThread();
+
+
 
 
 //    public abstract void setActionListener();

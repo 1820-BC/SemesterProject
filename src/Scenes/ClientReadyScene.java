@@ -1,8 +1,6 @@
 package Scenes;
 
 import BoardStuff.BoardIO;
-import BoardStuff.Move;
-import Multiplayer.WaitScreenUpdationThread;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -34,7 +32,18 @@ public class ClientReadyScene {
         refresh=new Button("REFRESH MAP");
 
         CanvasPane.setContent(BoardIO.getCanvas());
+        refresh.setOnAction(e->{
+            try {
+                if(BoardIO.getIO().recWholeCanvas()){
+                    stage.setScene(MoveScene.getScene());
+                    BoardIO.beginUpdationThread();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            BoardIO.drawBoardNew();
 
+        });
 
         flower=new FlowPane();
         flower.setHgap(20);
@@ -47,7 +56,7 @@ public class ClientReadyScene {
     }
 
     public static Scene getClientReadyScene(){
-        BoardIO.getIO().runWaitScreenUpdationThread();
+//        BoardIO.getIO().runWaitScreenUpdationThread();
         return scene;
     }
 

@@ -264,7 +264,7 @@ public class MoveScene {
 
     public static Scene getScene() {
 //        BoardIO.setupForMoveSelection();
-        BoardIO.getIO().stopWaitScreenUpdationThread();
+
         color.setText("You're Color is: "+BoardIO.getTeam());
         BoardIO.getIO().runUpdationThread();
         color.setId(BoardIO.getTeam().toString());
