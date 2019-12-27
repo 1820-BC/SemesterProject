@@ -103,6 +103,8 @@ public abstract class MultiplayerIO {
 
     public abstract void runWaitScreenUpdationThread();
 
+    public abstract void stopWaitScreenUpdationThread();
+
 
 //    public abstract void setActionListener();
 }

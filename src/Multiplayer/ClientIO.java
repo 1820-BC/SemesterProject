@@ -82,5 +82,10 @@ public class ClientIO extends MultiplayerIO{
         thread.start();
     }
 
+    @Override
+    public void stopWaitScreenUpdationThread() {
+        return;
+    }
+
 
 }

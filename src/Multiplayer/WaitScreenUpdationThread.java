@@ -32,6 +32,9 @@ public class WaitScreenUpdationThread {
             @Override
             public void handle(ActionEvent event) {
                 try {
+                    if(in.readLine().equals("CONTINUE")){
+                        return;
+                    }
                     if(in.readLine().equals("RUN GAME")){
                         ClientReadyScene.nextScene();
                         BoardIO.beginUpdationThread();
@@ -52,8 +55,23 @@ public class WaitScreenUpdationThread {
         updator.setCycleCount(Timeline.INDEFINITE);
         updator.play();
     }
+    public void startHost() {
+        updator = new Timeline(new KeyFrame(Duration.seconds(0.5), new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+
+                out.println("CONTINUE");
+            }
+        }));
+        updator.setCycleCount(Timeline.INDEFINITE);
+        updator.play();
 
 
+    }
+    public void end(){
+        updator.stop();
+    }
 }
 
 

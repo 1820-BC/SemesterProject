@@ -11,7 +11,7 @@ public class HostIO extends MultiplayerIO{
 
     private ServerSocket server;
     private Socket IOsocket;
-
+    private WaitScreenUpdationThread thread;
 
 
 
@@ -68,8 +68,13 @@ public class HostIO extends MultiplayerIO{
 
     @Override
     public void runWaitScreenUpdationThread() {
-        WaitScreenUpdationThread thread=new WaitScreenUpdationThread(IOsocket,in,os);
-        thread.start();
+        thread=new WaitScreenUpdationThread(IOsocket,in,os);
+        thread.startHost();
+    }
+
+    @Override
+    public void stopWaitScreenUpdationThread() {
+        thread.end();
     }
 
 

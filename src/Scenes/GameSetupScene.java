@@ -212,6 +212,7 @@ public class GameSetupScene {
 
 
     public static Scene GameSetupScene(){
+        BoardIO.getIO().runWaitScreenUpdationThread();
         BoardIO.setPlayer(Teams.Blue);
         File f = new File("D://BoardGame/src/SavedMaps/");
         if(f.listFiles()==null){
