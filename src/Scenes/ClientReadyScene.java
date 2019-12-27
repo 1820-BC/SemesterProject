@@ -1,6 +1,8 @@
 package Scenes;
 
 import BoardStuff.BoardIO;
+import BoardStuff.Move;
+import Multiplayer.WaitScreenUpdationThread;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,8 +25,9 @@ public class ClientReadyScene {
     private static VBox vbox;
     private static Button refresh;
     private static Scene scene;
+    private static Stage Stage;
     public static void initializeClientReadyScene(Stage stage,double width, double height){
-
+        Stage=stage;
         CanvasPane=new ScrollPane();
         lis=new ListView();
         text=new Label("Players and Map");
@@ -32,19 +35,6 @@ public class ClientReadyScene {
 
         CanvasPane.setContent(BoardIO.getCanvas());
 
-        refresh.setOnAction(e->{
-
-                try {
-                    if(BoardIO.getIO().recWholeCanvas()){
-                        stage.setScene(MoveScene.getScene());
-                        BoardIO.beginUpdationThread();
-                    }
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                BoardIO.drawBoardNew();
-
-        });
 
         flower=new FlowPane();
         flower.setHgap(20);
@@ -57,8 +47,12 @@ public class ClientReadyScene {
     }
 
     public static Scene getClientReadyScene(){
+        BoardIO.getIO().runWaitScreenUpdationThread();
         return scene;
     }
 
 
+    public static void nextScene() {
+        Stage.setScene(MoveScene.getScene());
+    }
 }

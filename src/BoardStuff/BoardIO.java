@@ -335,7 +335,7 @@ public class BoardIO {
             e.printStackTrace();
         }
         addToBoard(0,0,PieceTypes.CAPITAL,Teams.Red);
-        addToBoard(b.getSize(),b.getSize(),PieceTypes.CAPITAL,Teams.Blue);
+        addToBoard(b.getSize()-1,b.getSize()-1,PieceTypes.CAPITAL,Teams.Blue);
     }
 
     public static void sendBoardThroughIO(){

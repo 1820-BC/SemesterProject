@@ -265,7 +265,7 @@ public class MoveScene {
     public static Scene getScene() {
 //        BoardIO.setupForMoveSelection();
         color.setText("You're Color is: "+BoardIO.getTeam());
-
+        BoardIO.getIO().runUpdationThread();
         color.setId(BoardIO.getTeam().toString());
         BoardIO.getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

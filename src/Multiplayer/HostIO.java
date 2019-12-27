@@ -66,6 +66,12 @@ public class HostIO extends MultiplayerIO{
         T.start();
     }
 
+    @Override
+    public void runWaitScreenUpdationThread() {
+        WaitScreenUpdationThread thread=new WaitScreenUpdationThread(IOsocket,in,os);
+        thread.start();
+    }
+
 
 //    public String getMessage();
 }
