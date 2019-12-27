@@ -57,7 +57,7 @@ public class Rules {
     //dicerns whether space can be moved into by piece
     public static boolean canMoveInto(Space space, Piece piece){
         // if moving onto allowed spaces
-        if(space.getPiece().getType()!=PieceTypes.OPENDRAWBRIDGE||space.getPiece().getType()!=PieceTypes.BRIDGE||space.getPiece().getType()!=PieceTypes.EMPTY){
+        if(space.getPiece().getType()!=PieceTypes.OPENDRAWBRIDGE||space.getPiece().getType()!=PieceTypes.BRIDGE||space.getPiece().getType()==PieceTypes.EMPTY){
             if(space.getType().equals("rivers")){
                 return false;
             }

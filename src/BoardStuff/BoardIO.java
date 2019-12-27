@@ -83,8 +83,8 @@ public class BoardIO {
             c.setWidth(80*squareSize);
         }
         else {
-            c.setHeight(squareSize * (b.getSize()));
-            c.setWidth(squareSize * (b.getSize()));
+            c.setHeight(squareSize * (b.getSize()+1));
+            c.setWidth(squareSize * (b.getSize()+1));
         }
 
         g.clearRect(0,0,c.getWidth(),c.getHeight());
@@ -334,7 +334,7 @@ public class BoardIO {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        addToBoard(1,1,PieceTypes.CAPITAL,Teams.Red);
+        addToBoard(0,0,PieceTypes.CAPITAL,Teams.Red);
         addToBoard(b.getSize(),b.getSize(),PieceTypes.CAPITAL,Teams.Blue);
     }
 

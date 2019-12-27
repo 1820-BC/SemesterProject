@@ -106,17 +106,17 @@ public class Board {
         addCapitals(sizeX);
     }
     public Board(int side, int droplets,int surfaceTension,int flowForce, int rainfallVariation, int minPrecipitaion) throws FileNotFoundException {
-        setParamsFromVals(side-1, droplets, surfaceTension, flowForce,  rainfallVariation, minPrecipitaion);
+        setParamsFromVals(side, droplets, surfaceTension, flowForce,  rainfallVariation, minPrecipitaion);
         setupSelf();
-        addCapitals(side-1);
+        addCapitals(side);
     }
     public void setupSelf() throws FileNotFoundException {
         pointer[0] = 0;
         pointer[1] = 0;
         ArrayList<Space> placeHolder = new ArrayList(sizeX);
         board=new ArrayList(sizeY);
-        for (int a=0;a<=sizeY;a++) { //Map is initialized. O(x*y)
-            for (int b=0;b<=sizeY;b++) {
+        for (int a=0;a<sizeY;a++) { //Map is initialized. O(x*y)
+            for (int b=0;b<sizeY;b++) {
 
                 placeHolder.add(new Space(new Forests(), new EmptyPiece()));
             }
@@ -383,7 +383,7 @@ public class Board {
 
 
     public int getSize(){
-        return sizeX+2;
+        return sizeX;
     }
 
 
