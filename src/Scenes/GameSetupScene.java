@@ -165,7 +165,7 @@ public class GameSetupScene {
         rivers.setId("waterSlider");
         size.setId("sizeSlider");
         size.setBlockIncrement(2);
-        size.setMin(1);
+//        size.setMin(0);
         rivers.setBlockIncrement(1);
 
 

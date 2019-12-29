@@ -138,7 +138,7 @@ public class ParamsScene {
         size.setMajorTickUnit(2);
         size.setMinorTickCount(0);
         size.setBlockIncrement(2);
-        size.setMin(1);
+//        size.setMin(1);
 //        size.
         size.setSnapToTicks(true);
         sizeULabel=new Label("size:");
