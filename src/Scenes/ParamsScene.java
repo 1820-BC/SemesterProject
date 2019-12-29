@@ -210,6 +210,7 @@ public class ParamsScene {
             try {
                 BoardIO.setUpCanvasWithParams( (int)size.getValue(), (int)droplets.getValue(),(int) surfaceTension.getValue(), (int)flowForce.getValue(), (int) rainfallVariation.getValue(), (int) minPrecipitaion.getValue());
                 BoardIO.setUpCanvas();
+                GameSetupScene.sendCanvas();
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }

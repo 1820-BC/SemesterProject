@@ -204,7 +204,7 @@ public class GameSetupScene {
 
     }
 
-    private static void sendCanvas() {
+    public static void sendCanvas() {
         if(BoardIO.hasConnection()){
             BoardIO.sendBoardThroughIO();
         }
