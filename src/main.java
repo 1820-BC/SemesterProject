@@ -36,22 +36,30 @@ public class main extends Application {
         double screenHeight=Screen.getPrimary().getVisualBounds().getHeight()-40;
         stage=s;
         stage.setTitle("Triumphous");
-
+        LoadingScene.setupLoadingScene(stage,screenWidth,screenHeight,8);
+        stage.setScene(LoadingScene.getScene());
+        stage.show();
         //initialize scenes and other requirements
-        //BoardIO.setUp();
         OpeningScene.openingSceneInit(stage,screenWidth,screenHeight);
+        LoadingScene.increaseProgressBar();
         SettingsScene.settingsSceneInit(stage,screenWidth,screenHeight);
+        LoadingScene.increaseProgressBar();
         GameSetupScene.gameSetupSceneInit(stage,screenWidth,screenHeight);
+        LoadingScene.increaseProgressBar();
         GameSetupSceneClient.setupGameSetupSceneClient(stage,screenWidth,screenHeight);
+        LoadingScene.increaseProgressBar();
         PlayersScene.setupPlayersScene(stage,screenWidth,screenHeight);
-        //JoinScene.joinSceneInit(stage,screenWidth,screenHeight);
+        LoadingScene.increaseProgressBar();
         MoveScene.setupMoveScene(stage,screenWidth,screenHeight);
+        LoadingScene.increaseProgressBar();
         ParamsScene.setUpParamsScene(stage,screenWidth,screenHeight);
+        LoadingScene.increaseProgressBar();
         ClientReadyScene.initializeClientReadyScene(stage,screenWidth,screenHeight);
+        LoadingScene.increaseProgressBar();
 
 //        stage.setScene(OpeningScene.openingScene(stage));//OpeningScene.openingScene(stage));
-        stage.setScene(GameSetupScene.GameSetupScene());
-        stage.show();
+        stage.setScene(OpeningScene.openingScene(stage));
+
     }
 
 

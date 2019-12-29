@@ -44,14 +44,16 @@ public class ClientReadyScene {
             BoardIO.drawBoardNew();
 
         });
-
+        CanvasPane.setMaxSize(100,100);
+        CanvasPane.setFitToHeight(true);
+        CanvasPane.setFitToHeight(true);
         flower=new FlowPane();
         flower.setHgap(20);
         flower.getChildren().addAll(CanvasPane,lis);
         vbox=new VBox(20);
         vbox.getChildren().addAll(text,flower,refresh);
-        scene = new Scene(vbox,height,width);
-
+        scene = new Scene(vbox,width,height);
+        scene.getStylesheets().add("/Graphics/ControlBoard.css");
 
     }
 

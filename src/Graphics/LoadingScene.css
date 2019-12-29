@@ -1,0 +1,13 @@
+.root{
+    -fx-font-family: "Script MT Bold";
+
+    -fx-font-color: Blue;
+    /*-fx-background-image: url("/Textures/titleScreen.jpg");*/
+}
+.label{
+    -fx-font-size: 50;
+}
+.progress-bar .track{
+    -fx-text-box-border: #ff6d68;
+    -fx-control-inner-background: palegreen;
+}
