@@ -49,7 +49,8 @@ public class main extends Application {
         ParamsScene.setUpParamsScene(stage,screenWidth,screenHeight);
         ClientReadyScene.initializeClientReadyScene(stage,screenWidth,screenHeight);
 
-        stage.setScene(OpeningScene.openingScene(stage));//OpeningScene.openingScene(stage));
+//        stage.setScene(OpeningScene.openingScene(stage));//OpeningScene.openingScene(stage));
+        stage.setScene(GameSetupScene.GameSetupScene());
         stage.show();
     }
 

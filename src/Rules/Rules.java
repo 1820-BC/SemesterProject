@@ -41,17 +41,22 @@ public class Rules {
     //discerns whether the bullet may continue moving through a space
     public static boolean canShootThrough(Space space, Piece attacker, Piece defender){
         if(!BoardIO.teamCheck(attacker)){
+            System.out.println("canShootThrough 1");
             return false;
         }
-        //defender is kilable (enemy check only must happen once
+        else if(BoardIO.teamCheck(defender)&&defender.getPieceType()!=PieceTypes.EMPTY){
+            System.out.println("canShootThrough 2");
+            return false;
+        }
+        //defender is passable (enemy check only must happen once
         else if(REFERENCE.UNKILLABLE.contains(defender.getType())){
+            System.out.println("canShootThrough 3");
             return false;
         }
-        //can not go through factory, wall, closed draw bridge, or village types
-        else if(space.getPieceType()==PieceTypes.WALL||space.getPieceType()==PieceTypes.FACTORY||space.getPieceType()==PieceTypes.CLOSEDDRAWBRIDGE||space.getPieceType()==PieceTypes.VILLAGE){
-            return false;
+        else {
+            System.out.println("canShootThrough OKAY");
+            return true;
         }
-        return true;
     }
 
     //dicerns whether space can be moved into by piece
@@ -98,5 +103,15 @@ public class Rules {
         if(spaceFromPointer.getPiece().getType()==PieceTypes.FACTORY){
             reduceFactory();
         }
+    }
+
+    //getters
+
+    public static int getTurnSinceLastBuild(){
+        int moves=REFERENCE.MAX_TURNS_BETWEEN_BUILDS-numberOfFactories-turnSinceLastBuild;
+        if(moves<=0){
+            return 0;
+        }
+        return moves;
     }
 }

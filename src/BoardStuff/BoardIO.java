@@ -191,7 +191,7 @@ public class BoardIO {
         b.setPointer(x,y);
         Piece attacker=b.getPieceFromPointer();
         int dX=movePlayer1.getVector().getDirX();
-        int dY=movePlayer1.getVector().getDirX();
+        int dY=movePlayer1.getVector().getDirY();
         for(int apple=0;apple<Pieces.getShoot(attacker.getPieceType());apple++){
             b.movePointer(dX,dY);
             if(!Rules.canShootThrough(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
@@ -200,6 +200,7 @@ public class BoardIO {
             if(!Rules.canKill(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
                 continue;
             }
+            System.out.println("SLAY"+b.getXFromPointer()+b.getYFromPointer());
             b.setPieceFromPointer(PieceTypes.EMPTY,Teams.Red);
             moves+="-"+b.getXFromPointer()+","+b.getYFromPointer()+","+PieceTypes.EMPTY+","+Teams.Red;
             break;

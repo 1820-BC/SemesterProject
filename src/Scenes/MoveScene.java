@@ -17,7 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
+import Rules.*;
 import java.io.IOException;
 
 
@@ -49,6 +49,7 @@ public class MoveScene {
     static private int squareSize=30;
     static private Button build;
     static private Label color;
+    static private Label movesTillBuild;
     //#endregion
     public static void setupMoveScene(Stage stage, double width, double height) {
         //#region
@@ -81,7 +82,8 @@ public class MoveScene {
 
 
         color=new Label();
-
+        movesTillBuild=new Label();
+        movesTillBuild.setText("Moves Till Build: "+Rules.getTurnSinceLastBuild());
 
         moveType=new Label("DIRECTED TO: NO MOVE");
         MoveNum = new Label(message + movesIn + message2);
@@ -147,7 +149,7 @@ public class MoveScene {
         sendOrders=new Button("  SUBMIT  ");
         sendOrders.setId("ordersButton");
         movesVBox=new VBox(20);
-        movesVBox.getChildren().addAll(sendOrders,moves);
+        movesVBox.getChildren().addAll(movesTillBuild,sendOrders,moves);
         movesVBox.setAlignment(Pos.CENTER);
 
 
@@ -259,6 +261,7 @@ public class MoveScene {
         image.setImage(im);
         movesIn=moves.getItems().size();
         MoveNum.setText("Moves in Queue: "+movesIn);
+        movesTillBuild.setText("Moves Till Build: "+Rules.getTurnSinceLastBuild());
     }
 
 
