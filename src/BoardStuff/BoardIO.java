@@ -116,10 +116,10 @@ public class BoardIO {
     public static void drawLines(){
         GraphicsContext g=c.getGraphicsContext2D();
         g.setStroke(Color.RED);
-        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2-2+squareSize,c.getWidth(),(c.getHeight()-squareSize)/2-2);
+        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2-2,c.getWidth()-squareSize,(c.getHeight()-squareSize)/2-2);
         //blue
         g.setStroke(Color.BLUE);
-        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2+2+squareSize,c.getWidth(),(c.getHeight()-squareSize)/2+2);
+        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2+2,c.getWidth()-squareSize,(c.getHeight()-squareSize)/2+2);
     }
 
     public static PieceTypes getType(){
