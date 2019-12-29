@@ -210,6 +210,7 @@ public class BoardIO {
                 return;
             }
             if(!Rules.canKill(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
+                System.out.println("Can Not Kill");
                 continue;
             }
             System.out.println("SLAY"+b.getXFromPointer()+b.getYFromPointer());
