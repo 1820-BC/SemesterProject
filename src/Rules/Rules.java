@@ -32,6 +32,7 @@ public class Rules {
 
     //does the piece die or does the bullet keep moving, checked after canShootThrough
     public static boolean canKill(Space space, Piece attacker, Piece defender){
+        System.out.println(space.getPieceType());
         if(space.getPieceType()==PieceTypes.EMPTY){
             return false;
         }

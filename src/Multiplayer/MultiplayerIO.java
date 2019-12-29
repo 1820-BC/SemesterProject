@@ -70,7 +70,6 @@ public abstract class MultiplayerIO {
             for (String thingToUpdate : updates) {
                 String[] parts = thingToUpdate.split(",");
                 BoardIO.setSquare(parts[0], parts[1], parts[2],parts[3]);
-
             }
         }
     }

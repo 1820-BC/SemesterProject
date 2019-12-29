@@ -135,9 +135,10 @@ public class ParamsScene {
         rivernessPane.getChildren().addAll(rivernessULabel,riverness,rivernessL);
         rivernessPane.setAlignment(Pos.CENTER_RIGHT);
         size=new Slider();
-        size.setMajorTickUnit(1);
+        size.setMajorTickUnit(2);
         size.setMinorTickCount(0);
-        size.setBlockIncrement(1);
+        size.setBlockIncrement(2);
+        size.setMin(1);
 //        size.
         size.setSnapToTicks(true);
         sizeULabel=new Label("size:");

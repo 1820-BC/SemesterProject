@@ -116,10 +116,10 @@ public class BoardIO {
     public static void drawLines(){
         GraphicsContext g=c.getGraphicsContext2D();
         g.setStroke(Color.RED);
-        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2-2,c.getWidth()-squareSize,(c.getHeight()-squareSize)/2-2);
+        g.strokeLine(squareSize+2,(c.getHeight())/2-2,c.getWidth()-squareSize,(c.getHeight()-squareSize)/2-2);
         //blue
         g.setStroke(Color.BLUE);
-        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2+2,c.getWidth()-squareSize,(c.getHeight()-squareSize)/2+2);
+        g.strokeLine(squareSize+2,(c.getHeight())/2+2,c.getWidth()-squareSize,(c.getHeight()-squareSize)/2+2);
     }
 
     public static PieceTypes getType(){
@@ -203,9 +203,12 @@ public class BoardIO {
         b.setPointer(x,y);
         Piece attacker=b.getPieceFromPointer();
         int dX=movePlayer1.getVector().getDirX();
-        int dY=movePlayer1.getVector().getDirY();
+        int dY=-movePlayer1.getVector().getDirY();
         for(int apple=0;apple<Pieces.getShoot(attacker.getPieceType());apple++){
+            System.out.println(dX);
+            System.out.println(dY);
             b.movePointer(dX,dY);
+            System.out.println(b.getSpaceFromPointer());
             if(!Rules.canShootThrough(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
                 return;
             }
@@ -220,6 +223,7 @@ public class BoardIO {
             break;
 
         }
+        System.out.println("-----");
     }
     private static void runMovement(Move movePlayer1){
         if (movePlayer1 == null) {
@@ -384,7 +388,7 @@ public class BoardIO {
     }
 
     public static Teams getTeamFromSector(double y){
-        System.out.println(y+">="+b.getDoubleSize());
+        System.out.println(y+">="+b.getDoubleSize()/2);
         if(y>=b.getDoubleSize()/2){
             return Teams.Blue;
         }
