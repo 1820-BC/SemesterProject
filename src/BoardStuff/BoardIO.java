@@ -383,10 +383,11 @@ public class BoardIO {
     }
 
     public static Teams getTeamFromSector(double y){
+        System.out.println(y+">="+b.getDoubleSize());
         if(y>=b.getDoubleSize()/2){
-            return Teams.Red;
+            return Teams.Blue;
         }
-        return Teams.Blue;
+        return Teams.Red;
     }
 
     public static boolean correctTeamFromSector(int y) {
