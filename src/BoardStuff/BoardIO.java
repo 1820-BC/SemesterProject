@@ -38,6 +38,7 @@ public class BoardIO {
     private static Teams player;
     private static String stringPlayer;
 
+
     //generates the board from a file fileName.txt
     //returns true is successful and false if not
     public static void generateBoardFromFile(String fileName) throws FileNotFoundException {
@@ -108,7 +109,19 @@ public class BoardIO {
             }
         }
         g.save();
+        drawLines();
+
     }
+
+    public static void drawLines(){
+        GraphicsContext g=c.getGraphicsContext2D();
+        g.setStroke(Color.RED);
+        g.strokeLine(squareSize+2,c.getHeight()/2-2,c.getWidth(),c.getHeight()/2-2);
+        //blue
+        g.setStroke(Color.BLUE);
+        g.strokeLine(squareSize+2,c.getHeight()/2+2,c.getWidth(),c.getHeight()/2+2);
+    }
+
     public static PieceTypes getType(){
         return b.getPieceTypeFromPointer();
     }
@@ -173,7 +186,7 @@ public class BoardIO {
         System.out.println(type);
         b.setPointer(movePlayer1.getX(),movePlayer1.getY());
 //        if(b.getPieceTypeFromPointer()==PieceTypes.EMPTY){
-        if (!Rules.canBuildIn(b.getSpaceFromPointer(),movePlayer1.getNewPieceType())) {
+        if (!Rules.canBuildIn(movePlayer1.getY(),b.getSpaceFromPointer(),movePlayer1.getNewPieceType())) {
             return;
         }
 
@@ -203,6 +216,7 @@ public class BoardIO {
             System.out.println("SLAY"+b.getXFromPointer()+b.getYFromPointer());
             b.setPieceFromPointer(PieceTypes.EMPTY,Teams.Red);
             moves+="-"+b.getXFromPointer()+","+b.getYFromPointer()+","+PieceTypes.EMPTY+","+Teams.Red;
+            redrawSquare(b.getXFromPointer(),b.getYFromPointer());
             break;
 
         }
@@ -367,5 +381,16 @@ public class BoardIO {
 
     public static boolean teamCheck(Piece attacker) {
         return attacker.getTeam()==player;
+    }
+
+    public static Teams getTeamFromSector(double y){
+        if(y>=b.getDoubleSize()/2){
+            return Teams.Red;
+        }
+        return Teams.Blue;
+    }
+
+    public static boolean correctTeamFromSector(int y) {
+        return getTeamFromSector(y)==player;
     }
 }

@@ -389,6 +389,7 @@ public class Board {
         return sizeX;
     }
 
+    public double getDoubleSize(){ return sizeX; }
 
     public ArrayList<ArrayList<Space>> getBoard() {
         return board;

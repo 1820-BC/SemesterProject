@@ -258,6 +258,7 @@ public class MoveScene {
 //        currentMove.setType(m);
 
         moveType.setText("DIRECTED TO: MOVE");
+        moveOrShoot();
         image.setImage(im);
         movesIn=moves.getItems().size();
         MoveNum.setText("Moves in Queue: "+movesIn);

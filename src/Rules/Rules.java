@@ -7,18 +7,18 @@ import Pieces.Piece;
 
 public class Rules {
 
-    private static int turnSinceLastBuild=REFERENCE.MAX_TURNS_BETWEEN_BUILDS;
+    private static int turnSinceLastBuild=0;
     private static int turnSinceLastDrawbridge=0;
-    private static int numberOfFactories=1;
+    private static int numberOfFactories=0;
 
     public static void addTurnSinceBuild(){
-        turnSinceLastBuild++;
+        turnSinceLastBuild--;
     }
     public static void addTurnsSinceLastDrawbridge(){
         turnSinceLastDrawbridge++;
     }
     public static void resetTurnsSinceLastBuild(){
-        turnSinceLastBuild=0;
+        turnSinceLastBuild=REFERENCE.MAX_TURNS_BETWEEN_BUILDS-numberOfFactories;
     }
     public static void addFactory(){
         numberOfFactories++;
@@ -80,8 +80,12 @@ public class Rules {
     }
 
     //whether something can be built in a location
-    public static boolean canBuildIn(Space space,PieceTypes piece){
-        if(turnSinceLastBuild<REFERENCE.MAX_TURNS_BETWEEN_BUILDS-numberOfFactories){
+    public static boolean canBuildIn(int y,Space space,PieceTypes piece){
+        if(getTurnSinceLastBuild()!=0){
+            return false;
+        }
+        //must build in your sector
+        if(!BoardIO.correctTeamFromSector(y)){
             return false;
         }
         //can not build on non-empty spaces
@@ -108,7 +112,7 @@ public class Rules {
     //getters
 
     public static int getTurnSinceLastBuild(){
-        int moves=REFERENCE.MAX_TURNS_BETWEEN_BUILDS-numberOfFactories-turnSinceLastBuild;
+        int moves=turnSinceLastBuild;
         if(moves<=0){
             return 0;
         }
