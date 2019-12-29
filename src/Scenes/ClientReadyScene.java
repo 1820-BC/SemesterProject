@@ -1,6 +1,7 @@
 package Scenes;
 
 import BoardStuff.BoardIO;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +18,7 @@ import java.io.IOException;
 public class ClientReadyScene {
 
     private static ScrollPane CanvasPane;
-    private static ListView lis;
+
     private static Label text;
     private static FlowPane flower;
     private static VBox vbox;
@@ -27,8 +28,8 @@ public class ClientReadyScene {
     public static void initializeClientReadyScene(Stage stage,double width, double height){
         Stage=stage;
         CanvasPane=new ScrollPane();
-        lis=new ListView();
-        text=new Label("Players and Map");
+//        lis=new ListView();
+        text=new Label("Current Map");
         refresh=new Button("REFRESH MAP");
 
         CanvasPane.setContent(BoardIO.getCanvas());
@@ -44,13 +45,15 @@ public class ClientReadyScene {
             BoardIO.drawBoardNew();
 
         });
-        CanvasPane.setMaxSize(100,100);
+        CanvasPane.setMaxSize(1000,1000);
         CanvasPane.setFitToHeight(true);
         CanvasPane.setFitToHeight(true);
         flower=new FlowPane();
         flower.setHgap(20);
-        flower.getChildren().addAll(CanvasPane,lis);
+        flower.getChildren().addAll(CanvasPane);
+        flower.setAlignment(Pos.CENTER);
         vbox=new VBox(20);
+        vbox.setAlignment(Pos.CENTER);
         vbox.getChildren().addAll(text,flower,refresh);
         scene = new Scene(vbox,width,height);
         scene.getStylesheets().add("/Graphics/ControlBoard.css");
