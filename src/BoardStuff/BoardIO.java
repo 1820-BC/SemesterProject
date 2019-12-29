@@ -116,10 +116,10 @@ public class BoardIO {
     public static void drawLines(){
         GraphicsContext g=c.getGraphicsContext2D();
         g.setStroke(Color.RED);
-        g.strokeLine(squareSize+2,c.getHeight()/2-2,c.getWidth(),c.getHeight()/2-2);
+        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2-2+squareSize,c.getWidth(),(c.getHeight()-squareSize)/2-2+squareSize);
         //blue
         g.setStroke(Color.BLUE);
-        g.strokeLine(squareSize+2,c.getHeight()/2+2,c.getWidth(),c.getHeight()/2+2);
+        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2+2+squareSize,c.getWidth(),(c.getHeight()-squareSize)/2+2+squareSize);
     }
 
     public static PieceTypes getType(){
@@ -169,6 +169,7 @@ public class BoardIO {
             runBuild(movePlayer1);
             updateForBuild(movePlayer1);
         }
+        drawLines();
     }
     private static void updateForMovement(Move move){
         Rules.addTurnSinceBuild();
@@ -189,8 +190,6 @@ public class BoardIO {
         if (!Rules.canBuildIn(movePlayer1.getY(),b.getSpaceFromPointer(),movePlayer1.getNewPieceType())) {
             return;
         }
-
-        Rules.effectOfBuildOn(b.getSpaceFromPointer(),movePlayer1.getNewPieceType());
         b.setPieceFromPointer(type,player);
         if(type==PieceTypes.FACTORY){
             Rules.addFactory();
