@@ -252,6 +252,9 @@ public class MoveScene {
     private static void FunctionForEntering(Image im) {
 
         if(currentMove.getPT()==Moves.BUILD){
+            if(!Rules.readyForBuild()){
+                return;
+            }
             Rules.resetTurnsSinceLastBuild();
         }
         else{

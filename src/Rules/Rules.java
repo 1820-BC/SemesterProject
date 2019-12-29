@@ -81,9 +81,6 @@ public class Rules {
 
     //whether something can be built in a location
     public static boolean canBuildIn(int y,Space space,PieceTypes piece){
-        if(getTurnSinceLastBuild()!=0){
-            return false;
-        }
         //must build in your sector
         if(!BoardIO.correctTeamFromSector(y)){
             return false;
@@ -97,6 +94,12 @@ public class Rules {
             return false;
         }
         return true;
+    }
+    public static boolean readyForBuild() {
+        if(getTurnSinceLastBuild()==0){
+            return true;
+        }
+        return false;
     }
     //The effect of a build
     public static void effectOfBuildOn(Space spaceFromPointer, PieceTypes newPieceType) {
@@ -118,4 +121,6 @@ public class Rules {
         }
         return moves;
     }
+
+
 }
