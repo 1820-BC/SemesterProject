@@ -255,6 +255,9 @@ public class MoveScene {
             if(!Rules.readyForBuild()){
                 return;
             }
+            if(currentMove.getNewPieceType()==PieceTypes.FACTORY){
+                Rules.addFactory();
+            }
             Rules.resetTurnsSinceLastBuild();
         }
         else{

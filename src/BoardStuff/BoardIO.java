@@ -84,8 +84,8 @@ public class BoardIO {
             c.setWidth(80*squareSize);
         }
         else {
-            c.setHeight(squareSize * (b.getSize()+1));
-            c.setWidth(squareSize * (b.getSize()+1));
+            c.setHeight(squareSize * (b.getSize()+2));
+            c.setWidth(squareSize * (b.getSize()+2));
         }
 
         g.clearRect(0,0,c.getWidth(),c.getHeight());
@@ -116,10 +116,10 @@ public class BoardIO {
     public static void drawLines(){
         GraphicsContext g=c.getGraphicsContext2D();
         g.setStroke(Color.RED);
-        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2-2+squareSize,c.getWidth(),(c.getHeight()-squareSize)/2-2+squareSize);
+        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2-2+squareSize,c.getWidth(),(c.getHeight()-squareSize)/2-2);
         //blue
         g.setStroke(Color.BLUE);
-        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2+2+squareSize,c.getWidth(),(c.getHeight()-squareSize)/2+2+squareSize);
+        g.strokeLine(squareSize+2,(c.getHeight()-squareSize)/2+2+squareSize,c.getWidth(),(c.getHeight()-squareSize)/2+2);
     }
 
     public static PieceTypes getType(){
