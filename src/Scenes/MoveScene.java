@@ -250,19 +250,28 @@ public class MoveScene {
     }
 
     private static void FunctionForEntering(Image im) {
+
+        if(currentMove.getPT()==Moves.BUILD){
+            Rules.resetTurnsSinceLastBuild();
+        }
+        else{
+            Rules.addTurnSinceBuild();
+        }
+
+
         currentMove.setVectorSize(BoardIO.getPieceAt());
         BoardIO.getIO().addToQueue(currentMove);
         moves.getItems().add(currentMove.toString());
 //        Moves m=currentMove.getPT();
         currentMove=new Move(selectedX,selectedY);
 //        currentMove.setType(m);
-
         moveType.setText("DIRECTED TO: MOVE");
         moveOrShoot();
         image.setImage(im);
         movesIn=moves.getItems().size();
         MoveNum.setText("Moves in Queue: "+movesIn);
         movesTillBuild.setText("Moves Till Build: "+Rules.getTurnSinceLastBuild());
+
     }
 
 

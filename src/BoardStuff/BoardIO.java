@@ -167,7 +167,7 @@ public class BoardIO {
         else if(movePlayer1.getPT()==Moves.BUILD){
             System.out.println("build");
             runBuild(movePlayer1);
-            updateForBuild(movePlayer1);
+
         }
         drawLines();
     }
@@ -178,7 +178,7 @@ public class BoardIO {
     private static void updateForShot(Move move){
         Rules.addTurnSinceBuild();
     }
-    private static void updateForBuild(Move move){
+    private static void updateForBuild(){
         Rules.resetTurnsSinceLastBuild();
     }
     private static void runBuild(Move movePlayer1){
