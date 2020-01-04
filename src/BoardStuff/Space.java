@@ -25,7 +25,10 @@ public class Space {
     }
 
     public Piece getPiece() {
-        return piece;
+        if(getAcceptablePieces(piece)){
+            return piece;
+        }
+        return secondaryPiece;
     }
 
     public Type getType() {
@@ -42,10 +45,10 @@ public class Space {
     public void setPiece(PieceTypes p,Teams team){
 //        setPiece(new Infantry());
 //        System.out.println("p: "+p);
-//        if(getAcceptablePieces(piece)){
-//            addPieceToSecondary(p,team);
-//            return;
-//        }
+        if(getAcceptablePieces(piece)){
+            addPieceToSecondary(p,team);
+            return;
+        }
 
         if (p == PieceTypes.INFANTRY) {
             piece = new Infantry(team);

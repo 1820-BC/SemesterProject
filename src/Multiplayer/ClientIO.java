@@ -14,6 +14,7 @@ public class ClientIO extends MultiplayerIO{
 
      boolean sent;
 
+     UpdationThread T;
 
     public ClientIO(String IP) throws IOException {
         super();
@@ -72,8 +73,18 @@ public class ClientIO extends MultiplayerIO{
 
     @Override
     public void runUpdationThread() {
-        UpdationThread T=new UpdationThread(socket,in,os);
+        T=new UpdationThread(socket,in,os);
         T.start();
+    }
+
+    @Override
+    public void endUpdationThread() {
+        T.end();
+    }
+
+    @Override
+    public void sendForWin(){
+        os.println("WIN");
     }
 
 

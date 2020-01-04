@@ -395,7 +395,23 @@ public class Board {
         return board;
     }
 
+    public PieceTypes On(Teams team) {
+        if(team==Teams.Red){
+            setPointer(0,0);
+            return getPieceTypeFromPointer();
+        }
+        setPointer(sizeX,sizeX); //check this thing for other error!!!
+        return getPieceTypeFromPointer();
+    }
 
+    public Teams onTeam(Teams team) {
+        if(team==Teams.Red){
+            setPointer(0,0);
+            return getPieceFromPointer().getTeam();
+        }
+        setPointer(sizeX,sizeX); //check this thing for other error!!!
+        return getPieceFromPointer().getTeam();
+    }
 
 
     // public void movePiece(Vector V, int x, int y){

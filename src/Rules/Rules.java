@@ -4,6 +4,7 @@ import BoardStuff.BoardIO;
 import BoardStuff.PieceTypes;
 import BoardStuff.Space;
 import Pieces.Piece;
+import Pieces.Teams;
 
 public class Rules {
 
@@ -124,4 +125,15 @@ public class Rules {
     }
 
 
+    public static boolean winState() {
+
+        if(BoardIO.getBoard().On(BoardIO.getTeam())!=PieceTypes.EMPTY){
+            Teams t=BoardIO.getBoard().onTeam(BoardIO.getTeam());
+            if(t==BoardIO.getTeam()){
+                return true;
+            }
+        }
+        return false;
+
+    }
 }

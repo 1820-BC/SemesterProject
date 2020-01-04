@@ -18,6 +18,7 @@ public class UpdationThread {
     Socket s;
     BufferedReader in;
     PrintStream out;
+    Timeline fiveSecondsWonder;
 
     public UpdationThread(Socket s, BufferedReader dis, PrintStream dos) {
         this.s = s;
@@ -25,19 +26,24 @@ public class UpdationThread {
         out = dos;
     }
 
+    public void end() {
+        fiveSecondsWonder.stop();
+    }
+
     public void start() {
-        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(0.001), new EventHandler<ActionEvent>() {
+        fiveSecondsWonder = new Timeline(new KeyFrame(Duration.seconds(0.001), new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
+                try {
+                    BoardIO.getUpdate();
+                } catch (IOException epps) {
+                    epps.printStackTrace();
+                }
                 if(!BoardIO.checkForWinCondition())
                     BoardIO.updateOponentBoard();
                     BoardIO.resetMoveMessage();
-                try {
-                        BoardIO.getUpdate();
-                    } catch (IOException epps) {
-                        epps.printStackTrace();
-                    }
+
 
                 }
 

@@ -8,7 +8,9 @@
 
 5. Be careful of secondary piece additions, not implemented correctly
 
-
+6. If the win condition doesn't work
+    a. check the blue v red
+    b. check the sizeX input for setPointer
 
 
 

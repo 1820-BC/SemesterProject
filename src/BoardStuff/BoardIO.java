@@ -37,6 +37,7 @@ public class BoardIO {
     private static String moves="";
     private static Teams player;
     private static String stringPlayer;
+    private static Players win;
 
 
     //generates the board from a file fileName.txt
@@ -157,6 +158,7 @@ public class BoardIO {
             System.out.println("move");
             runMovement(movePlayer1);
             updateForMovement(movePlayer1);
+            checkForWin();
         }
         else if(movePlayer1.getPT()==Moves.SHOOT){
             System.out.println("shoot");
@@ -171,6 +173,15 @@ public class BoardIO {
         }
         drawLines();
     }
+
+    private static void checkForWin() {
+        if(Rules.winState()){
+            io.endUpdationThread();
+            io.sendForWin();
+            win=Players.ME;
+        }
+    }
+
     private static void updateForMovement(Move move){
         Rules.addTurnSinceBuild();
 
@@ -398,5 +409,10 @@ public class BoardIO {
 
     public static boolean correctTeamFromSector(int y) {
         return getTeamFromSector(y)==player;
+    }
+
+    public static void endSystemForEnemyWin() {
+        io.endUpdationThread();
+        win=Players.ENEMY;
     }
 }

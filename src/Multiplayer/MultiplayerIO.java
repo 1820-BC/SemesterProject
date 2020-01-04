@@ -60,6 +60,10 @@ public abstract class MultiplayerIO {
             System.out.println("nullified");
             return;
         }
+        if(updater.equals("WIN")){
+            System.out.println("AWIN");
+            BoardIO.endSystemForEnemyWin();
+        }
         if(updater.equals("")){
             return;
         }
@@ -100,9 +104,9 @@ public abstract class MultiplayerIO {
 
     public abstract void runUpdationThread();
 
+    public abstract void endUpdationThread();
 
-
-
+    public abstract void sendForWin();
 
 
 //    public abstract void setActionListener();
