@@ -26,9 +26,9 @@ public class Space {
 
     public Piece getPiece() {
         if(getAcceptablePieces(piece)){
-            return piece;
+            return secondaryPiece;
         }
-        return secondaryPiece;
+        return piece;
     }
 
     public Type getType() {

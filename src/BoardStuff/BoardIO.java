@@ -142,6 +142,7 @@ public class BoardIO {
         }
         b.setPointer(movePlayer1.getX(), movePlayer1.getY());
         Piece p=b.getPieceFromPointer();
+        System.out.println(p);
         return p.getTeam()!=player&&p.type()!=null;
     }
 
