@@ -125,4 +125,8 @@ public class Space {
     public Image getTextureTerrain(){
         return type.getImage();
     }
+
+    public TerrainTypes getTerrainType() {
+        return type.getTerrainType();
+    }
 }

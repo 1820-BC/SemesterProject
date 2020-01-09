@@ -1,5 +1,6 @@
 package Spaces;
 
+import BoardStuff.TerrainTypes;
 import javafx.scene.image.Image;
 
 import java.io.FileNotFoundException;
@@ -18,7 +19,14 @@ public class Rivers extends Type {
     }
 
     @Override
+    public TerrainTypes getTerrainType() {
+        return null;
+    }
+
+    @Override
     public Image getImage() {
         return new Image("/Textures/water.png");
     }
+
+
 }

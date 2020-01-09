@@ -14,7 +14,7 @@ public abstract class MultiplayerIO {
 
       static boolean host;
       static String port;
-      static Queue<Move> player1=new LinkedList();
+
       protected PrintStream os;
       protected BufferedReader in;
 
@@ -45,7 +45,7 @@ public abstract class MultiplayerIO {
 //      public abstract Move getMovePlayer1();
 
 
-      public abstract void addToQueue(Move currentMove);
+
 
 
     public void sendAction(String moves){
@@ -56,6 +56,7 @@ public abstract class MultiplayerIO {
             return;
         }
         String updater=in.readLine();
+        System.out.println(updater);
         if(updater==(null)){
             System.out.println("nullified");
             return;
@@ -77,14 +78,7 @@ public abstract class MultiplayerIO {
             }
         }
     }
-    public Move getMovePlayer1(){
-        try {
-            return player1.remove();
-        }
-        catch(Exception e){
-            return null;
-        }
-    }
+
 
     public void sendWholeCanvas(String wholeBoard){
         os.println(wholeBoard);

@@ -3,6 +3,7 @@ package Rules;
 import BoardStuff.BoardIO;
 import BoardStuff.PieceTypes;
 import BoardStuff.Space;
+import BoardStuff.TerrainTypes;
 import Pieces.Piece;
 import Pieces.Teams;
 
@@ -51,8 +52,11 @@ public class Rules {
             return false;
         }
         //defender is passable (enemy check only must happen once
-        else if(REFERENCE.UNKILLABLE.contains(defender.getType())){
+        else if(REFERENCE.UNKILLABLE.contains(defender.getType())&&attacker.getPieceType()!=PieceTypes.TREBUCHET){
             System.out.println("canShootThrough 3");
+            return false;
+        }
+        else if (attacker.getPieceType()==PieceTypes.TREBUCHET&&!REFERENCE.KILLIBLEBYTREBUCHET.contains(defender.getType())){
             return false;
         }
         else {
@@ -125,15 +129,45 @@ public class Rules {
     }
 
 
-    public static boolean winState() {
 
-        if(BoardIO.getBoard().On(BoardIO.getTeam())!=PieceTypes.EMPTY){
-            Teams t=BoardIO.getBoard().onTeam(BoardIO.getTeam());
-            if(t==BoardIO.getTeam()){
+    public static int effectOfTerrainOnShot(Space s){
+        TerrainTypes t=s.getTerrainType();
+        if(t==TerrainTypes.FORESTS){
+            return 0;
+        }
+        else if(t==TerrainTypes.MOUNTAINS){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+    public static int effectOfTerrainOnMove(Space s){
+        TerrainTypes t=s.getTerrainType();
+        if(t==TerrainTypes.FORESTS){
+            return 0;
+        }
+        else if(t==TerrainTypes.MOUNTAINS){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+
+    public static boolean winState(int newX, int newY, Teams player) {
+        if(player==Teams.Blue){
+            if(newX==0&&newY==0){
                 return true;
             }
+            return false;
         }
-        return false;
+        else{
+            if(newX==BoardIO.getBoard().getSize()&&newY==BoardIO.getBoard().getSize()){
+                return true;
+            }
+            return false;
+        }
 
     }
 }

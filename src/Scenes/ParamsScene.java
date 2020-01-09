@@ -32,7 +32,7 @@ public class ParamsScene {
     private static FlowPane sizePane, dropletsPane, surfaceTensionPane,  elasticityPane, flowForcePane,minPrecipitaionPane,  rainfallVariationPane,rivernessPane;
     private static Label sizeL,dropletsL, surfaceTensionL,  elasticityL, flowForceL,minPrecipitaionL,  rainfallVariationL,rivernessL, sizeULabel,dropletsULabel, surfaceTensionULabel,  elasticityULabel, flowForceULabel,minPrecipitaionULabel,  rainfallVariationULabel,rivernessULabel;
     private static Button back, backWOGen;
-
+    private static boolean multiplayer;
 
     public static void setUpParamsScene(Stage stage, double width,double height){
         //#group
@@ -207,16 +207,18 @@ public class ParamsScene {
             }
         });
         back.setOnAction(e->{
-            stage.setScene(GameSetupScene.GameSetupScene());
+            stage.setScene(GameSetupScene.GameSetupScene(multiplayer));
             try {
                 BoardIO.setUpCanvasWithParams( (int)size.getValue(), (int)droplets.getValue(),(int) surfaceTension.getValue(), (int)flowForce.getValue(), (int) rainfallVariation.getValue(), (int) minPrecipitaion.getValue());
                 BoardIO.setUpCanvas();
-                GameSetupScene.sendCanvas();
+                if(multiplayer) {
+                    GameSetupScene.sendCanvas();
+                }
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
         });
-        backWOGen.setOnAction(e->stage.setScene(GameSetupScene.GameSetupScene()));
+        backWOGen.setOnAction(e->stage.setScene(GameSetupScene.GameSetupScene(multiplayer)));
 
     }
 
@@ -228,8 +230,8 @@ public class ParamsScene {
     }
 
 
-    public static Scene getParamsScene(){
-
+    public static Scene getParamsScene(boolean multi){
+        multiplayer=multi;
         return scene;
     }
 

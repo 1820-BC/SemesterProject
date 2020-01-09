@@ -62,9 +62,7 @@ public class ClientIO extends MultiplayerIO{
 
 //    public void sendMove();
 
-    public void addToQueue(Move move){
-       player1.add(move);
-    }
+
 
     @Override
     public void sendOkay() {

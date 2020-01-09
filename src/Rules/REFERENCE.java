@@ -19,6 +19,13 @@ public class REFERENCE {
             PieceTypes.FACTORY,
             PieceTypes.VILLAGE}));
 
+    public static final ArrayList KILLIBLEBYTREBUCHET=new ArrayList(Arrays.asList(new PieceTypes[]{
+            PieceTypes.WALL,
+            PieceTypes.FACTORY,
+            PieceTypes.BRIDGE,
+            PieceTypes.OPENDRAWBRIDGE,
+            PieceTypes.CLOSEDDRAWBRIDGE
+    }));
 //    public static final int
 
 }

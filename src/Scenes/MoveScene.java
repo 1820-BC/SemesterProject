@@ -35,6 +35,7 @@ public class MoveScene {
     static private Stage stage;
     static private ScrollPane pane;
 //    static private TextField xIn,yIn;
+    static private boolean multiplayer;
     static private AnchorPane anchor;
     static private FlowPane flower;
     static private BorderPane primaryPane;
@@ -50,8 +51,10 @@ public class MoveScene {
     static private Button build;
     static private Label color;
     static private Label movesTillBuild;
+    static private Stage playStage;
     //#endregion
     public static void setupMoveScene(Stage stage, double width, double height) {
+        playStage=stage;
         //#region
 
         up = new Button();
@@ -210,7 +213,8 @@ public class MoveScene {
         });
 
         sendOrders.setOnAction(e->{
-            BoardIO.run(BoardIO.getIO().getMovePlayer1());
+//            if(multiplayer)
+            BoardIO.run(BoardIO.getQueue().getMovePlayer1(),multiplayer);
             moves.getItems().remove(0);
         });
 
@@ -239,7 +243,7 @@ public class MoveScene {
                 moveType.setText("DIRECTED TO: MOVE");
             }
             else if(keyEvent.getCode()==KeyCode.Q){
-                BoardIO.run(BoardIO.getIO().getMovePlayer1());
+                BoardIO.run(BoardIO.getQueue().getMovePlayer1(),multiplayer);
                 moves.getItems().remove(0);
             }
 
@@ -266,7 +270,7 @@ public class MoveScene {
 
 
         currentMove.setVectorSize(BoardIO.getPieceAt());
-        BoardIO.getIO().addToQueue(currentMove);
+        BoardIO.getQueue().addToQueue(currentMove);
         moves.getItems().add(currentMove.toString());
 //        Moves m=currentMove.getPT();
         currentMove=new Move(selectedX,selectedY);
@@ -281,11 +285,13 @@ public class MoveScene {
     }
 
 
-    public static Scene getScene() {
+    public static Scene getScene(boolean multi) {
 //        BoardIO.setupForMoveSelection();
-
+        multiplayer=multi;
         color.setText("You're Color is: "+BoardIO.getTeam());
-        BoardIO.getIO().runUpdationThread();
+        if(multiplayer) {
+            BoardIO.getIO().runUpdationThread();
+        }
         color.setId(BoardIO.getTeam().toString());
         BoardIO.getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -413,4 +419,7 @@ public class MoveScene {
         });
     }
 
+    public static void end() {
+        playStage.setScene(VictoryScene.getScene());
+    }
 }

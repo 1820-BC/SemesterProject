@@ -47,9 +47,6 @@ public class HostIO extends MultiplayerIO{
 //    }
 
 
-    public void addToQueue(Move move){
-        player1.add(move);
-    }
 
     public void sendWholeCanvas(String wholeBoard){
         os.println(wholeBoard);

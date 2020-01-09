@@ -36,7 +36,7 @@ public class ClientReadyScene {
         refresh.setOnAction(e->{
             try {
                 if(BoardIO.getIO().recWholeCanvas()){
-                    stage.setScene(MoveScene.getScene());
+                    stage.setScene(MoveScene.getScene(true));
                     BoardIO.beginUpdationThread();
                 }
             } catch (IOException ex) {
@@ -67,6 +67,6 @@ public class ClientReadyScene {
 
 
     public static void nextScene() {
-        Stage.setScene(MoveScene.getScene());
+        Stage.setScene(MoveScene.getScene(true));
     }
 }

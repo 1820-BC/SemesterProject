@@ -6,17 +6,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class OpeningScene {
     static Scene titlePage;
     static VBox titleLayoutOrd2;
-    static Button host,join, settings, quit;
+    static Button host,join,single_player, settings, quit;
     static BorderPane titleLayoutOrd1;
     static Label title,version;
     static String backdrop="back2";
     static double width,height;
+    static FlowPane paney;
 
     public static void openingSceneInit(Stage stage,double w, double h) {
 
@@ -26,25 +28,32 @@ public class OpeningScene {
 
         host = new Button("HOST");
         join = new Button("JOIN");
+        single_player=new Button("SINGLE PLAYER");
         settings = new Button("OPTIONS");
         quit = new Button("QUIT");
         title = new Label("Triumphus");
         title.getStyleClass().add("titleText");
 
-        version = new Label("Version Beta 1.0.0");
+        version = new Label("Version Alpha 1.2.0");
         version.getStyleClass().add("infoText");
 
 
         //title screen button setup
         quit.setOnAction(e -> stage.close());
         settings.setOnAction(e->stage.setScene(SettingsScene.settingsScene(stage)));
+        single_player.setOnAction((e->stage.setScene(GameSetupScene.GameSetupScene(false))));
         host.setOnAction(e->stage.setScene(PlayersScene.getPlayersScene()));
         join.setOnAction(e->stage.setScene(GameSetupSceneClient.GSSC()));
         //layout management
 
         //Vbox
+        paney=new FlowPane();
+        paney.setHgap(20);
+        paney.setAlignment(Pos.TOP_RIGHT);
+        paney.getChildren().addAll(host,join);
+
         titleLayoutOrd2 = new VBox(30);
-        titleLayoutOrd2.getChildren().addAll(title,host,join, settings, quit);
+        titleLayoutOrd2.getChildren().addAll(title,paney,single_player,settings, quit);
         titleLayoutOrd2.setAlignment(Pos.TOP_RIGHT);
 
         //boarder pane

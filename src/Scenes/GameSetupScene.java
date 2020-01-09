@@ -39,7 +39,7 @@ public class GameSetupScene {
     static Slider size;
     static Label riversLabel,sizelabel;
     static ScrollPane container;
-
+    static boolean multiplayer;
     static Scene game_setup_scene;
     static Canvas c;
     static Stage stage;
@@ -87,7 +87,9 @@ public class GameSetupScene {
             } catch (FileNotFoundException ex) {
                 System.out.println("ERROR IN GENERATE BUTTON ON GAMESETUPSCENE");
             }
-            sendCanvas();
+            if(multiplayer) {
+                sendCanvas();
+            }
         }
         );
         load.setOnAction(e->{
@@ -100,7 +102,9 @@ public class GameSetupScene {
                     } catch (FileNotFoundException ex) {
                         System.out.println("ooff");
                     }
-                    sendCanvas();
+                    if(multiplayer) {
+                        sendCanvas();
+                    }
                 }
                 );
         save.setOnAction(e->{
@@ -141,15 +145,18 @@ public class GameSetupScene {
             if((!BoardIO.hasConnection())&&runningLigit){
                 return;
             }
-            BoardIO.getIO().sendOkay();
-            stage.setScene(MoveScene.getScene());
-            BoardIO.beginUpdationThread();
-
+            if(multiplayer) {
+                BoardIO.getIO().sendOkay();
+            }
+            stage.setScene(MoveScene.getScene(multiplayer));
+            if(multiplayer) {
+                BoardIO.beginUpdationThread();
+            }
         });
         back.setOnAction(e->stage.setScene(OpeningScene.openingScene(stage)));
 
         setParamsExact.setOnAction(e->{
-            stage.setScene(ParamsScene.getParamsScene());
+            stage.setScene(ParamsScene.getParamsScene(multiplayer));
 
         });
 
@@ -212,8 +219,9 @@ public class GameSetupScene {
     }
 
 
-    public static Scene GameSetupScene(){
+    public static Scene GameSetupScene(boolean multi){
 //        BoardIO.getIO().runWaitScreenUpdationThread();
+        multiplayer=multi;
         BoardIO.setPlayer(Teams.Blue);
         File f = new File("D://BoardGame/src/SavedMaps/");
         if(f.listFiles()==null){
@@ -223,9 +231,6 @@ public class GameSetupScene {
         for(File s:f.listFiles()){
             inLoad.getItems().add(s.getName());
         }
-
-
-
         return game_setup_scene;
     }
 

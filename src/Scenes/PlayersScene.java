@@ -54,7 +54,7 @@ public class PlayersScene {
                 String name=host.getMessage();
                 items.add(name);
                 BoardIO.setIO(host);
-                stage.setScene(GameSetupScene.GameSetupScene());
+                stage.setScene(GameSetupScene.GameSetupScene(true));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

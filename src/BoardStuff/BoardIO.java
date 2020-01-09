@@ -4,6 +4,7 @@ import Rules.Rules;
 import Multiplayer.HostIO;
 import Multiplayer.MultiplayerIO;
 import Multiplayer.UpdationThread;
+import Scenes.MoveScene;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -38,6 +39,7 @@ public class BoardIO {
     private static Teams player;
     private static String stringPlayer;
     private static Players win;
+    private static moveQueue queue;
 
 
     //generates the board from a file fileName.txt
@@ -142,11 +144,11 @@ public class BoardIO {
         }
         b.setPointer(movePlayer1.getX(), movePlayer1.getY());
         Piece p=b.getPieceFromPointer();
-        System.out.println(p);
+//        System.out.println(p);
         return p.getTeam()!=player&&p.type()!=null;
     }
 
-    public static void run(Move movePlayer1) {
+    public static void run(Move movePlayer1,boolean multiplayer) {
 //        System.out.println(movePlayer1.getX());
 //        System.out.println(movePlayer1.getY());
 ////        System.out.println(movePlayer1.getdX());
@@ -159,7 +161,12 @@ public class BoardIO {
             System.out.println("move");
             runMovement(movePlayer1);
             updateForMovement(movePlayer1);
-            checkForWin();
+            if(multiplayer) {
+                checkForWin(movePlayer1);
+            }
+            else{
+                softCheckForWin(movePlayer1);
+            }
         }
         else if(movePlayer1.getPT()==Moves.SHOOT){
             System.out.println("shoot");
@@ -175,12 +182,32 @@ public class BoardIO {
         drawLines();
     }
 
-    private static void checkForWin() {
-        if(Rules.winState()){
-            io.endUpdationThread();
-            io.sendForWin();
-            win=Players.ME;
+    private static void checkForWin(Move movePlayer1) {
+
+            int newX=movePlayer1.getX()+movePlayer1.getdX();
+            int newY=movePlayer1.getY()-movePlayer1.getdY();
+
+            if(Rules.winState(newX,newY,player)){
+                io.endUpdationThread();
+                io.sendForWin();
+                win=Players.ME;
+                MoveScene.end();
+            }
+
+
+
+    }
+
+    private static void softCheckForWin(Move movePlayer1){
+        int newX=movePlayer1.getX()+movePlayer1.getdX();
+        int newY=movePlayer1.getY()-movePlayer1.getdY();
+
+        if(Rules.winState(newX,newY,player)) {
+            win = Players.ME;
+            System.out.println("WINNNN");
+            MoveScene.end();
         }
+
     }
 
     private static void updateForMovement(Move move){
@@ -196,7 +223,7 @@ public class BoardIO {
     private static void runBuild(Move movePlayer1){
 
         PieceTypes type=movePlayer1.getNewPieceType();
-        System.out.println(type);
+//        System.out.println(type);
         b.setPointer(movePlayer1.getX(),movePlayer1.getY());
 //        if(b.getPieceTypeFromPointer()==PieceTypes.EMPTY){
         if (!Rules.canBuildIn(movePlayer1.getY(),b.getSpaceFromPointer(),movePlayer1.getNewPieceType())) {
@@ -217,25 +244,25 @@ public class BoardIO {
         int dX=movePlayer1.getVector().getDirX();
         int dY=-movePlayer1.getVector().getDirY();
         for(int apple=0;apple<Pieces.getShoot(attacker.getPieceType());apple++){
-            System.out.println(dX);
-            System.out.println(dY);
+//            F.out.println(dX);
+//            System.out.println(dY);
             b.movePointer(dX,dY);
-            System.out.println(b.getSpaceFromPointer());
+//            System.out.println(b.getSpaceFromPointer());
             if(!Rules.canShootThrough(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
                 return;
             }
             if(!Rules.canKill(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
-                System.out.println("Can Not Kill");
+//                System.out.println("Can Not Kill");
                 continue;
             }
-            System.out.println("SLAY"+b.getXFromPointer()+b.getYFromPointer());
+//            System.out.println("SLAY"+b.getXFromPointer()+b.getYFromPointer());
             b.setPieceFromPointer(PieceTypes.EMPTY,Teams.Red);
             moves+="-"+b.getXFromPointer()+","+b.getYFromPointer()+","+PieceTypes.EMPTY+","+Teams.Red;
             redrawSquare(b.getXFromPointer(),b.getYFromPointer());
             break;
 
         }
-        System.out.println("-----");
+//        System.out.println("-----");
     }
     private static void runMovement(Move movePlayer1){
         if (movePlayer1 == null) {
@@ -254,7 +281,7 @@ public class BoardIO {
         getBoard().setPointer(movePlayer1.getX(), movePlayer1.getY());
 
 
-        System.out.println(movePlayer1.getdX());
+//        System.out.println(movePlayer1.getdX());
         moves += "-" + movePlayer1.getX() + "," + movePlayer1.getY() + ",EMPTY"+",Red";
         getBoard().setPieceFromPointer(PieceTypes.EMPTY, Teams.Red);
 
@@ -401,7 +428,7 @@ public class BoardIO {
     }
 
     public static Teams getTeamFromSector(double y){
-        System.out.println(y+">="+b.getDoubleSize()/2);
+//        System.out.println(y+">="+b.getDoubleSize()/2);
         if(y>=b.getDoubleSize()/2){
             return Teams.Blue;
         }
@@ -415,5 +442,14 @@ public class BoardIO {
     public static void endSystemForEnemyWin() {
         io.endUpdationThread();
         win=Players.ENEMY;
+        MoveScene.end();
+    }
+
+    public static moveQueue getQueue() {
+        return queue;
+    }
+
+    public static Players getWinner() {
+        return win;
     }
 }

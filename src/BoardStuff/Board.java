@@ -400,7 +400,8 @@ public class Board {
             setPointer(0,0);
             return getPieceTypeFromPointer();
         }
-        setPointer(sizeX,sizeX); //check this thing for other error!!!
+        setPointer(sizeX-1,sizeX-1); //check this thing for other error!!!
+        System.out.println(getPieceTypeFromPointer());
         return getPieceTypeFromPointer();
     }
 

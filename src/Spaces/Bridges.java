@@ -1,5 +1,7 @@
 package Spaces;
 
+import BoardStuff.TerrainTypes;
+
 public class Bridges extends Type {
     public Bridges(){
         super();
@@ -8,6 +10,11 @@ public class Bridges extends Type {
     @Override
     public String getLand() {
         return "bridge";
+    }
+
+    @Override
+    public TerrainTypes getTerrainType() {
+        return null;
     }
 
 }

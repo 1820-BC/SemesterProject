@@ -1,5 +1,6 @@
 package Spaces;//type of territory which will include all necessary params for a location on the board including slots
 
+import BoardStuff.TerrainTypes;
 import javafx.scene.image.Image;
 
 import java.io.FileInputStream;
@@ -28,4 +29,5 @@ public abstract class Type {
 
     public abstract String getLand();
 
+    public abstract TerrainTypes getTerrainType();
 }

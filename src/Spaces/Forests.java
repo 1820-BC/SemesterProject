@@ -1,6 +1,7 @@
 package Spaces;
 
 
+import BoardStuff.TerrainTypes;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
@@ -15,6 +16,11 @@ public class Forests extends Type {
     @Override
     public String getLand() {
         return "forests";
+    }
+
+    @Override
+    public TerrainTypes getTerrainType() {
+        return TerrainTypes.FORESTS;
     }
 
 

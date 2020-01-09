@@ -5,6 +5,7 @@ A type class that creates a droplet for world creation
 It randomly chooses a seed to plant a certain type of land
  */
 
+import BoardStuff.TerrainTypes;
 import javafx.scene.image.Image;
 
 public class Droplet extends Type{
@@ -29,6 +30,11 @@ public class Droplet extends Type{
     @Override
     public String getLand() {
         return seed;
+    }
+
+    @Override
+    public TerrainTypes getTerrainType() {
+        return null;
     }
 
 }
