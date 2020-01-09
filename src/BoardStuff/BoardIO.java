@@ -211,11 +211,10 @@ public class BoardIO {
     }
 
     private static void updateForMovement(Move move){
-        Rules.addTurnSinceBuild();
-
+//        Rules.addTurnSinceBuild();
     }
     private static void updateForShot(Move move){
-        Rules.addTurnSinceBuild();
+//        Rules.addTurnSinceBuild();
     }
     private static void updateForBuild(){
         Rules.resetTurnsSinceLastBuild();

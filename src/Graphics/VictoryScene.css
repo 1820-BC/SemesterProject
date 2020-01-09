@@ -1,12 +1,37 @@
-#1{-fx-background-image: url(/Textures/Pieces/RedWin1.png)}
-#2{-fx-background-image: url(/Textures/Pieces/RedWin2.png)}
-#3{-fx-background-image: url(/Textures/Pieces/RedWin3.png)}
-#4{-fx-background-image: url(/Textures/Pieces/RedWin4.png)}
-#5{-fx-background-image: url(/Textures/Pieces/RedWin5.png)}
-#labWin{
+#1{
+      -fx-background-image: url(/Textures/Pieces/RedWin1.png);
+    -fx-background-size: cover;
+/*    */
 
 }
+#2{
+    -fx-background-image: url(/Textures/Pieces/RedWin2.png);
+    -fx-background-size: cover;
+    /*-fx-background-size: fill;*/
+    /*-fx-background-*/
+}
+#3{
+    -fx-background-image: url(/Textures/Pieces/RedWin3.png);
+    -fx-background-size: cover;
+    /*-fx-background-*/
+}
+#4{
+    -fx-background-image: url(/Textures/Pieces/RedWin4.png);
+    -fx-background-size: cover;
+    /*-fx-background-*/
+}
+#5{
+    -fx-background-image: url(/Textures/Pieces/RedWin5.png);
+    -fx-background-size: cover;
+    /*-fx-background-*/
+}
+#labWin{
+    -fx-font-size: 35;
+}
 #labLoss{
-
+ -fxx-font-size: 35;
+}
+.label{
+    -fx-font-size: 75;
 }
 
