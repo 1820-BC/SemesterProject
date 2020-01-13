@@ -27,9 +27,13 @@
 }
 #labWin{
     -fx-font-size: 35;
+    -fx-font-family: Centaur;
+    -fx-color: #ff836d;
 }
 #labLoss{
- -fxx-font-size: 35;
+    -fx-font-size: 35;
+    -fx-font-family: Chiller;
+    -fx-font-color: #69807c;
 }
 .label{
     -fx-font-size: 75;

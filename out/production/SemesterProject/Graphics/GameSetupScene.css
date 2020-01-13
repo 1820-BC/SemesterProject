@@ -10,7 +10,6 @@
 
 .scroll-pane .viewport{
     -fx-background-image: url(/Textures/MapMakerBackground.jpg);
-    -fx-background-size: cover;
     -fx-border-color: grey;
     -fx-border-width: 5;
 }

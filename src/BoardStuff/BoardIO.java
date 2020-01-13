@@ -71,8 +71,8 @@ public class BoardIO {
         drawBoardNew();
     }
 
-    public static void setUpCanvasWithParams(int side, int droplets, int  surfaceTension, int flowForce, int  rainfallVariation,int  minPrecipitaion) throws FileNotFoundException {
-        b=new Board(side, droplets, surfaceTension, flowForce,  rainfallVariation, minPrecipitaion);
+    public static void setUpCanvasWithParams(int side, int droplets, int  surfaceTension, int flowForce, int  rainfallVariation,int  minPrecipitaion,int numVillages,int villageSize, int villageDensity) throws FileNotFoundException {
+        b=new Board(side, droplets, surfaceTension, flowForce,  rainfallVariation, minPrecipitaion,numVillages,villageSize,villageDensity);
 
     }
 

@@ -24,23 +24,31 @@ public class Board {
     private int rainfallVariation=3; //the variation from that minimum, about a third of minPrecipitation
     private int riverness=45; //the range from 50 of the likely hood that a river will go one way over the other. See .txt file of world generation description. 30 is recommended
 
+    private int numberOfVillages; //this number represents the number of villages generated in the board. It is used to generate a number of village droplets
+    private int sizeOfVillages; // radius of village area that is used during droplets
+    private double villageDensity; // The likely hood that a village is generated for each spot within a village radius. Domain of value is 1 to 100
+
     int sizeX;
     int sizeY;
     int[] pointer=new int[2];
 
 
-    //sets board parameters using only x, y, and minprecipitation. The other values are calculated through formulas aquired empirically
+
+    //sets board parameters using only x, y, and minprecipitation. The other values are calculated through formulas acquired empirically
     public void setParams(int minPrecipitation, int x, int y){
         sizeX=x;
         sizeY=y;
-        droplets=x*x/6+1;
-        surfaceTension=x/10+1;
+        droplets=x*x*x/6+1;
+        surfaceTension=x/7+3;
         elasticity=surfaceTension/2+1;
         flowForce=4*x/9;
         rainfallVariation=minPrecipitation/4;
         this.minPrecipitaion=minPrecipitation;
+        this.numberOfVillages=(int)Math.sqrt(x-20)/2;
+        this.sizeOfVillages=x/2;
+        this.villageDensity=5;
     }
-    public void setParamsFromVals(int side, int droplets,int surfaceTension,int flowForce, int rainfallVariation, int minPrecipitaion){
+    public void setParamsFromVals(int side, int droplets,int surfaceTension,int flowForce, int rainfallVariation, int minPrecipitaion,int numVillages,int villageDensity,int sizeOfVillages){
         this.sizeY=side;
         this.sizeX=side;
         this.droplets=droplets;
@@ -48,6 +56,9 @@ public class Board {
         this.flowForce=flowForce;
         this.rainfallVariation=rainfallVariation;
         this.minPrecipitaion=minPrecipitaion;
+        ;this.numberOfVillages=numVillages;
+        this.sizeOfVillages=sizeOfVillages;
+        this.villageDensity=villageDensity;
     }
 
 
@@ -104,11 +115,13 @@ public class Board {
     public Board(int minPrec,int sizeX,int sizeY) throws FileNotFoundException {
         setParams(minPrec, sizeX, sizeY);
         setupSelf();
+        addTowns(sizeX);;
         addCapitals(sizeX);
     }
-    public Board(int side, int droplets,int surfaceTension,int flowForce, int rainfallVariation, int minPrecipitaion) throws FileNotFoundException {
-        setParamsFromVals(side, droplets, surfaceTension, flowForce,  rainfallVariation, minPrecipitaion);
+    public Board(int side, int droplets,int surfaceTension,int flowForce, int rainfallVariation, int minPrecipitaion,int numVillages,int villageDensity,int numberOfVillages) throws FileNotFoundException {
+        setParamsFromVals(side, droplets, surfaceTension, flowForce,  rainfallVariation, minPrecipitaion,numVillages,villageDensity,numberOfVillages);
         setupSelf();
+        addTowns(side);
         addCapitals(side);
     }
     public void setupSelf() throws FileNotFoundException {
@@ -204,14 +217,57 @@ public class Board {
     }
 
 
-    private void addTowns(){
-        return;
+    private void addTowns(int sizeX){
+        ArrayList<int[]> villages=new ArrayList<>();
+        for(int i=0;i<numberOfVillages;i++){
+            int x=(int)(Math.random()*(sizeX-2)+1);
+            int y=(int)(Math.random()*(sizeX-2)+1);
+//            System.out.println("X VAL FOR VILLAGE:"+x);
+//            System.out.println("Y VAL FOR VILLAGE"+y);
+            try {
+                villages.add(new int[] {x,y});
+                board.get(x).set(y,new Space(new Village(),new EmptyPiece()));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+        for(int[] location:villages){
+            for(int x=(-sizeOfVillages/2);x<sizeOfVillages/2;x++){
+                for(int y=(-sizeOfVillages/2);y<sizeOfVillages/2;y++){
+                    if(location[0]-x<0||location[1]-y<0||location[0]-x>=sizeX||location[1]-y>=sizeX||board.get(location[0]-x).get(location[1]-y).getType().getLand().equals("rivers")){
+                        continue;
+                    }
+                    double randVar=Math.random();
+                    if(randVar<=villageDensity/100){
+                        try {
+                            board.get(location[0]-x).set(location[1]-y,new Space(new Village(),new EmptyPiece()));
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+
+
+
     }
+
+
     private void addCapitals(int side){
         setPointer(0,0);
-        setPieceFromPointer(PieceTypes.CAPITAL,Teams.Red);
+        try {
+            setSpaceFromPointer(new Space(new Fields(),new Capital(Teams.Red)));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         setPointer(side-1,side-1);
-        setPieceFromPointer(PieceTypes.CAPITAL,Teams.Blue);
+        try {
+            setSpaceFromPointer(new Space(new Fields(),new Capital(Teams.Blue)));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /*

@@ -25,12 +25,12 @@ public class ParamsScene {
     private static Slider flowForce; //The max length of rivers, equal to ~4/9 longest side length
     private static Slider minPrecipitaion; //the minimum number of river starters, equal to one third of longest side length
     private static Slider rainfallVariation; //the variation from that minimum, about a third of minPrecipitation
-    private static Slider riverness; //the range from 50 of the likely hood that a river will go one way over the other. See .txt file of world generation description. 30 is recommended
+    private static Slider riverness,villageSize,villageDensity,numVillage; //the range from 50 of the likely hood that a river will go one way over the other. See .txt file of world generation description. 30 is recommended
     private static Slider size;
     private static Scene scene;
     private static VBox box;
-    private static FlowPane sizePane, dropletsPane, surfaceTensionPane,  elasticityPane, flowForcePane,minPrecipitaionPane,  rainfallVariationPane,rivernessPane;
-    private static Label sizeL,dropletsL, surfaceTensionL,  elasticityL, flowForceL,minPrecipitaionL,  rainfallVariationL,rivernessL, sizeULabel,dropletsULabel, surfaceTensionULabel,  elasticityULabel, flowForceULabel,minPrecipitaionULabel,  rainfallVariationULabel,rivernessULabel;
+    private static FlowPane sizePane, dropletsPane, surfaceTensionPane,  elasticityPane, flowForcePane,minPrecipitaionPane,  rainfallVariationPane,rivernessPane,numVillagePane,villageSizePane,villageDensityPane;
+    private static Label sizeL,dropletsL, surfaceTensionL,  elasticityL, flowForceL,minPrecipitaionL,  rainfallVariationL,rivernessL,numVillageL,villageDensityL,villageSizeL, sizeULabel,dropletsULabel, surfaceTensionULabel,  elasticityULabel, flowForceULabel,minPrecipitaionULabel,  rainfallVariationULabel,rivernessULabel, numVillageULabel,villageSizeULabel,villageDensityULabel;
     private static Button back, backWOGen;
     private static boolean multiplayer;
 
@@ -146,16 +146,60 @@ public class ParamsScene {
         sizePane.setHgap(20);
         setUpSlider(size);
         size.setId("size");
-        sizeL=new Label(Integer.toString((int)riverness.getValue()));
+        sizeL=new Label(Integer.toString((int)size.getValue()));
         sizePane.getChildren().addAll(sizeULabel,size,sizeL);
         sizePane.setAlignment(Pos.CENTER_RIGHT);
+        backWOGen=new Button("BACK");
+        // numVillage.
+        numVillage=new Slider();
+        numVillage.setMajorTickUnit(1);
+        numVillage.setMinorTickCount(0);
+        numVillage.setBlockIncrement(1);
+        numVillage.setSnapToTicks(true);
+        numVillageULabel=new Label("numVillage:");
+        numVillagePane=new FlowPane();
+        numVillagePane.setHgap(20);
+        setUpSlider(numVillage);
+        numVillage.setId("numVillage");
+        numVillageL=new Label(Integer.toString((int)numVillage.getValue()));
+        numVillagePane.getChildren().addAll(numVillageULabel,numVillage,numVillageL);
+        numVillagePane.setAlignment(Pos.CENTER_RIGHT);
+        villageDensity=new Slider();
+        villageDensity.setMajorTickUnit(1);
+        villageDensity.setMinorTickCount(0);
+        villageDensity.setBlockIncrement(1);
+        //villageDensity
+        villageDensity.setSnapToTicks(true);
+        villageDensityL=new Label("villageDensity:");
+        villageDensityPane=new FlowPane();
+        villageDensityPane.setHgap(20);
+        setUpSlider(villageDensity);
+        villageDensity.setId("villageDensity");
+        villageDensityULabel=new Label(Integer.toString((int)villageDensity.getValue()));
+        villageDensityPane.getChildren().addAll(villageDensityL,villageDensity,villageDensityULabel);
+        villageDensityPane.setAlignment(Pos.CENTER_RIGHT);
+        //villageSize
+        villageSize=new Slider();
+        villageSize.setMajorTickUnit(1);
+        villageSize.setMinorTickCount(0);
+        villageSize.setBlockIncrement(1);
+        villageSize.setSnapToTicks(true);
+        villageSizeL=new Label("villageSize:");
+        villageSizePane=new FlowPane();
+        villageSizePane.setHgap(20);
+        setUpSlider(villageSize);
+        villageSize.setId("villageSize");
+        villageSizeULabel=new Label(Integer.toString((int)villageSize.getValue()));
+        villageSizePane.getChildren().addAll(villageSizeL,villageSize,villageSizeULabel);
+        villageSizePane.setAlignment(Pos.CENTER_RIGHT);
+
         backWOGen=new Button("BACK");
         //#endgroup
         back=new Button("RETURN AND GENERATE");
         box=new VBox(10);
         box.setAlignment(Pos.CENTER_RIGHT);
         box.setPadding(new Insets(80,80,80,80));
-        box.getChildren().addAll(sizePane,dropletsPane, surfaceTensionPane, elasticityPane, flowForcePane, minPrecipitaionPane, rainfallVariationPane, rivernessPane,back,backWOGen);
+        box.getChildren().addAll(sizePane,dropletsPane, surfaceTensionPane, elasticityPane, flowForcePane, minPrecipitaionPane, rainfallVariationPane, rivernessPane,numVillagePane,villageSizePane,villageDensityPane,back,backWOGen);
         scene=new Scene(box,width,height);
         scene.getStylesheets().add("Graphics/ParamsScene.css");
         droplets.valueProperty().addListener(new ChangeListener<Number>() {
@@ -206,10 +250,31 @@ public class ParamsScene {
                 flowForceL.setText(String.format("%d", t1.intValue()));
             }
         });
+        villageDensity.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                villageDensityULabel.setText(String.format("%d", t1.intValue()));
+            }
+        });
+        villageSize.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                villageSizeULabel.setText(String.format("%d", t1.intValue()));
+            }
+        });
+        numVillage.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                numVillageL.setText(String.format("%d", t1.intValue()));
+            }
+        });
         back.setOnAction(e->{
             stage.setScene(GameSetupScene.GameSetupScene(multiplayer));
             try {
-                BoardIO.setUpCanvasWithParams( (int)size.getValue(), (int)droplets.getValue(),(int) surfaceTension.getValue(), (int)flowForce.getValue(), (int) rainfallVariation.getValue(), (int) minPrecipitaion.getValue());
+                if(size.getValue()==0){
+                    return;
+                }
+                BoardIO.setUpCanvasWithParams( (int)size.getValue(), (int)droplets.getValue(),(int) surfaceTension.getValue(), (int)flowForce.getValue(), (int) rainfallVariation.getValue(), (int) minPrecipitaion.getValue(),(int) numVillage.getValue(),(int) villageSize.getValue(),(int)villageDensity.getValue());
                 BoardIO.setUpCanvas();
                 if(multiplayer) {
                     GameSetupScene.sendCanvas();

@@ -264,9 +264,9 @@ public class MoveScene {
             }
             Rules.resetTurnsSinceLastBuild();
         }
-//        else{
-//            Rules.addTurnSinceBuild();
-//        }
+        else{
+            Rules.addTurnSinceBuild();
+        }
 
 
         currentMove.setVectorSize(BoardIO.getPieceAt());

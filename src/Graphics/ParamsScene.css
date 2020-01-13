@@ -55,10 +55,19 @@
 #size .track{
     -fx-background-color:brown;
 }
+#villageDensity .track{
+    -fx-background-color: #00ac00;
+}
+#villageSize .track{
+    -fx-background-color: brown;
+}
+#numVillage .track{
+    -fx-background-color: mediumpurple;
+}
 
 .label{
     -fx-font-family: "Century Gothic";
     -fx-font-size: 30;
-
+    -fx-background-color: white;
     /*-fx-effect:;*/
 }

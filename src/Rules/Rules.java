@@ -47,8 +47,12 @@ public class Rules {
             System.out.println("canShootThrough 1");
             return false;
         }
+//        else if(BoardIO.)
         else if(BoardIO.teamCheck(defender)&&defender.getPieceType()!=PieceTypes.EMPTY){
             System.out.println("canShootThrough 2");
+            return false;
+        }
+        else if(space.getType().getLand().equals("village")){
             return false;
         }
         //defender is passable (enemy check only must happen once
@@ -57,7 +61,8 @@ public class Rules {
             return false;
         }
         else if (attacker.getPieceType()==PieceTypes.TREBUCHET&&!REFERENCE.KILLIBLEBYTREBUCHET.contains(defender.getType())){
-            return false;
+            System.out.println("canShootThrough OKAY BY TREBUCHET: "+defender.getType());
+            return true;
         }
         else {
             System.out.println("canShootThrough OKAY");
