@@ -287,7 +287,7 @@ public class MoveScene {
     public static Scene getScene(boolean multi) {
 //        BoardIO.setupForMoveSelection();
         multiplayer=multi;
-        color.setText("You're Color is: "+BoardIO.getTeam());
+        color.setText("Your Color is: "+BoardIO.getTeam());
         if(multiplayer) {
             BoardIO.getIO().runUpdationThread();
         }
