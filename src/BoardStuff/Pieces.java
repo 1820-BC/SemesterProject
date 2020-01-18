@@ -8,8 +8,8 @@ import Pieces.*;
 public class Pieces{
 
     private static Map<PieceTypes, Integer> moves = Map.of(
-            PieceTypes.INFANTRY, 1,
-            PieceTypes.CALVERY, 3,
+            PieceTypes.INFANTRY, 2,
+            PieceTypes.CALVERY, 4,
             PieceTypes.ARCHER, 1,
             PieceTypes.TREBUCHET, 1,
             PieceTypes.FACTORY, 0,
@@ -25,7 +25,7 @@ public class Pieces{
             PieceTypes.ARCHER, 4,
             PieceTypes.TREBUCHET, 4,
             PieceTypes.FACTORY,0,
-            PieceTypes.BARGE, 1,
+            PieceTypes.BARGE, 0,
             PieceTypes.BATTLE_SHIP,4,
 //            PieceTypes.OPENDRAWBRIDGE,0,
             PieceTypes.WALL,0,

@@ -287,7 +287,7 @@ public class MoveScene {
     public static Scene getScene(boolean multi) {
 //        BoardIO.setupForMoveSelection();
         multiplayer=multi;
-        color.setText("Your Color is: "+BoardIO.getTeam());
+        color.setText("Your Color Is: "+BoardIO.getTeam());
         if(multiplayer) {
             BoardIO.getIO().runUpdationThread();
         }
@@ -297,14 +297,6 @@ public class MoveScene {
             public void handle(MouseEvent mouseEvent) {
                 selectedX=(int) (mouseEvent.getX()/squareSize)-1;
                 selectedY=(int) (mouseEvent.getY()/squareSize)-1;
-//                BoardIO.setyACT(selectedY);
-//                BoardIO.setxACT(selectedX);
-//                BoardIO.drawRectAround();
-////                System.out.println("selX: "+selectedX);
-////                System.out.println("selY:"+selectedY);
-//                currentMove=new Move(selectedX,selectedY);
-//                currentMove.setVectorSize(BoardIO.getPieceAt());
-//                image.setImage(new Image("Textures/noMove.png"));
                 prepareForMove(selectedX,selectedY);
             }
         });
