@@ -110,18 +110,8 @@ public class GameSetupScene {
         save.setOnAction(e->{
 
 
-                try{
-                    if(BoardIO.getBoard().getBoard().isEmpty()) {
-                        throw new Exception();
-                    }
-
-                    FileInputStream f = new FileInputStream("D://BoardGame/src/SavedMaps/" + inSave.getText() + ".txt");
-                    inSave.setText("File Already Exists");
-
-                }
-                catch(IOException ex){
                     try{
-                        BoardIO.saveBoardToFile(inSave.getText());
+                        BoardIO.saveBoardToFile(inSave.getText()+".txt");
                         inLoad.getItems().add(inSave.getText()+".txt");
                     }
                     catch(IOException exe){
@@ -134,9 +124,6 @@ public class GameSetupScene {
 
                     }
 
-                } catch (Exception ex) {
-                    inSave.setText("Board non-Existent");
-                }
 
 
         });

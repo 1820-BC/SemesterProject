@@ -35,6 +35,7 @@ public class main extends Application {
         double screenWidth=Screen.getPrimary().getVisualBounds().getWidth();
         double screenHeight=Screen.getPrimary().getVisualBounds().getHeight()-40;
         stage=s;
+        stage.getIcons().add(new Image("/Textures/SmallSquare.png"));
         stage.setTitle("Triumphous");
         LoadingScene.setupLoadingScene(stage,screenWidth,screenHeight,10);
         stage.setScene(LoadingScene.getScene());
