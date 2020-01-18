@@ -44,6 +44,12 @@ public abstract class Piece{
 
     public Teams getTeam(){return team;}
 
+    public void setHolding(Piece p){
+        return;
+    }
+    public Piece disembark(){
+        return new EmptyPiece();
+    }
 }
 
 

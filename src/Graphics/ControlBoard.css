@@ -118,11 +118,11 @@
 #Redcalvery{
     -fx-background-image: url("/Textures/Pieces/RedCalvery.png");
 }
-#Reddrawbridge{
-    -fx-background-image: url("/Textures/Pieces/RedDrawbridgeClosed.png");
+#Redbattleship{
+    -fx-background-image: url("/Textures/Pieces/RedBattleship.png");
 }
-#Redbridge{
-    -fx-background-image: url("/Textures/Pieces/RedBridge.png");
+#Redbarge{
+    -fx-background-image: url("/Textures/Pieces/RedBarge.png");
 }
 
 
@@ -144,9 +144,9 @@
 #Bluecalvery{
     -fx-background-image: url("/Textures/Pieces/BlueCalvery.png");
 }
-#Bluedrawbridge{
-    -fx-background-image: url("/Textures/Pieces/BlueDrawbridgeClosed.png");
+#Bluebattleship{
+    -fx-background-image: url("/Textures/Pieces/BlueBattleship.png");
 }
-#Bluebridge{
-    -fx-background-image: url("/Textures/Pieces/BlueBridge.png");
+#Bluebarge{
+    -fx-background-image: url("/Textures/Pieces/BlueBarge.png");
 }

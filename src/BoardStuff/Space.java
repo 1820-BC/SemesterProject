@@ -2,33 +2,45 @@ package BoardStuff;
 
 import Pieces.*;
 import Spaces.Type;
-import javafx.scene.effect.Blend;
 import javafx.scene.image.Image;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 //space class that contains both piece and type of each space on the board
 //Allows for easier accessing and recieving of board params
 public class Space {
 
-    private Piece piece;
+    private ArrayList<Piece> pieces;
 
     private Type type;
 
     private Piece secondaryPiece;
 
     public Space(Type t, Piece piece) throws FileNotFoundException {
-        this.piece=piece;
+        pieces=new ArrayList<>();
+        this.pieces.add(piece);
         this.type=t;
 
     }
 
     public Piece getPiece() {
-        if(getAcceptablePieces(piece)){
-            return secondaryPiece;
+        return pieces.get(0);
+    }
+    public ArrayList getPieceList(){
+        return pieces;
+    }
+    public void addPiece(Piece piece){
+    pieces.add(piece);
+    }
+
+    public void remove(PieceTypes p){
+        for(Piece pp:(ArrayList<Piece>)pieces){
+            if(pp.getType()==p){
+                pieces.remove(pp);
+                break;
+            }
         }
-        return piece;
     }
 
     public Type getType() {
@@ -40,15 +52,10 @@ public class Space {
     }
 
     public void setPiece(Piece piece) {
-        this.piece = piece;
+        this.pieces.set(0,piece);
     }
     public void setPiece(PieceTypes p,Teams team){
-//        setPiece(new Infantry());
-//        System.out.println("p: "+p);
-        if(getAcceptablePieces(piece)){
-            addPieceToSecondary(p,team);
-            return;
-        }
+        Piece piece=null;
 
         if (p == PieceTypes.INFANTRY) {
             piece = new Infantry(team);
@@ -71,55 +78,32 @@ public class Space {
         else if(p==PieceTypes.WALL){
             piece=new Wall(team);
         }
-        else if(p==PieceTypes.CLOSEDDRAWBRIDGE){
-            piece=new drawBridge(team);
+        else if(p==PieceTypes.BATTLE_SHIP){
+            piece=new BattleShip(team);
         }
-        else if(p==PieceTypes.BRIDGE){
-            piece=new Bridge(team);
+        else if(p==PieceTypes.BARGE){
+            piece=new Barge(team);
         }
         else if(p==PieceTypes.CAPITAL){
             piece=new Capital(team);
         }
+        if(pieces.size()>0&&pieces.get(0).getType()==PieceTypes.EMPTY){
+            pieces.set(0,piece);
+        }
+        else {
+            pieces.add(piece);
+        }
     }
 
-    private boolean getAcceptablePieces(Piece piece) {
-            if(piece.getType()==PieceTypes.FACTORY||piece.getType()==PieceTypes.OPENDRAWBRIDGE||piece.getType()==PieceTypes.BRIDGE){
-                return true;
-            }
-            return false;
-    }
 
-    public void addPieceToSecondary(PieceTypes p,Teams team){
-        if (p == PieceTypes.INFANTRY) {
-            secondaryPiece = new Infantry(team);
-        }
-        else if(p==PieceTypes.EMPTY){
-            secondaryPiece=new EmptyPiece();
-        }
-        else if(p==PieceTypes.ARCHER){
-            secondaryPiece=new Archer(team);
-        }
-        else if(p==PieceTypes.CALVERY){
-           secondaryPiece=new Calvery(team);
-        }
-        else if(p==PieceTypes.TREBUCHET){
-            secondaryPiece=new Trebuchet(team);
-        }
-        if(piece.getType()==PieceTypes.FACTORY) {
-            piece.setTeam(BoardIO.getTeam());
-        }
-
-    }
 
     public PieceTypes getPieceType() {
-        if(getAcceptablePieces(piece)){
-            return secondaryPiece.getPieceType();
-        }
-        return piece.getPieceType();
+
+        return pieces.get(0).getPieceType();
     }
 
     public Image getTexturePiece() {
-        return piece.getImage();
+        return pieces.get(0).getImage();
     }
 
     public Image getTextureTerrain(){

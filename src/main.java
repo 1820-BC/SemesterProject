@@ -36,10 +36,12 @@ public class main extends Application {
         double screenHeight=Screen.getPrimary().getVisualBounds().getHeight()-40;
         stage=s;
         stage.setTitle("Triumphous");
-        LoadingScene.setupLoadingScene(stage,screenWidth,screenHeight,9);
+        LoadingScene.setupLoadingScene(stage,screenWidth,screenHeight,10);
         stage.setScene(LoadingScene.getScene());
         stage.show();
         //initialize scenes and other requirements
+        InstructionsScene.setUpInstructionScene(stage,screenWidth,screenHeight);
+        LoadingScene.increaseProgressBar();
         OpeningScene.openingSceneInit(stage,screenWidth,screenHeight);
         LoadingScene.increaseProgressBar();
         SettingsScene.settingsSceneInit(stage,screenWidth,screenHeight);

@@ -1,0 +1,49 @@
+Hello Player, this is an instruction manuel for the game Triumphus. Triumphus is a real time strategy game based around an action queue. This instruction manuel works on multiple lines and can be warped.
+This instruction manuel is inside a scrollpane so it can be as long as desired. As you can see:
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Scroll down
+Line 40
+
+
+
+
+
+
+
+
+

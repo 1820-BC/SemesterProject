@@ -267,11 +267,42 @@ public class BoardIO {
         if (movePlayer1 == null) {
             return;
         }
+
         b.setPointer(movePlayer1.getX(), movePlayer1.getY());
         Piece piece = b.getPieceFromPointer();
+        if(piece.getPieceType()==PieceTypes.BARGE){
+            b.movePointer(movePlayer1.getdX(), -movePlayer1.getdY());
+            if(!(b.getSpaceFromPointer().getType().getLand().equals("rivers")||b.getSpaceFromPointer().getType().getLand().equals("village"))){
+                Piece p=piece.disembark();
+                moves += "-" + b.getX() + "," + b.getY() + "," + p +","+p.getTeam();
+                System.out.println(p.getPieceType());
+
+                getBoard().setPieceFromPointer(p.getPieceType(),p.getTeam());
+                redrawSquare(movePlayer1.getX() + movePlayer1.getdX(), -movePlayer1.getdY() + movePlayer1.getY());
+            }
+            b.movePointer(-movePlayer1.getdX(), movePlayer1.getdY());
+
+        }
+
+
+
         movePlayer1.setVector(piece.getPieceType());
 
         b.movePointer(movePlayer1.getdX(), -movePlayer1.getdY());
+
+        Piece secondPiece=b.getPieceFromPointer();
+
+        if(secondPiece.getPieceType()== PieceTypes.BARGE&&secondPiece.getTeam()==player){
+
+            secondPiece.setHolding(piece);
+            b.movePointer(-movePlayer1.getdX(), movePlayer1.getdY());
+            moves += "-" + movePlayer1.getX() + "," + movePlayer1.getY() + ",EMPTY"+",Red";
+            getBoard().setPieceFromPointer(PieceTypes.EMPTY, Teams.Red);
+            redrawSquare(movePlayer1.getX(), movePlayer1.getY());
+            return;
+        }
+
+
         if (!Rules.canMoveInto(b.getSpaceFromPointer(),piece)) {
             return;
         }
@@ -335,7 +366,10 @@ public class BoardIO {
         b.setPointer(x,y);
 //        b.getSpaceFromPointer().getTextureTerrain();
         g.drawImage(b.getSpaceFromPointer().getTextureTerrain(),x*squareSize+squareSize,y*squareSize+squareSize);
-        g.drawImage(b.getSpaceFromPointer().getTexturePiece(),x*squareSize+squareSize,y*squareSize+squareSize);
+        for(Piece p:(ArrayList<Piece>)b.getSpaceFromPointer().getPieceList()){
+            g.drawImage(p.getImage(),x*squareSize+squareSize,y*squareSize+squareSize);
+        }
+
         drawLines();
         g.save();
     }

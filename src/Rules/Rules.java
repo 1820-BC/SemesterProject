@@ -73,8 +73,17 @@ public class Rules {
     //dicerns whether space can be moved into by piece
     public static boolean canMoveInto(Space space, Piece piece){
         // if moving onto allowed spaces
-        if(space.getPiece().getType()==PieceTypes.OPENDRAWBRIDGE||space.getPiece().getType()==PieceTypes.BRIDGE||space.getPiece().getType()==PieceTypes.EMPTY){
-            if(space.getType().equals("rivers")){
+        if(space.getPiece().getType()==PieceTypes.EMPTY){
+            System.out.println("EMPTY");
+            if(space.getType().getLand().equals("rivers")){
+//                System.out.println("move to rivers");
+                if(piece.getPieceType()==PieceTypes.BARGE||piece.getPieceType()==PieceTypes.BATTLE_SHIP){
+//                    System.out.println("YOLOOYY");
+                    return true;
+                }
+                return false;
+            }
+            if(piece.getPieceType()==PieceTypes.BARGE){
                 return false;
             }
             return true;
@@ -102,6 +111,9 @@ public class Rules {
         }
         //can not build in water
         if(space.getType().getLand().equals("rivers")){
+            if(piece==PieceTypes.BARGE||piece==PieceTypes.BATTLE_SHIP){
+                return true;
+            }
             return false;
         }
         return true;

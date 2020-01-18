@@ -381,8 +381,8 @@ public class MoveScene {
         right.setId(t+"wall");
         dru.setId(t+"archer");
         drd.setId(t+"calvery");
-        dlu.setId(t+"drawbridge");
-        dld.setId(t+"bridge");
+        dlu.setId(t+"battleship");
+        dld.setId(t+"barge");
         up.setOnAction(e->{
             currentMove.setNewPieceType(PieceTypes.INFANTRY);
             image.setImage(new Image("/Textures/Pieces/"+t+"Infantry.png"));
@@ -409,12 +409,12 @@ public class MoveScene {
             image.setImage(new Image("/Textures/Pieces/"+t+"Calvery.png"));
         });
         dlu.setOnAction(e->{
-            currentMove.setNewPieceType(PieceTypes.CLOSEDDRAWBRIDGE);
-            image.setImage(new Image("/Textures/Pieces/"+t+"DrawbridgeClosed.png"));
+            currentMove.setNewPieceType(PieceTypes.BATTLE_SHIP);
+            image.setImage(new Image("/Textures/Pieces/"+t+"Battleship.png"));
         });
         dld.setOnAction(e->{
-            currentMove.setNewPieceType(PieceTypes.BRIDGE);
-            image.setImage(new Image("/Textures/Pieces/"+t+"Bridge.png"));
+            currentMove.setNewPieceType(PieceTypes.BARGE);
+            image.setImage(new Image("/Textures/Pieces/"+t+"Barge.png"));
 
         });
     }

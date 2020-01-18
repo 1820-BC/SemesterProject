@@ -13,19 +13,19 @@ import javafx.stage.Stage;
 public class OpeningScene {
     static Scene titlePage;
     static VBox titleLayoutOrd2;
-    static Button host,join,single_player, settings, quit;
+    static Button host,join,single_player, instructions,settings, quit;
     static BorderPane titleLayoutOrd1;
     static Label title,version;
     static String backdrop="back2";
     static double width,height;
-    static FlowPane paney;
+    static FlowPane paney,paney2;
 
     public static void openingSceneInit(Stage stage,double w, double h) {
 
         width=w;
         height=h;
 
-
+        instructions=new Button("INSTRUCTIONS");
         host = new Button("HOST");
         join = new Button("JOIN");
         single_player=new Button("SINGLE PLAYER");
@@ -39,6 +39,7 @@ public class OpeningScene {
 
 
         //title screen button setup
+        instructions.setOnAction(e->{stage.setScene(InstructionsScene.getScene());});
         quit.setOnAction(e -> stage.close());
         settings.setOnAction(e->stage.setScene(SettingsScene.settingsScene(stage)));
         single_player.setOnAction((e->stage.setScene(GameSetupScene.GameSetupScene(false))));
@@ -51,15 +52,17 @@ public class OpeningScene {
         paney.setHgap(20);
         paney.setAlignment(Pos.TOP_RIGHT);
         paney.getChildren().addAll(host,join);
-
+        paney2=new FlowPane();
+        paney2.setAlignment(Pos.TOP_RIGHT);
+        paney2.getChildren().addAll(settings,quit);
         titleLayoutOrd2 = new VBox(30);
-        titleLayoutOrd2.getChildren().addAll(title,paney,single_player,settings, quit);
+        titleLayoutOrd2.getChildren().addAll(title,paney,single_player,instructions,paney2);
         titleLayoutOrd2.setAlignment(Pos.TOP_RIGHT);
 
         //boarder pane
         titleLayoutOrd1 = new BorderPane();
 
-        titleLayoutOrd1.setPadding(new Insets(-25, 300, 0, 0));
+        titleLayoutOrd1.setPadding(new Insets(-25, 150, 0, 0));
         titleLayoutOrd1.setCenter(titleLayoutOrd2);
 
 

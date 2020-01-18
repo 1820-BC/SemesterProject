@@ -6,11 +6,9 @@
 
 4. Empty piece is probably overlapping land and messing it up
 
-5. Be careful of secondary piece additions, not implemented correctly
+5. Only one piece of a type may be in each piece assumed
 
-6. If the win condition doesn't work
-    a. check the blue v red
-    b. check the sizeX input for setPointer
+6.
 
 
 
@@ -26,8 +24,9 @@ To setup piece
 1. Make piece class
 2. Add piece if statement to space set piece method
 3. Add required stuff in Pieces class under BoardStuff
-
---- ---- --- ---- ---
+4. Add required stuff in remove method in Board
+5. Add more stuff in CSS/Scene
+ ---- --- ---- ---
 Format for comms
 
 -x,y,piece,team

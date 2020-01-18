@@ -1,9 +1,7 @@
 package BoardStuff;
 
-import java.util.HashMap;
 import java.util.Map;
 import Pieces.*;
-import BoardStuff.PieceTypes.*;
 
 //A class for accessing piece parameters
 //used with piecetypes
@@ -15,9 +13,9 @@ public class Pieces{
             PieceTypes.ARCHER, 1,
             PieceTypes.TREBUCHET, 1,
             PieceTypes.FACTORY, 0,
-            PieceTypes.BRIDGE,0,
-            PieceTypes.CLOSEDDRAWBRIDGE,0,
-            PieceTypes.OPENDRAWBRIDGE,0,
+            PieceTypes.BARGE, 1,
+            PieceTypes.BATTLE_SHIP,1,
+//            PieceTypes.OPENDRAWBRIDGE,0,
             PieceTypes.WALL,0,
             PieceTypes.CAPITAL,0
     );
@@ -27,8 +25,9 @@ public class Pieces{
             PieceTypes.ARCHER, 4,
             PieceTypes.TREBUCHET, 4,
             PieceTypes.FACTORY,0,
-            PieceTypes.CLOSEDDRAWBRIDGE,0,
-            PieceTypes.OPENDRAWBRIDGE,0,
+            PieceTypes.BARGE, 1,
+            PieceTypes.BATTLE_SHIP,4,
+//            PieceTypes.OPENDRAWBRIDGE,0,
             PieceTypes.WALL,0,
             PieceTypes.CAPITAL,0
     );
@@ -67,11 +66,11 @@ public class Pieces{
         else if(p==PieceTypes.WALL){
             return new Wall(team);
         }
-        else if(p==PieceTypes.CLOSEDDRAWBRIDGE){
-            return new drawBridge(team);
+        else if(p==PieceTypes.BATTLE_SHIP){
+            return new BattleShip(team);
         }
-        else if(p==PieceTypes.BRIDGE){
-            return new Bridge(team);
+        else if(p==PieceTypes.BARGE){
+            return new Barge(team);
         }
         else if(p==PieceTypes.CAPITAL){
             return new Capital(team);

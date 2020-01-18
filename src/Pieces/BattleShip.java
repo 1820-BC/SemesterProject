@@ -3,32 +3,32 @@ package Pieces;
 import BoardStuff.PieceTypes;
 import javafx.scene.image.Image;
 
-public class drawBridge extends Piece {
+public class BattleShip extends Piece {
 
-    public drawBridge(Teams team){
+    public BattleShip(Teams team){
         super(team);
     }
 
     @Override
     public String type() {
-        return "Archer";
+        return "Battleship";
     }
 
     @Override
     public PieceTypes getType() {
-        return PieceTypes.ARCHER;
+        return PieceTypes.BATTLE_SHIP;
     }
 
     @Override
     public PieceTypes getPieceType() {
 
-        return PieceTypes.ARCHER;
+        return PieceTypes.BATTLE_SHIP;
     }
 
     @Override
     public Image getImage() {
         System.out.println(team);
-        Image i=new Image("/Textures/Pieces/"+team+"DrawBridgeClosed.png");
+        Image i=new Image("/Textures/Pieces/"+team+"Battleship.png");
         return i;
     }
 }

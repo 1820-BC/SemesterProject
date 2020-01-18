@@ -404,6 +404,16 @@ public class Board {
     //sets piece at pointer
     public void setPieceFromPointer(PieceTypes p,Teams team){
 //        System.out.println(p);
+        if(p==PieceTypes.EMPTY){
+            board.get(pointer[1]).get(pointer[0]).remove(PieceTypes.ARCHER);
+            board.get(pointer[1]).get(pointer[0]).remove(PieceTypes.INFANTRY);
+            board.get(pointer[1]).get(pointer[0]).remove(PieceTypes.CALVERY);
+            board.get(pointer[1]).get(pointer[0]).remove(PieceTypes.TREBUCHET);
+            board.get(pointer[1]).get(pointer[0]).remove(PieceTypes.BARGE);
+            board.get(pointer[1]).get(pointer[0]).remove(PieceTypes.BATTLE_SHIP);
+
+//            board.get(pointer[1]).get(pointer[0]).remove(PiececTypes.);
+        }
         board.get(pointer[1]).get(pointer[0]).setPiece(p,team);//.setPiece(p);
     }
 

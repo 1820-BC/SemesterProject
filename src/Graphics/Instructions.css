@@ -1,0 +1,15 @@
+#title{
+    -fx-font-family: Centaur;
+    -fx-font-size: 75;
+    -fx-padding: -10,-10,-10,-100;
+    -fx-text-fill: linear-gradient(#5b0006, #87331b);
+    -fx-font-weight: 900;
+    -fx-font-style: oblique 45deg;
+    -fx-effect: dropshadow(gaussian,black,5,1,1,1);
+}
+#instructions{
+    -fx-font-size: 17;
+    -fx-font-family: "Times New Roman";
+}
+.scrollpane{
+}
