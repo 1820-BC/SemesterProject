@@ -14,7 +14,7 @@ public class Rules {
     private static int numberOfFactories=0;
 
     public static void addTurnSinceBuild(){
-        turnSinceLastBuild--;
+        turnSinceLastBuild-=1;
     }
     public static void addTurnsSinceLastDrawbridge(){
         turnSinceLastDrawbridge++;
@@ -23,7 +23,7 @@ public class Rules {
         turnSinceLastBuild=REFERENCE.MAX_TURNS_BETWEEN_BUILDS-numberOfFactories;
     }
     public static void addFactory(){
-        numberOfFactories++;
+        numberOfFactories+=REFERENCE.EFFECT_OF_FACTORY;
     }
     public static void reduceFactory(){
         numberOfFactories--;
@@ -142,6 +142,7 @@ public class Rules {
         if(moves<=0){
             return 0;
         }
+        moves=Math.round(moves);
         return moves;
     }
 

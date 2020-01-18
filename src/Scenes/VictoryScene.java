@@ -85,6 +85,7 @@ public class VictoryScene {
         win.setText(message);
         fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
         fiveSecondsWonder.play();
+        MoveScene.end();
         return scene;
     }
     public static void stop(){

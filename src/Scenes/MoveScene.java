@@ -19,6 +19,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import Rules.*;
 import java.io.IOException;
+import java.util.Timer;
 
 
 public class MoveScene {
@@ -52,6 +53,7 @@ public class MoveScene {
     static private Label color;
     static private Label movesTillBuild;
     static private Stage playStage;
+//    static private TimerThread clock;
     //#endregion
     public static void setupMoveScene(Stage stage, double width, double height) {
         playStage=stage;
@@ -216,6 +218,7 @@ public class MoveScene {
 //            if(multiplayer)
             BoardIO.run(BoardIO.getQueue().getMovePlayer1(),multiplayer);
             moves.getItems().remove(0);
+            movesIn++;
         });
 
         EventHandler<KeyEvent> handler= keyEvent -> {
@@ -264,11 +267,6 @@ public class MoveScene {
             }
             Rules.resetTurnsSinceLastBuild();
         }
-        else{
-            Rules.addTurnSinceBuild();
-        }
-
-
         currentMove.setVectorSize(BoardIO.getPieceAt());
         BoardIO.getQueue().addToQueue(currentMove);
         moves.getItems().add(currentMove.toString());
@@ -279,8 +277,9 @@ public class MoveScene {
         moveOrShoot();
         image.setImage(im);
         movesIn=moves.getItems().size();
+        movesIn--;
         MoveNum.setText("Moves in Queue: "+movesIn);
-        movesTillBuild.setText("Moves Till Build: "+Rules.getTurnSinceLastBuild());
+        movesTillBuild.setText("Seconds Till Build: "+Rules.getTurnSinceLastBuild());
 
     }
 
@@ -309,6 +308,8 @@ public class MoveScene {
                 prepareForMove(selectedX,selectedY);
             }
         });
+//        clock=new TimerThread();
+        TimerThread.run();
 //        BoardIO.getIO().setActionListener();
         return scene;
     }
@@ -421,5 +422,12 @@ public class MoveScene {
 
     public static void end() {
         playStage.setScene(VictoryScene.getScene());
+    }
+    public static void endClock(){
+        TimerThread.stop();
+    }
+    public static void updateClock() {
+        movesTillBuild.setText("Seconds Till Build: "+Rules.getTurnSinceLastBuild());
+
     }
 }
