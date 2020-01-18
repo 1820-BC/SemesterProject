@@ -20,10 +20,10 @@ public class Pieces{
             PieceTypes.CAPITAL,0
     );
     private static Map<PieceTypes, Integer> shoots = Map.of(
-            PieceTypes.INFANTRY, 2,
+            PieceTypes.INFANTRY, 1,
             PieceTypes.CALVERY, 1,
-            PieceTypes.ARCHER, 4,
-            PieceTypes.TREBUCHET, 4,
+            PieceTypes.ARCHER, 3,
+            PieceTypes.TREBUCHET, 2,
             PieceTypes.FACTORY,0,
             PieceTypes.BARGE, 0,
             PieceTypes.BATTLE_SHIP,4,

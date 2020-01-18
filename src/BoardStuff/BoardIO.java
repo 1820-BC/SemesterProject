@@ -240,29 +240,21 @@ public class BoardIO {
         int y=movePlayer1.getY();
         b.setPointer(x,y);
         Piece attacker=b.getPieceFromPointer();
-        int dX=movePlayer1.getVector().getDirX();
-        int dY=-movePlayer1.getVector().getDirY();
-        for(int apple=0;apple<Pieces.getShoot(attacker.getPieceType());apple++){
-//            F.out.println(dX);
-//            System.out.println(dY);
-            b.movePointer(dX,dY);
-//            System.out.println(b.getSpaceFromPointer());
-            if(!Rules.canShootThrough(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
-                return;
-            }
-            if(!Rules.canKill(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
-                System.out.println("Can Not Kill");
-                continue;
-            }
-            System.out.println("SLAY"+b.getXFromPointer()+b.getYFromPointer());
-//            System.out.println(/);
-            b.setPieceFromPointer(PieceTypes.EMPTY,Teams.Red);
-            moves+="-"+b.getXFromPointer()+","+b.getYFromPointer()+","+PieceTypes.EMPTY+","+Teams.Red;
-            redrawSquare(b.getXFromPointer(),b.getYFromPointer());
-            break;
+        int dX=movePlayer1.getdX();
+        int dY=-movePlayer1.getdY();
 
+        b.movePointer(dX,dY);
+        if(!Rules.canShootThrough(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
+            return;
         }
-//        System.out.println("-----");
+        if(!Rules.canKill(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
+            System.out.println("Can Not Kill");
+            return;
+        }
+        System.out.println("SLAY"+b.getXFromPointer()+b.getYFromPointer());
+        b.setPieceFromPointer(PieceTypes.EMPTY,Teams.Red);
+        moves+="-"+b.getXFromPointer()+","+b.getYFromPointer()+","+PieceTypes.EMPTY+","+Teams.Red;
+        redrawSquare(b.getXFromPointer(),b.getYFromPointer());
     }
     private static void runMovement(Move movePlayer1){
         if (movePlayer1 == null) {
@@ -282,10 +274,9 @@ public class BoardIO {
                 redrawSquare(movePlayer1.getX() + movePlayer1.getdX(), -movePlayer1.getdY() + movePlayer1.getY());
             }
             b.movePointer(-movePlayer1.getdX(), movePlayer1.getdY());
+            return;
 
         }
-
-
 
         movePlayer1.setVector(piece.getPieceType());
 
@@ -303,25 +294,25 @@ public class BoardIO {
             return;
         }
 
-
-        if (!Rules.canMoveInto(b.getSpaceFromPointer(),piece)) {
-            return;
-        }
-        Rules.effectOfMoveInto(b.getSpaceFromPointer(),piece);
-
-        getBoard().setPointer(movePlayer1.getX(), movePlayer1.getY());
+        for(int i=1;i<=Pieces.getMove(piece.getPieceType());i++){
+            if (!Rules.canMoveInto(b.getSpaceFromPointer(),piece)) {
+                return;
+            }
+            getBoard().setPointer(movePlayer1.getX(), movePlayer1.getY());
 
 
 //        System.out.println(movePlayer1.getdX());
-        moves += "-" + movePlayer1.getX() + "," + movePlayer1.getY() + ",EMPTY"+",Red";
-        getBoard().setPieceFromPointer(PieceTypes.EMPTY, Teams.Red);
+            moves += "-" + movePlayer1.getX() + "," + movePlayer1.getY() + ",EMPTY"+",Red";
+            getBoard().setPieceFromPointer(PieceTypes.EMPTY, Teams.Red);
 
-        getBoard().movePointer(movePlayer1.getdX(), -movePlayer1.getdY());
-        moves += "-" + b.getX() + "," + b.getY() + "," + piece.getPieceType()+","+piece.getTeam();
+            getBoard().movePointer(movePlayer1.getVector().getDirX(), -movePlayer1.getVector().getDirY());
+            moves += "-" + b.getX() + "," + b.getY() + "," + piece.getPieceType()+","+piece.getTeam();
 //        System.out.println(moves);
-        getBoard().setPieceFromPointer(piece.getPieceType(),piece.getTeam());
-        redrawSquare(movePlayer1.getX(), movePlayer1.getY());
-        redrawSquare(movePlayer1.getX() + movePlayer1.getdX(), -movePlayer1.getdY() + movePlayer1.getY());
+            getBoard().setPieceFromPointer(piece.getPieceType(),piece.getTeam());
+            redrawSquare(movePlayer1.getX(), movePlayer1.getY());
+            redrawSquare(movePlayer1.getX() + movePlayer1.getVector().getDirX(), -movePlayer1.getVector().getDirY() + movePlayer1.getY());
+        }
+
 //        hearAction();
 
     }

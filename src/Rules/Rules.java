@@ -26,7 +26,7 @@ public class Rules {
         numberOfFactories+=REFERENCE.EFFECT_OF_FACTORY;
     }
     public static void reduceFactory(){
-        numberOfFactories--;
+        numberOfFactories-=REFERENCE.EFFECT_OF_FACTORY;
     }
 
     //if either of the below methods are false, the thing is not killed. However, if canShootThrough is true, the bullet continues to move
