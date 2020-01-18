@@ -60,7 +60,7 @@ public class Rules {
             System.out.println("canShootThrough 3");
             return false;
         }
-        else if (attacker.getPieceType()==PieceTypes.TREBUCHET&&!REFERENCE.KILLIBLEBYTREBUCHET.contains(defender.getType())){
+        else if (attacker.getPieceType()==PieceTypes.TREBUCHET&&REFERENCE.KILLIBLEBYTREBUCHET.contains(defender.getType())){
             System.out.println("canShootThrough OKAY BY TREBUCHET: "+defender.getType());
             return true;
         }

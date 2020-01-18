@@ -102,7 +102,7 @@ public class SettingsScene {
     public static Scene settingsScene(Stage stage) {
         File f = new File("D://BoardGame/src/SavedMaps/");
         if(f.listFiles()==(null)){
-            System.out.println("YOTE");
+//            System.out.println("YOTE");
             return settingsScene;
         }
         delete.getItems().clear();

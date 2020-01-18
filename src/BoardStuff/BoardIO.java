@@ -251,10 +251,11 @@ public class BoardIO {
                 return;
             }
             if(!Rules.canKill(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
-//                System.out.println("Can Not Kill");
+                System.out.println("Can Not Kill");
                 continue;
             }
-//            System.out.println("SLAY"+b.getXFromPointer()+b.getYFromPointer());
+            System.out.println("SLAY"+b.getXFromPointer()+b.getYFromPointer());
+//            System.out.println(/);
             b.setPieceFromPointer(PieceTypes.EMPTY,Teams.Red);
             moves+="-"+b.getXFromPointer()+","+b.getYFromPointer()+","+PieceTypes.EMPTY+","+Teams.Red;
             redrawSquare(b.getXFromPointer(),b.getYFromPointer());

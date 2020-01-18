@@ -56,20 +56,20 @@ public abstract class MultiplayerIO {
             return;
         }
         String updater=in.readLine();
-        System.out.println(updater);
+//        System.out.println(updater);
         if(updater==(null)){
-            System.out.println("nullified");
+//            System.out.println("nullified");
             return;
         }
         if(updater.equals("WIN")){
-            System.out.println("AWIN");
+//            System.out.println("AWIN");
             BoardIO.endSystemForEnemyWin();
         }
         if(updater.equals("")){
             return;
         }
         else {
-            System.out.println(updater);
+//            System.out.println(updater);
             updater = updater.substring(1);
             String[] updates = updater.split("-");
             for (String thingToUpdate : updates) {

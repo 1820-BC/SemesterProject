@@ -27,7 +27,7 @@ public class Archer extends Piece {
 
     @Override
     public Image getImage() {
-        System.out.println(team);
+//        System.out.println(team);
         Image i=new Image("/Textures/Pieces/"+team+"Archer.png");
         return i;
     }

@@ -411,6 +411,9 @@ public class Board {
             board.get(pointer[1]).get(pointer[0]).remove(PieceTypes.TREBUCHET);
             board.get(pointer[1]).get(pointer[0]).remove(PieceTypes.BARGE);
             board.get(pointer[1]).get(pointer[0]).remove(PieceTypes.BATTLE_SHIP);
+            board.get(pointer[1]).get(pointer[0]).remove(PieceTypes.WALL);
+            board.get(pointer[1]).get(pointer[0]).remove(PieceTypes.FACTORY);
+
 
 //            board.get(pointer[1]).get(pointer[0]).remove(PiececTypes.);
         }
@@ -467,7 +470,7 @@ public class Board {
             return getPieceTypeFromPointer();
         }
         setPointer(sizeX-1,sizeX-1); //check this thing for other error!!!
-        System.out.println(getPieceTypeFromPointer());
+//        System.out.println(getPieceTypeFromPointer());
         return getPieceTypeFromPointer();
     }
 
