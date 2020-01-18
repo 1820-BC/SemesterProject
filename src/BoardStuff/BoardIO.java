@@ -247,10 +247,7 @@ public class BoardIO {
         if(!Rules.canShootThrough(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
             return;
         }
-        if(!Rules.canKill(b.getSpaceFromPointer(),attacker,b.getPieceFromPointer())){
-            System.out.println("Can Not Kill");
-            return;
-        }
+
         System.out.println("SLAY"+b.getXFromPointer()+b.getYFromPointer());
         b.setPieceFromPointer(PieceTypes.EMPTY,Teams.Red);
         moves+="-"+b.getXFromPointer()+","+b.getYFromPointer()+","+PieceTypes.EMPTY+","+Teams.Red;
