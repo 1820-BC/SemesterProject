@@ -102,6 +102,11 @@ public class Rules {
     //whether something can be built in a location
     public static boolean canBuildIn(int y,Space space,PieceTypes piece){
         //must build in your sector
+        if(piece==PieceTypes.FACTORY&&numberOfFactories==REFERENCE.MAX_TURNS_BETWEEN_BUILDS-REFERENCE.EFFECT_OF_FACTORY){
+            return false;
+        }
+
+
         if(!BoardIO.correctTeamFromSector(y)){
             return false;
         }

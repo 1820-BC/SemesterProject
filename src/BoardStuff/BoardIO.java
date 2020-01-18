@@ -269,48 +269,49 @@ public class BoardIO {
                 Piece p=piece.disembark();
                 moves += "-" + b.getX() + "," + b.getY() + "," + p +","+p.getTeam();
                 System.out.println(p.getPieceType());
-
                 getBoard().setPieceFromPointer(p.getPieceType(),p.getTeam());
                 redrawSquare(movePlayer1.getX() + movePlayer1.getdX(), -movePlayer1.getdY() + movePlayer1.getY());
             }
-            b.movePointer(-movePlayer1.getdX(), movePlayer1.getdY());
             return;
 
         }
 
-        movePlayer1.setVector(piece.getPieceType());
 
-        b.movePointer(movePlayer1.getdX(), -movePlayer1.getdY());
-
-        Piece secondPiece=b.getPieceFromPointer();
-
-        if(secondPiece.getPieceType()== PieceTypes.BARGE&&secondPiece.getTeam()==player){
-
-            secondPiece.setHolding(piece);
-            b.movePointer(-movePlayer1.getdX(), movePlayer1.getdY());
-            moves += "-" + movePlayer1.getX() + "," + movePlayer1.getY() + ",EMPTY"+",Red";
-            getBoard().setPieceFromPointer(PieceTypes.EMPTY, Teams.Red);
-            redrawSquare(movePlayer1.getX(), movePlayer1.getY());
-            return;
-        }
-
+        getBoard().setPointer(movePlayer1.getX(), movePlayer1.getY());
         for(int i=1;i<=Pieces.getMove(piece.getPieceType());i++){
-            if (!Rules.canMoveInto(b.getSpaceFromPointer(),piece)) {
+            b.movePointer(movePlayer1.getVector().getDirX(), -movePlayer1.getVector().getDirY());
+            Piece secondPiece=b.getPieceFromPointer();
+
+            if(secondPiece.getPieceType()== PieceTypes.BARGE&&secondPiece.getTeam()==player){
+
+                secondPiece.setHolding(piece);
+                b.movePointer(-movePlayer1.getVector().getDirX(), movePlayer1.getVector().getDirY());
+                moves += "-" + movePlayer1.getX() + "," + movePlayer1.getY() + ",EMPTY"+",Red";
+                getBoard().setPieceFromPointer(PieceTypes.EMPTY, Teams.Red);
+                redrawSquare(movePlayer1.getX(), movePlayer1.getY());
                 return;
             }
-            getBoard().setPointer(movePlayer1.getX(), movePlayer1.getY());
 
-
+            if (!Rules.canMoveInto(b.getSpaceFromPointer(),piece)) {
+                System.out.println("killed");
+                return;
+            }
+            b.movePointer(-movePlayer1.getVector().getDirX(), movePlayer1.getVector().getDirY());
 //        System.out.println(movePlayer1.getdX());
-            moves += "-" + movePlayer1.getX() + "," + movePlayer1.getY() + ",EMPTY"+",Red";
+            moves += "-" + b.getX() + "," + b.getY() + ",EMPTY"+",Red";
             getBoard().setPieceFromPointer(PieceTypes.EMPTY, Teams.Red);
+            System.out.println(b.getPieceTypeFromPointer());
+            redrawSquare(b.getXFromPointer(), b.getYFromPointer());
+
 
             getBoard().movePointer(movePlayer1.getVector().getDirX(), -movePlayer1.getVector().getDirY());
             moves += "-" + b.getX() + "," + b.getY() + "," + piece.getPieceType()+","+piece.getTeam();
-//        System.out.println(moves);
             getBoard().setPieceFromPointer(piece.getPieceType(),piece.getTeam());
-            redrawSquare(movePlayer1.getX(), movePlayer1.getY());
-            redrawSquare(movePlayer1.getX() + movePlayer1.getVector().getDirX(), -movePlayer1.getVector().getDirY() + movePlayer1.getY());
+            System.out.println(b.getPieceTypeFromPointer());
+            redrawSquare(b.getXFromPointer(), b.getYFromPointer());
+
+
+
         }
 
 //        hearAction();
