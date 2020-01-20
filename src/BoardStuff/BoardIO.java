@@ -528,4 +528,11 @@ public class BoardIO {
     public static Players getWinner() {
         return win;
     }
+
+    public static Teams getOtherTeam() {
+        if(player==Teams.Red){
+            return Teams.Blue;
+        }
+        return Teams.Red;
+    }
 }

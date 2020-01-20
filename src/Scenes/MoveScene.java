@@ -297,6 +297,7 @@ public class MoveScene {
             BoardIO.getIO().runUpdationThread();
         }
         color.setId(BoardIO.getTeam().toString());
+        enemy.setId(BoardIO.getOtherTeam());
         BoardIO.getCanvas().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
