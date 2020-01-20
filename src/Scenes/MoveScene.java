@@ -263,7 +263,7 @@ public class MoveScene {
     private static void FunctionForEntering(Image im) {
         BoardIO.getBoard().setPointer(currentMove.getX(),currentMove.getY());
         if(currentMove.getPT()==Moves.BUILD){
-            if(!Rules.readyForBuild()||!Rules.canBuildIn(currentMove.getY(),BoardIO.getBoard().getSpaceFromPointer(),currentMove.getNewPieceType())){
+            if(!Rules.readyForBuild()){
                 return;
             }
             if(currentMove.getNewPieceType()==PieceTypes.FACTORY){
