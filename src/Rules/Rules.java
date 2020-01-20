@@ -168,25 +168,25 @@ public class Rules {
     public static int effectOfTerrainOnShot(Space s){
         TerrainTypes t=s.getTerrainType();
         if(t==TerrainTypes.FORESTS){
-            return 0;
+            return REFERENCE.EFFECT_OF_FORESTS_ON_SHOT;
         }
         else if(t==TerrainTypes.MOUNTAINS){
-            return 0;
+            return REFERENCE.EFFECT_OF_MOUNTAINS_ON_SHOT;
         }
         else{
-            return 1;
+            return REFERENCE.EFFECT_OF_PLAINS_ON_SHOT;
         }
     }
     public static int effectOfTerrainOnMove(Space s){
         TerrainTypes t=s.getTerrainType();
         if(t==TerrainTypes.FORESTS){
-            return 0;
+            return REFERENCE.EFFECT_OF_FORESTS_ON_MOVE;
         }
         else if(t==TerrainTypes.MOUNTAINS){
-            return 0;
+            return REFERENCE.EFFECT_OF_MOUNTAINS_ON_MOVE;
         }
         else{
-            return 1;
+            return REFERENCE.EFFECT_OF_PLAINS_ON_MOVE;
         }
     }
 

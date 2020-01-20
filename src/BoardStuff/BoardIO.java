@@ -322,7 +322,7 @@ public class BoardIO {
 
 
         getBoard().setPointer(movePlayer1.getX(), movePlayer1.getY());
-        for(int i=1;i<=Pieces.getMove(piece.getPieceType());i++){
+        for(int i=1;i<=Pieces.getMove(piece.getPieceType())+Rules.effectOfTerrainOnMove(b.getSpaceFromPointer());i++){
             b.movePointer(movePlayer1.getVector().getDirX(), -movePlayer1.getVector().getDirY());
             Piece secondPiece=b.getPieceFromPointer();
 
