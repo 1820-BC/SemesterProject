@@ -32,7 +32,7 @@ public class VictoryScene {
         public void handle(ActionEvent event) {
 //            System.out.println("yeet");
 //            incrementA();Image image = new Image("my/res/flower.png", 100, 100, false, false);
-            image.setId(Integer.toString(a));
+            image.setId(BoardIO.getWinner()+Integer.toString(a));
             incrementA();
 
         }
@@ -85,7 +85,7 @@ public class VictoryScene {
         win.setText(message);
         fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
         fiveSecondsWonder.play();
-        MoveScene.end();
+//        MoveScene.end();
         return scene;
     }
     public static void stop(){

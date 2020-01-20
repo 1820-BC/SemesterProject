@@ -71,8 +71,17 @@ public class Rules {
     }
 
     //dicerns whether space can be moved into by piece
-    public static boolean canMoveInto(Space space, Piece piece){
+    public static boolean canMoveInto(Space space, Piece piece,boolean multiplayer){
         // if moving onto allowed spaces
+        if (space.getPieceType() == PieceTypes.CAPITAL) {
+            if(multiplayer){
+                BoardIO.win();
+            }
+            else{
+                BoardIO.softwin();
+            }
+            return false;
+        }
         if(space.getPiece().getType()==PieceTypes.EMPTY){
             System.out.println("EMPTY");
             if(space.getType().getLand().equals("rivers")){
@@ -83,7 +92,7 @@ public class Rules {
                 }
                 return false;
             }
-            if(piece.getPieceType()==PieceTypes.BARGE){
+            if(piece.getPieceType()==PieceTypes.BARGE||piece.getPieceType()==PieceTypes.BATTLE_SHIP){
                 return false;
             }
             return true;
@@ -119,6 +128,9 @@ public class Rules {
             if(piece==PieceTypes.BARGE||piece==PieceTypes.BATTLE_SHIP){
                 return true;
             }
+            return false;
+        }
+        if(piece==PieceTypes.BARGE||piece==PieceTypes.BATTLE_SHIP){
             return false;
         }
         return true;

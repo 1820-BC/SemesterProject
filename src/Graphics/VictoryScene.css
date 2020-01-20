@@ -1,26 +1,26 @@
-#1{
-      -fx-background-image: url(/Textures/Pieces/RedWin1.png);
+#ME1{
+    -fx-background-image: url(/Textures/Pieces/RedWin1.png);
     -fx-background-size: cover;
-/*    */
+    /*    */
 
 }
-#2{
+#ME2{
     -fx-background-image: url(/Textures/Pieces/RedWin2.png);
     -fx-background-size: cover;
     /*-fx-background-size: fill;*/
     /*-fx-background-*/
 }
-#3{
+#ME3{
     -fx-background-image: url(/Textures/Pieces/RedWin3.png);
     -fx-background-size: cover;
     /*-fx-background-*/
 }
-#4{
+#ME4{
     -fx-background-image: url(/Textures/Pieces/RedWin4.png);
     -fx-background-size: cover;
     /*-fx-background-*/
 }
-#5{
+#ME5{
     -fx-background-image: url(/Textures/Pieces/RedWin5.png);
     -fx-background-size: cover;
     /*-fx-background-*/
@@ -37,5 +37,31 @@
 }
 .label{
     -fx-font-size: 75;
+}
+#ENEMY1{
+    -fx-background-image: url(/Textures/Pieces/RedLoss1.png);
+    -fx-background-size: cover;
+
+}
+#ENEMY2{
+    -fx-background-image: url(/Textures/Pieces/RedLoss2.png);
+    -fx-background-size: cover;
+
+}
+#ENEMY3{
+    -fx-background-image: url(/Textures/Pieces/RedLoss3.png);
+    -fx-background-size: cover;
+
+}
+#ENEMY4{
+    -fx-background-image: url(/Textures/Pieces/RedLoss4.png);
+    -fx-background-size: cover;
+
+}
+
+#ENEMY5{
+    -fx-background-image: url(/Textures/Pieces/RedLoss5.png);
+    -fx-background-size: cover;
+
 }
 
