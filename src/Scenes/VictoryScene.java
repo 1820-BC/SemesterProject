@@ -49,7 +49,7 @@ public class VictoryScene {
     }
 
 
-    public static void setupVictoryScene(Stage stage, double width, double height){
+    public static void setupVictoryScene(Stage stage, double screenWidth, double screenHeight){
         fiveSecondsWonder.setCycleCount(Timeline.INDEFINITE);
 //        image=new Label();
         image=new Label("       ");
@@ -61,11 +61,25 @@ public class VictoryScene {
         returnToHome=new Button("RETURN TO HOME");
         returnToHome.setOnAction(e->{
             stop();
+            InstructionsScene.setUpInstructionScene(stage,screenWidth,screenHeight);
+            OpeningScene.openingSceneInit(stage,screenWidth,screenHeight);
+            SettingsScene.settingsSceneInit(stage,screenWidth,screenHeight);
+            GameSetupScene.gameSetupSceneInit(stage,screenWidth,screenHeight);
+            GameSetupSceneClient.setupGameSetupSceneClient(stage,screenWidth,screenHeight);
+            try {
+                PlayersScene.setupPlayersScene(stage,screenWidth,screenHeight);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            MoveScene.setupMoveScene(stage,screenWidth,screenHeight);
+            ParamsScene.setUpParamsScene(stage,screenWidth,screenHeight);
+            ClientReadyScene.initializeClientReadyScene(stage,screenWidth,screenHeight);
+
             stage.setScene(OpeningScene.openingScene(stage));
         });
         box=new VBox(30);
         box.getChildren().addAll(win,image,returnToHome);
-        scene=new Scene(box,width,height);
+        scene=new Scene(box,screenWidth,screenHeight);
         scene.getStylesheets().add("/Graphics/VictoryScene.css");
     }
     public static Scene getScene(){
