@@ -34,7 +34,7 @@ public class OpeningScene {
         title = new Label("Triumphus");
         title.getStyleClass().add("titleText");
 
-        version = new Label("Version Alpha 1.2.0");
+        version = new Label("Version: Release 1.0.0");
         version.getStyleClass().add("infoText");
 
 
