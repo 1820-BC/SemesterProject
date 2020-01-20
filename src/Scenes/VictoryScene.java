@@ -72,12 +72,12 @@ public class VictoryScene {
         String message;
 
         if(BoardIO.getWinner()== Players.ME){
-            message="You Committed Win!";
+            message="You Win!";
             box.setId("boxWin");
             win.setId("labWin");
         }
         else{
-            message="You Committed Game Loose";
+            message="You Loose!";
             box.setId("boxLoss");
             win.setId("labLoss");
         }

@@ -25,6 +25,23 @@
     -fx-background-size: cover;
     /*-fx-background-*/
 }
+.button{
+    -fx-background-size: 70px;
+    -fx-background-repeat: no-repeat;
+    -fx-height: 45px;
+    -fx-width: 45px;
+    -fx-background-color: grey;
+    /*-fx-border-color: green;*/
+
+    -fx-effect: dropshadow(one-pass-box, #898989,0,0,0,10);
+    -fx-transition-duration:60s;
+}
+.button:pressed:hover{
+    -fx-background-color: #648069;
+
+    -fx-effect: dropshadow(one-pass-box, #707070,0,0,0,4);
+    -fx-translate-y: 5px;
+}
 #labWin{
     -fx-font-size: 35;
     -fx-font-family: Centaur;
