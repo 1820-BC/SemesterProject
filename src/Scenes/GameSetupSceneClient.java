@@ -1,6 +1,7 @@
 package Scenes;
 
 import BoardStuff.BoardIO;
+import BoardStuff.Players;
 import Functions.Save;
 import Multiplayer.ClientIO;
 import Pieces.Teams;
@@ -49,7 +50,9 @@ public class GameSetupSceneClient {
                         ClientIO clientIO = new ClientIO(field.getText());
 
                         clientIO.sendName();
+                        PlayersScene.setName(clientIO.getMessage());
                         BoardIO.setIO(clientIO);
+
 
                     } catch (IOException ex) {
                         field.setText("Invalid IP");

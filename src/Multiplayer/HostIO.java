@@ -5,6 +5,7 @@ import BoardStuff.Move;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 //A HostIO class that allows for host functionality
 public class HostIO extends MultiplayerIO{
@@ -73,5 +74,11 @@ public class HostIO extends MultiplayerIO{
         os.println("WIN");
     }
 
+    public void sendName() throws FileNotFoundException {
+//        sent=true;
+        Scanner s=new Scanner(new File("src/Settings/name.txt"));
+        String name=s.nextLine();
+        os.println(name);
+    }
 //    public String getMessage();
 }

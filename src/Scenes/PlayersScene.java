@@ -26,7 +26,7 @@ public class PlayersScene {
     private static Button getPlayers,back;
     private static VBox players;
     private static VBox buttons;
-    private static ListView<String> lis;
+    private static String name;
     private static ArrayList<String> connected;
     private static FlowPane flower;
     private static Scene scene;
@@ -41,18 +41,16 @@ public class PlayersScene {
         players=new VBox(30);
         players.setAlignment(Pos.CENTER);
         buttons=new VBox(30);
-        connected=new ArrayList<>();
-        lis=new ListView();
+
 //        ListView<String> list = new ListView<String>();
 
-        ObservableList<String> items = FXCollections.observableArrayList(connected);
-        lis.setItems(items);
+
 
         getPlayers.setOnAction(e->{
             try {
                 host.beginConnectionProcedure();
-                String name=host.getMessage();
-                items.add(name);
+                name=host.getMessage();
+                host.sendName();
                 BoardIO.setIO(host);
                 stage.setScene(GameSetupScene.GameSetupScene(true));
             } catch (IOException ex) {
@@ -63,7 +61,6 @@ public class PlayersScene {
         back.setOnAction(e->{
             stage.setScene(OpeningScene.openingScene(stage));
         });
-        players.getChildren().addAll(lis);
         buttons.getChildren().addAll(getPlayers,back);
         flower.getChildren().addAll(players,buttons);
         scene=new Scene(flower,width,height);
@@ -75,4 +72,6 @@ public class PlayersScene {
     public static Scene getPlayersScene() {
         return scene;
     }
+    public static String getName(){return name; }
+    public static void setName(String nam){name=nam;}
 }

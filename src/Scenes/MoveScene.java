@@ -41,7 +41,7 @@ public class MoveScene {
     static private FlowPane flower;
     static private BorderPane primaryPane;
     static private Label MoveNum, moveType;
-    static private VBox vbox,movesVBox;
+    static private VBox vbox,movesVBox,infoVBox;
     static private int movesIn = 0;
     static private String message = "YOU HAVE ";
     static private String message2 = "MOVES QUEUED";
@@ -50,7 +50,7 @@ public class MoveScene {
     static private int selectedY;
     static private int squareSize=30;
     static private Button build;
-    static private Label color;
+    static private Label color, enemy;
     static private Label movesTillBuild;
     static private Stage playStage;
 //    static private TimerThread clock;
@@ -87,6 +87,7 @@ public class MoveScene {
 
 
         color=new Label();
+        enemy=new Label();
         movesTillBuild=new Label();
         movesTillBuild.setText("Moves Till Build: "+Rules.getTurnSinceLastBuild());
 
@@ -181,6 +182,9 @@ public class MoveScene {
         vbox.getChildren().addAll(moveType,flower,anchor,submitOrder);
 //        vbox.setPadding(new Insets(0,10,0,0));
 
+        infoVBox=new VBox(20);
+        infoVBox.getChildren().setAll(color,enemy);
+
         primaryPane = new BorderPane();
         primaryPane.setPadding(new Insets(20,10,20,10));
 
@@ -188,7 +192,7 @@ public class MoveScene {
 
         primaryPane.setLeft(movesVBox);
         primaryPane.setRight(vbox);
-        primaryPane.setBottom(color);
+        primaryPane.setBottom(infoVBox);
 
         scene = new Scene(primaryPane, width, height);
         scene.getStylesheets().addAll("Graphics/ControlBoard.css");
@@ -288,6 +292,7 @@ public class MoveScene {
 //        BoardIO.setupForMoveSelection();
         multiplayer=multi;
         color.setText("Your Color Is: "+BoardIO.getTeam());
+        enemy.setText("Your Enemy Is: "+PlayersScene.getName());
         if(multiplayer) {
             BoardIO.getIO().runUpdationThread();
         }

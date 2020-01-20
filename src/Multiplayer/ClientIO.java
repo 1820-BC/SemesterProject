@@ -52,6 +52,9 @@ public class ClientIO extends MultiplayerIO{
         String name=s.nextLine();
         os.println(name);
     }
+    public String getMessage() throws IOException {
+        return in.readLine();
+    }
 
 
 
