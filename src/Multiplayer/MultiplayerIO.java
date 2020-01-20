@@ -102,6 +102,7 @@ public abstract class MultiplayerIO {
 
     public abstract void sendForWin();
 
+    public abstract void reset();
 
 //    public abstract void setActionListener();
 }

@@ -1,5 +1,6 @@
 package Scenes;
 
+import BoardStuff.Board;
 import BoardStuff.BoardIO;
 import BoardStuff.Players;
 import javafx.animation.KeyFrame;
@@ -74,7 +75,7 @@ public class VictoryScene {
             MoveScene.setupMoveScene(stage,screenWidth,screenHeight);
             ParamsScene.setUpParamsScene(stage,screenWidth,screenHeight);
             ClientReadyScene.initializeClientReadyScene(stage,screenWidth,screenHeight);
-
+            BoardIO.getIO().reset();
             stage.setScene(OpeningScene.openingScene(stage));
         });
         box=new VBox(30);

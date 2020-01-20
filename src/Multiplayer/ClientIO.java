@@ -16,6 +16,15 @@ public class ClientIO extends MultiplayerIO{
 
      UpdationThread T;
 
+     public void reset(){
+         try {
+             socket.close();
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
+
+
     public ClientIO(String IP) throws IOException {
         super();
         host=false;

@@ -16,7 +16,13 @@ public class HostIO extends MultiplayerIO{
 //    private WaitScreenUpdationThread thread;
 
 
-
+    public void reset(){
+        try {
+            server.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public HostIO() throws IOException {
         server = new ServerSocket(4444);
         host=true;

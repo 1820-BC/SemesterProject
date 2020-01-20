@@ -249,10 +249,12 @@ public class BoardIO {
         if(!Rules.canShootThrough(b.getSpaceFromPointer(),attacker,defender)){
             return;
         }
+        System.out.println("-" + b.getX() + "," + b.getY() + ",EMPTY"+",Red");
         if(!Rules.canKill(b.getSpaceFromPointer(),attacker,defender)){
             return;
         }
         b.setPieceFromPointer(PieceTypes.EMPTY,Teams.Red);
+        redrawSquare(b.getXFromPointer(),b.getYFromPointer());
         moves += "-" + b.getX() + "," + b.getY() + ",EMPTY"+",Red";
 
 
