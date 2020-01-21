@@ -9,7 +9,7 @@ public class Pieces{
 
     private static Map<PieceTypes, Integer> moves = Map.of(
             PieceTypes.INFANTRY, 2,
-            PieceTypes.CALVERY, 4,
+            PieceTypes.CALVERY, 3,
             PieceTypes.ARCHER, 1,
             PieceTypes.TREBUCHET, 1,
             PieceTypes.FACTORY, 0,

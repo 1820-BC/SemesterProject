@@ -261,12 +261,19 @@ public class MoveScene {
     }
 
     private static void FunctionForEntering(Image im) {
+        if(currentMove.getPT()==null){
+            return;
+        }
         BoardIO.getBoard().setPointer(currentMove.getX(),currentMove.getY());
         if(currentMove.getPT()==Moves.BUILD){
             if(!Rules.readyForBuild()){
                 return;
             }
             if(currentMove.getNewPieceType()==PieceTypes.FACTORY){
+                if(Rules.getNumberOfFactories()==REFERENCE.MAX_TURNS_BETWEEN_BUILDS-REFERENCE.EFFECT_OF_FACTORY){
+//            System.out.println("death of factory");
+                    return;
+                }
                 Rules.addFactory();
             }
             Rules.resetTurnsSinceLastBuild();
@@ -277,7 +284,7 @@ public class MoveScene {
 //        Moves m=currentMove.getPT();
         currentMove=new Move(selectedX,selectedY);
 //        currentMove.setType(m);
-        moveType.setText("DIRECTED TO: MOVE");
+        moveType.setText("DIRECTED TO: Move");
         moveOrShoot();
         image.setImage(im);
         movesIn=moves.getItems().size();

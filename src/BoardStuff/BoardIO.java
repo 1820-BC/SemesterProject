@@ -142,7 +142,12 @@ public class BoardIO {
         if(b==null){
             return false;
         }
-        b.setPointer(movePlayer1.getX(), movePlayer1.getY());
+        try {
+            b.setPointer(movePlayer1.getX(), movePlayer1.getY());
+        }
+        catch (Exception e){
+            return false;
+        }
         Piece p=b.getPieceFromPointer();
 //        System.out.println(p);
         return p.getTeam()!=player&&p.type()!=null;
@@ -235,9 +240,7 @@ public class BoardIO {
         b.setPieceFromPointer(type,player);
         moves+="-"+movePlayer1.getX()+","+movePlayer1.getY()+","+ type+","+player;
         redrawSquare(movePlayer1.getX(), movePlayer1.getY());
-        if(type==PieceTypes.FACTORY){
-            Rules.addFactory();
-        }
+
 
     }
     private static void runShot(Move movePlayer1){
@@ -245,7 +248,7 @@ public class BoardIO {
 
         b.setPointer(movePlayer1.getX(),movePlayer1.getY());
         Piece attacker=b.getPieceFromPointer();
-        b.movePointer(movePlayer1.getVector().getDirX()*Pieces.getShoot(attacker.getPieceType()),-movePlayer1.getVector().getDirY()*Pieces.getShoot(attacker.getPieceType()));
+        b.movePointer(movePlayer1.getVector().getDirX()*Pieces.getShoot(attacker.getPieceType())+Rules.effectOfTerrainOnShot(b.getSpaceFromPointer()),-+Rules.effectOfTerrainOnShot(b.getSpaceFromPointer())-movePlayer1.getVector().getDirY()*Pieces.getShoot(attacker.getPieceType()));
         Piece defender=b.getPieceFromPointer();
         if(!Rules.canShootThrough(b.getSpaceFromPointer(),attacker,defender)){
             return;
@@ -324,7 +327,7 @@ public class BoardIO {
 
 
         getBoard().setPointer(movePlayer1.getX(), movePlayer1.getY());
-        for(int i=1;i<=Pieces.getMove(piece.getPieceType())+Rules.effectOfTerrainOnMove(b.getSpaceFromPointer());i++){
+        for(int i=1;i<Pieces.getMove(piece.getPieceType())+Rules.effectOfTerrainOnMove(b.getSpaceFromPointer());i++){
             b.movePointer(movePlayer1.getVector().getDirX(), -movePlayer1.getVector().getDirY());
             Piece secondPiece=b.getPieceFromPointer();
 

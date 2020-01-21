@@ -87,7 +87,12 @@ public class Space {
         else if(p==PieceTypes.CAPITAL){
             piece=new Capital(team);
         }
-        pieces.set(0,piece);
+        if(pieces.size()>0&&pieces.get(0).getType()==PieceTypes.EMPTY){
+            pieces.set(0,piece);
+        }
+        else {
+            pieces.add(piece);
+        }
     }
 
 

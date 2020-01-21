@@ -12,6 +12,7 @@ public class Rules {
     private static int turnSinceLastBuild=0;
     private static int turnSinceLastDrawbridge=0;
     private static int numberOfFactories=0;
+    private static int amountOfFactories=0;
 
     public static void addTurnSinceBuild(){
         turnSinceLastBuild-=1;
@@ -24,9 +25,11 @@ public class Rules {
     }
     public static void addFactory(){
         numberOfFactories+=REFERENCE.EFFECT_OF_FACTORY;
+        amountOfFactories++;
     }
     public static void reduceFactory(){
         numberOfFactories-=REFERENCE.EFFECT_OF_FACTORY;
+        amountOfFactories--;
     }
 
     //if either of the below methods are false, the thing is not killed. However, if canShootThrough is true, the bullet continues to move
@@ -108,12 +111,14 @@ public class Rules {
         return;
     }
 
+    public static int getNumberOfFactories(){
+        return numberOfFactories;
+    }
+
     //whether something can be built in a location
     public static boolean canBuildIn(int y,Space space,PieceTypes piece){
         //must build in your sector
-        if(piece==PieceTypes.FACTORY&&numberOfFactories==REFERENCE.MAX_TURNS_BETWEEN_BUILDS-REFERENCE.EFFECT_OF_FACTORY){
-            return false;
-        }
+
 
 
         if(!BoardIO.correctTeamFromSector(y)){
@@ -125,6 +130,7 @@ public class Rules {
         }
         //can not build in water
         if(space.getType().getLand().equals("rivers")){
+            System.out.println("rivers");
             if(piece==PieceTypes.BARGE||piece==PieceTypes.BATTLE_SHIP){
                 return true;
             }
