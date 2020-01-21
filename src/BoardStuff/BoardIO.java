@@ -317,9 +317,8 @@ public class BoardIO {
                 System.out.println(p.getPieceType());
                 getBoard().setPieceFromPointer(p.getPieceType(),p.getTeam());
                 redrawSquare(movePlayer1.getX() + movePlayer1.getdX(), -movePlayer1.getdY() + movePlayer1.getY());
+                return;
             }
-            return;
-
         }
 
 
