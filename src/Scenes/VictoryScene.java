@@ -92,7 +92,7 @@ public class VictoryScene {
             win.setId("labWin");
         }
         else{
-            message="You Loose!";
+            message="You Lose!";
             box.setId("boxLoss");
             win.setId("labLoss");
         }
