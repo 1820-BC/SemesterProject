@@ -277,7 +277,7 @@ public class Board {
      */
     public Board(String name) throws FileNotFoundException {
         board.clear();
-        Scanner s=new Scanner(new File("D://BoardGame/src/SavedMaps/"+name));
+        Scanner s=new Scanner(new File("./src/BoardStuff/SavedMaps/" + name));
         String line;
         String[] list;
         ArrayList<Space> row=new ArrayList<>();
@@ -313,14 +313,19 @@ public class Board {
 
         sizeX=board.size();
         sizeY=board.size();
+        addCapitals(sizeX);
     }
 
 
     //Saves board to txt file name
     //Will return true is successful and false if file already exists
     public boolean saveToFile(String name) throws IOException {
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter("D://BoardGame/src/SavedMaps/" + name + ".txt"));
+        File f=new File("./src/BoardStuff/SavedMaps/" + name);
+        f.createNewFile();
+        if(sizeX==0){
+            throw new IOException();
+        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(f));
         for (ArrayList<Space> a : board) {
             for (Space s : a) {
                 writer.write(s.getType().getLand() + "-");

@@ -1,5 +1,5 @@
 package BoardStuff;
 
 public enum TerrainTypes {
-    MOUNTAINS,PLAINS,FORESTS,VILLAGE
+    MOUNTAINS,PLAINS,FORESTS,VILLAGE,RIVERS
 }

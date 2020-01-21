@@ -173,6 +173,9 @@ public class Rules {
         else if(t==TerrainTypes.MOUNTAINS){
             return REFERENCE.EFFECT_OF_MOUNTAINS_ON_SHOT;
         }
+        else if(t==TerrainTypes.RIVERS){
+            return REFERENCE.EFFECT_OF_WATER_ON_SHOT;
+        }
         else{
             return REFERENCE.EFFECT_OF_PLAINS_ON_SHOT;
         }
@@ -184,6 +187,9 @@ public class Rules {
         }
         else if(t==TerrainTypes.MOUNTAINS){
             return REFERENCE.EFFECT_OF_MOUNTAINS_ON_MOVE;
+        }
+        else if(t==TerrainTypes.RIVERS){
+            return REFERENCE.EFFECT_OF_WATER_ON_MOVE;
         }
         else{
             return REFERENCE.EFFECT_OF_PLAINS_ON_MOVE;

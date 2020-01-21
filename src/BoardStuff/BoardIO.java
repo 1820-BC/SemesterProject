@@ -233,11 +233,12 @@ public class BoardIO {
             return;
         }
         b.setPieceFromPointer(type,player);
+        moves+="-"+movePlayer1.getX()+","+movePlayer1.getY()+","+ type+","+player;
+        redrawSquare(movePlayer1.getX(), movePlayer1.getY());
         if(type==PieceTypes.FACTORY){
             Rules.addFactory();
         }
-        moves+="-"+movePlayer1.getX()+","+movePlayer1.getY()+","+ type+","+player;
-        redrawSquare(movePlayer1.getX(), movePlayer1.getY());
+
     }
     private static void runShot(Move movePlayer1){
 
